@@ -100,7 +100,7 @@ def report(watch_s: float = 0.0, every_s: float = 0.5, ppisim: bool = True, out:
     """Everything a test session at the instrument needs, in one call: versions, the instrument now (and how long a
     status read takes), the profile and its proposal, PyPhenom's simulator, and with watch_s > 0 the status read
     every every_s seconds for watch_s seconds while a person uses the Phenom UI (TESTING T1, T3): every change of
-    mode, door, EDS acquisition, vacuum, SED, warnings or read errors, with the time since the start. Read only.
+    mode, door, EDS (idle, acquiring, busy elsewhere), vacuum, SED, read errors, with the time since the start. Read only.
     Writes two files: the short text (out, default PHNT_OUT/report_<time>.txt) and the full report next to it
     (.json). Returns the paths and the text. progress(line), if given, gets each change as it happens and a line
     every 30 s during the watch (the CLI prints them, so a person sees it working)."""
@@ -137,21 +137,24 @@ def report(watch_s: float = 0.0, every_s: float = 0.5, ppisim: bool = True, out:
     return {"ok": True, "files": rep["files"], "text": rep["text"]}
 
 
-def _watch_key(s: dict) -> dict:
+def _watch_key(s: dict, quick=adapter.Adapter.QUICK) -> dict:
     """The states whose change is worth a line. Not the pressure (it moves at every read while the chamber pumps:
     the first watch on the XL logged 17 'changes' for one pump-down); it goes in the line and the trace instead."""
     sm = s.get("summary") or {}
     return {**{k: s.get(k) for k in WATCH_KEYS if k in s},
-            "eds_acquiring": (s.get("spectrometer") or {}).get("acquiring"),
-            "scan": (s.get("viewing_mode") or {}).get("scan_mode"),
+            "eds": sm.get("eds"), "scan": (s.get("viewing_mode") or {}).get("scan_mode"),
             "vacuum_stable": sm.get("vacuum_stable"), "sed": sm.get("sed"), "can_image": sm.get("can_image"),
-            "read_errors": sorted((s.get("read_errors") or {}).keys())}
+            # only reads made every time: a read only in the full status (hfw while unloading) would otherwise be a
+            # 'change' at every full status and again at the next quick read
+            "read_errors": sorted(r for r in (s.get("read_errors") or {}) if r in quick),
+            "unavailable": sorted(r for r in (s.get("unavailable") or {}) if r in quick)}
 
 
 def _watch(a, watch_s: float, every_s: float, progress=None, full_every_s: float = 30.0) -> dict:
     """Quick reads (adapter.QUICK) every every_s, a full status every full_every_s; a line per change of state."""
     t_start, quick_n, full_n, changes, last = time.perf_counter(), 0, 0, [], None
     q_dur, f_dur, errors, trace, next_full, next_beat = [], [], {}, [], 0.0, 30.0
+    unavailable, t_change = {}, 0.0
     while True:
         t = time.perf_counter() - t_start
         if t > watch_s:
@@ -169,25 +172,30 @@ def _watch(a, watch_s: float, every_s: float, progress=None, full_every_s: float
         for r, msg in (s.get("read_errors") or {}).items():
             key = f"{r} during {s.get('operational_mode')}"
             errors.setdefault(key, {"count": 0, "first": msg})["count"] += 1
-        p = (s.get("summary") or {}).get("pressure_pa")
-        trace.append([round(t, 2), None if p is None else round(p, 3), s.get("operational_mode")])
+        for r, why in (s.get("unavailable") or {}).items():
+            unavailable.setdefault(f"{r} during {s.get('operational_mode')}", {"count": 0, "why": why})["count"] += 1
+        p = _g((s.get("summary") or {}).get("pressure_pa"))
+        trace.append([round(t, 2), p, s.get("operational_mode")])
         k = _watch_key(s)
         if k != last:
-            changes.append({"t_s": round(t, 1), **k, "pressure_pa": None if p is None else round(p, 2),
+            t_change = t
+            changes.append({"t_s": round(t, 1), **k, "pressure_pa": p,
                             "warnings": s.get("warnings") or [], "errors": s.get("read_errors") or {}})
             last = k
             if progress:
                 progress(_change_line(changes[-1]))
         if progress and t >= next_beat:
-            progress(f"  +{t:6.1f} s  {quick_n + full_n} reads so far, no change of state"
-                     + (f" ({p:.2f} Pa)" if p is not None else ""))
+            progress(f"  +{t:6.1f} s  {quick_n + full_n} reads so far"
+                     + (", no change in the last 30 s" if t - t_change >= 30 else "")
+                     + (f" ({p:g} Pa)" if p is not None else ""))
             next_beat += 30.0
         time.sleep(max(0.0, every_s - (time.perf_counter() - t0)))
 
     def stats(d):
         return {"n": len(d), "mean": round(sum(d) / len(d), 3), "max": round(max(d), 3)} if d else None
     return {"seconds": watch_s, "every_s": every_s, "full_every_s": full_every_s, "samples": quick_n + full_n,
-            "read_s": {"quick": stats(q_dur), "full": stats(f_dur)}, "read_errors": errors, "changes": changes,
+            "read_s": {"quick": stats(q_dur), "full": stats(f_dur)}, "read_errors": errors,
+            "unavailable": unavailable, "changes": changes,
             "trace": {"columns": ["t_s", "pressure_pa", "operational_mode"], "rows": trace}}
 
 
@@ -204,7 +212,7 @@ def _change_line(c: dict) -> str:
     p = c.get("pressure_pa")
     return (f"  +{c['t_s']:>6.1f} s  {c.get('instrument_mode')}/{c.get('operational_mode')}"
             + (f"/{c['sem_mode']}" if c.get("sem_mode") else "")
-            + f" scan {c['scan']}, door {c.get('door')}, EDS acquiring {c['eds_acquiring']}, vacuum "
+            + f" scan {c['scan']}, door {c.get('door')}, EDS {c['eds']}, vacuum "
             + ("stable" if c["vacuum_stable"] else "NOT stable") + (f" {p:g} Pa" if p is not None else "")
             + f", SED {c['sed']}, can_image {c['can_image']}"
             + (f", READ ERRORS {c['errors']}" if c.get("errors") else ""))
@@ -226,7 +234,8 @@ def _report_text(rep: dict) -> str:
                      f"{'stable' if sm.get('vacuum_stable') else 'NOT stable'} {_g(sm.get('pressure_pa'))} Pa, SED {sm.get('sed')}, EDS "
                      f"{(ins.get('spectrometer') or {}).get('temperature_k')} K, can_image {sm.get('can_image')}")
         lines.append(f"STATUS READ: {ins.get('read_s')} s | warnings: {ins.get('warnings') or 'none'} | read errors: "
-                     f"{ins.get('read_errors') or 'none'}")
+                     f"{ins.get('read_errors') or 'none'}"
+                     + (f" | unavailable: {ins['unavailable']}" if ins.get("unavailable") else ""))
     pr = rep["profile"]
     lines.append(f"PROFILE in use: reviewed {pr['in_use']['reviewed']} ({pr['in_use']['source']})"
                  + (f" | proposal of {pr['proposal']['proposed_at']}, differs: "
@@ -246,7 +255,9 @@ def _report_text(rep: dict) -> str:
                      + f"; full every {w['full_every_s']:g} s: "
                      + (f"{rs['full']['mean']} s mean / {rs['full']['max']} s max" if rs["full"] else "none")
                      + "), read errors: "
-                     + (", ".join(f"{k} x{v['count']} ({v['first']})" for k, v in w["read_errors"].items()) or "none"))
+                     + (", ".join(f"{k} x{v['count']} ({v['first']})" for k, v in w["read_errors"].items()) or "none")
+                     + "; unavailable (expected): "
+                     + (", ".join(f"{k} x{v['count']} ({v['why']})" for k, v in w["unavailable"].items()) or "none"))
         lines += [_change_line(c) for c in w["changes"]]
     lines.append(f"FILES: {rep['files']['text']} and {rep['files']['json']} (all details)")
     return "\n".join(lines)

@@ -29,8 +29,8 @@ DEFAULT = {
         "kv": [4.8, 20.5], "spot": [0.0, 5.8], "wd_mm": [1.0, 60.0], "hfw_um": [2.47, 877.0],
         "stage_x_mm": [-50.0, 50.0], "stage_y_mm": [-50.0, 50.0], "image_px_max": 2048,
         "live_view_px": [960, 540],
-        # the largest field shrinks at short WD, close to linearly here (~560 µm + 50.4 µm per mm of WD)
-        "hfw_max_um_at_wd_mm": {"3.30": 726.007, "3.90": 755.281, "6.30": 877.216}},
+        # the largest field shrinks at short WD, close to linearly (~50–52 µm per mm of WD), measured 2026-11-23
+        "hfw_max_um_at_wd_mm": {"3.30": 726.007, "3.90": 755.281, "6.30": 877.216, "8.70": 1003.2}},
     "limits": {  # set by a person
         "kv_max": 15.0, "kv_max_sensitive": 10.0,
         "spot_max": 5.1, "spot_max_sensitive": 3.3,

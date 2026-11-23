@@ -79,3 +79,49 @@ def test_pressure_alone_is_not_a_change_and_quick_and_full_reads_compare(monkeyp
     assert [c["vacuum_stable"] for c in w["changes"]] == [False, True]      # two lines, not one per read
     assert w["changes"][0]["pressure_pa"] == 13.3 or w["changes"][0]["pressure_pa"] == 18.8
     assert [r[1] for r in w["trace"]["rows"][:3]] != [None, None, None]
+
+
+def test_ui_eds_and_unloading_are_states_not_read_errors(monkeypatch, tmp_path):
+    # the watch of 2026-11-23 16:50 on the XL: an EDS spot spectrum in the Phenom UI made Spectrometer.GetStatus
+    # refuse ("Access denied ... is another application using it?"), and GetHFWRange refused while unloading; the
+    # hfw refusal (full status only) made two 'changes' at every full status
+    class XL(fake.FakeAdapter):
+        def spectrometer(self):
+            if self.s["viewing_mode"].get("scan_mode") == "Spot":
+                raise RuntimeError("Access denied trying to open Spectrometer device - is another application using it?")
+            return super().spectrometer()
+
+        def hfw(self):
+            if self.s["operational_mode"] == "Unloading":
+                raise RuntimeError("Error: Error (12034): GetSEMHFWRange: Instrument is not in NavCam or SEM mode")
+            return super().hfw()
+    monkeypatch.setattr(adapter, "get", lambda mode=None: XL())
+    calls, real_sleep = [], time.sleep
+
+    def ui(s):
+        calls.append(s)
+        n = len(calls)
+        if n == 2:
+            fake.set_state(viewing_mode={**fake.state()["viewing_mode"], "scan_mode": "Spot"})
+        elif n == 4:
+            fake.set_state(viewing_mode={**fake.state()["viewing_mode"], "scan_mode": "Imaging"})
+        elif n == 6:
+            fake.set_state(operational_mode="Unloading")
+        real_sleep(0.005)
+    monkeypatch.setattr(api.time, "sleep", ui)
+    r = api.report(watch_s=1.5, every_s=0.1, out=str(tmp_path / "r.txt"))
+    w = json.loads((tmp_path / "r.json").read_text())["watch"]
+    assert w["read_errors"] == {}
+    assert w["unavailable"]["spectrometer during LiveSem"]["count"] >= 1
+    eds = [c["eds"] for c in w["changes"]]
+    assert eds[:3] == ["idle", "busy elsewhere", "idle"]
+    assert [c["operational_mode"] for c in w["changes"]].count("Unloading") == 1    # no repeat at each full status
+    assert "EDS busy elsewhere" in r["text"] and "unavailable (expected): spectrometer during LiveSem" in r["text"]
+
+
+def test_eds_busy_elsewhere_is_warned_and_not_ready():
+    s = {"operational_mode": "LiveSem", "instrument_mode": "Operational", "spectrometer": None,
+         "unavailable": {"spectrometer": "in use by another application (the Phenom UI's EDS)"}}
+    sm, warnings = adapter.summarise(s)
+    assert sm["eds"] == "busy elsewhere" and sm["eds_ready"] is False
+    assert any("Phenom UI's EDS" in w for w in warnings)

@@ -196,7 +196,7 @@ class Adapter:
         return self._reads(self.QUICK)
 
     def _reads(self, names) -> dict:
-        out, errors = {"backend": self.name}, {}
+        out, errors, unavailable = {"backend": self.name}, {}, {}
         for r in names:
             try:
                 out[r] = getattr(self, r)()
@@ -204,9 +204,16 @@ class Adapter:
                 raise
             except Exception as e:  # noqa: BLE001 - one unreadable value must not hide the rest
                 out[r] = None
-                errors[r] = f"{type(e).__name__}: {e}"
+                msg = f"{type(e).__name__}: {e}"
+                why = next((w for pat, w in UNAVAILABLE if pat in msg), None)
+                if why:
+                    unavailable[r] = why
+                else:
+                    errors[r] = msg
         if errors:
             out["read_errors"] = errors
+        if unavailable:
+            out["unavailable"] = unavailable
         out["summary"], out["warnings"] = summarise(out)
         return out
 
@@ -219,6 +226,16 @@ class Adapter:
             d["properties"] = None
             d.setdefault("read_errors", {})["properties"] = f"{type(e).__name__}: {e}"
         return d
+
+
+# Refusals that are a state of the instrument, not a fault: the value is None and the reason is in "unavailable".
+# Both seen in the watch of 2026-11-23 16:50 (2026.11.23.5) on the XL.
+UNAVAILABLE = (
+    # an EDS spectrum started in the Phenom UI holds the detector: 15 reads refused over ~7 s, scan mode Spot
+    ("Access denied trying to open Spectrometer device", "in use by another application (the Phenom UI's EDS)"),
+    # GetHFWRange while unloading, loading or selecting the SEM
+    ("Instrument is not in NavCam or SEM mode", "not in NavCam or SEM mode"),
+)
 
 
 def summarise(s: dict) -> tuple[dict, list]:
@@ -243,6 +260,9 @@ def summarise(s: dict) -> tuple[dict, list]:
         warnings.append("instrument health: " + ", ".join(bad) + " not OK")
     sp = s.get("spectrometer") or {}
     t = sp.get("temperature_k")
+    eds_elsewhere = (s.get("unavailable") or {}).get("spectrometer")
+    if eds_elsewhere:
+        warnings.append(f"the EDS detector is {eds_elsewhere}: phnt cannot use it until the UI releases it")
     if t is not None and t > 245:
         warnings.append(f"the EDS detector is at {t:.1f} K: not cold yet (234.7 K when ready on 2026-11-23)")
     if s.get("stage", {}) and (s.get("stage") or {}).get("mode") == "NotHomed":
@@ -263,7 +283,9 @@ def summarise(s: dict) -> tuple[dict, list]:
                "wd_mm": _mm((s.get("wd") or {}).get("wd_m")),
                "stage_mm": [_mm((s.get("stage") or {}).get("x_m")), _mm((s.get("stage") or {}).get("y_m"))],
                "holder": (s.get("holder") or {}).get("type_name"),
-               "eds_ready": bool(t is not None and t <= 245)}
+               "eds_ready": bool(t is not None and t <= 245 and not eds_elsewhere),
+               "eds": "busy elsewhere" if eds_elsewhere else None if "spectrometer" not in s or s["spectrometer"] is None
+               else "acquiring" if sp.get("acquiring") else "idle"}
     return summary, warnings
 
 

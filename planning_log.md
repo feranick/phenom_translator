@@ -64,3 +64,7 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
   pressure step was a 'change', and no UI action was seen (T1, T3 not observed). The watch now uses quick reads every
   0.5 s with a full status every 30 s, logs changes of state only, keeps the pressure trace in the JSON. A third
   largest-field point (726 µm at WD 3.3 mm): the field by WD is interpolated, close to linear.
+- 2026-11-23, 2026.11.23.6: second watch on the XL (with .5): images, a UI EDS spot spectrum and a sample exchange
+  all seen (T3 pass). Two refusals are states, not faults: the UI's EDS holds the detector, and the HFW range is
+  refused outside NavCam/SEM; both are reported as `unavailable`, and the summary has `eds` (idle, acquiring, busy
+  elsewhere). The watch compares only quick reads, so the full status no longer repeats lines. 1003.2 µm at WD 8.7 mm.

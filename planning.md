@@ -100,6 +100,15 @@ license username removed from the probe before committing).
   in ~36 s, stable at ~50 s; the SED went from `NotAllowed` to `Disabled` (allowed, off) between 2.5 and 1.8 Pa.
 - A full status read takes 0.39 s mean, 0.92 s max on the XL (0.9 s with the properties): the watch and the
   phase-2 watchdog read only what changes quickly (`Adapter.quick()`) and a full status every 30 s.
+- **The Phenom UI's EDS holds the detector**: while it took a spot spectrum (~7 s, scan mode `Spot`, after a 0.5 s
+  `AcquireSemImage`), `Spectrometer.GetStatus` from phnt was refused (`Access denied trying to open Spectrometer
+  device - is another application using it?`); every other read went on. So phnt and the UI cannot both use the EDS;
+  phnt reports it as `eds: busy elsewhere`. Open: does phnt's status read every 0.5 s ever keep the UI from opening
+  the detector (Q22)? A phase-4 EDS study takes the instrument lock (exclusive access) first.
+- A sample exchange from the UI, as the watch saw it: `Unloading` 33 s (the pressure reads ~0 while venting), `Loadpos`
+  with the door open, `SelectingNavCam` 3 s, `LiveNavCam`, `SelectingSem` more than 40 s (pumping, 0.65 Pa).
+  `GetHFWRange` is refused outside NavCam/SEM. A quick read takes 0.17 s mean (0.99 s max).
+- Largest field at WD 8.7 mm: 1003.2 µm (the four points 3.3, 3.9, 6.3, 8.7 mm: ~50–52 µm per mm of WD).
 - PyPhenom's simulator differs from the XL: holder `XL1 Motorized Height`, 42 Pa, 5.3 kV, `can_image` false; it
   refuses the spectrometer (license) and the activated features (it tries a network host).
 - WD range 1 … 60 mm. SED present. Vacuum charge reduction: Off / Low / High.
@@ -399,6 +408,9 @@ request under `PHNT_OUT\run_...` (studies, TIFFs with sidecars, `.msa`, maps, PN
 EDS bring-up is complete for phnt's design (eds_tests.py, eds_tests2.py, eds_tests3.py and their folders go into
 `docs/discovery/`). Left for TESTING.md at build time: the energy correction on a second known sample, spectra at
 other kV and spot settings (count rate and dead time against spot size), and charging on an uncoated insulator.
+
+Q22 (2026-11-23, from the watch with .5): does phnt reading `Spectrometer.GetStatus` every 0.5 s ever make the
+Phenom UI's EDS fail to start? In that watch the UI's spectrum ran; to confirm with what the UI showed.
 
 ## State log
 
