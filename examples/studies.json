@@ -1,0 +1,60 @@
+{
+ "overview": {
+  "kind": "image",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": "Analysis", "detector": "All"},
+  "acquire": {"size_px": [1024, 1024], "frames": 4, "hfw_um": 500},
+  "focus": {"mode": "auto"},
+  "images": true
+ },
+ "three_places": {
+  "kind": "image",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": 15, "spot": "Image", "detector": "All"},
+  "acquire": {"size_px": [2048, 2048], "frames": 8, "hfw_um": 100, "drift_correction": true},
+  "focus": {"mode": "auto", "every_n": 1},
+  "points": [[0, 0], [250, 0], [250, -250]]
+ },
+ "where_am_i": {"kind": "navcam", "navcam": {"overview": true}},
+ "focus_curve": {
+  "kind": "focus",
+  "acquire": {"hfw_um": 50},
+  "focus": {"mode": "curve", "range_mm": 0.2, "steps": 21}
+ },
+ "big_area": {
+  "kind": "montage",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": 15, "detector": "All"},
+  "acquire": {"size_px": [1024, 1024], "frames": 2, "hfw_um": 400},
+  "focus": {"mode": "auto", "every_n": 10},
+  "montage": {"area_um": [2000, 1500], "overlap": 0.15},
+  "images": true
+ },
+ "particle_sizes": {
+  "kind": "particles",
+  "sample": {"name": "powder"},
+  "setup": {"kv": 15, "detector": "All"},
+  "acquire": {"size_px": [2048, 2048], "frames": 4, "hfw_um": 300},
+  "particles": {"min_diameter_um": 2, "max_particles": 100}
+ },
+ "ni_p_spots": {
+  "kind": "eds_point",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": 15, "spot": "Map", "wd_mm": 6.3},
+  "eds": {"live_s": 2, "repeats": 2, "spots": [[0, 0], [0.2, -0.1], [-0.25, 0.15]], "elements": ["C", "O", "Ni", "P"]}
+ },
+ "coarse_map": {
+  "kind": "eds_grid",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": 15, "spot": "Map", "wd_mm": 6.3},
+  "eds": {"live_s": 0.5},
+  "eds_grid": {"grid": [32, 18]}
+ },
+ "energy_axis": {
+  "kind": "calibration",
+  "sample": {"name": "C-Ni"},
+  "setup": {"kv": 15, "wd_mm": 6.3},
+  "calibration": {"target": "eds_energy", "elements": ["C", "O", "Ni", "P"]},
+  "eds": {"live_s": 10, "repeats": 3}
+ }
+}

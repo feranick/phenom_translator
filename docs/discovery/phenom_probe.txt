@@ -1,0 +1,20 @@
+PS C:\Users\jalavall> py .\probe_phenom.py
+licenses: [('MVE082023-10818-L', '<username removed>')]
+activated features: ['XL 100 x 100 mm stage']
+instrument mode: Standby
+operational mode: Unavailable
+SEM mode: Imaging
+door: Closed
+holder: ('0183a2111d0000d3', 100, PyPhenom.SampleHolderStatus.Present)
+stage: (PyPhenom.StageNavigationMode.Rest, 7.448706624281888e-06, -1.420355081991408e-05)
+stroke SEM: ((-0.05, 0.05), (-0.05, 0.05))
+HFW range: (0.016666666666666666, 0.09999255129337573)
+kV now / range: (-15000.0, (-20500.0, -4800.0))
+spot size range: (0.0, 5.8)
+WD range: (0.001, 0.06)
+has SED: True
+charge reduction allowed: [PyPhenom.VacuumChargeReduction.Off, PyPhenom.VacuumChargeReduction.Low, PyPhenom.VacuumChargeReduction.High]
+exclusive access: (False, '')
+multi-axis stage: []
+EDS status: (234.8, 0.0)
+properties: ['HighTension.AllMaterials', 'HighTension.HighResolution', 'HighTension.Analysis', 'SpotPosition.Accuracy', 'MultiStage.MaximumSampleRadius', 'TransitionTime.OffToOperational', 'TransitionTime.StandbyToOperational', 'BSD.NominalMountingAngle', 'EDX.TakeOffAngle', 'EDX.WdOptimalLowerBound', 'EDX.WdOptimalUpperBound', 'EDX.WdAcceptableLowerBound', 'EDX.WdAcceptableUpperBound', 'EDX.DppConnectionType', 'EDX.Detector.Manufacturer', 'EDX.Detector.Type', 'EDX.Detector.SoftwareInterfaceVersion', 'EDX.Detector.SurfaceArea', 'EDX.Detector.Attributes', 'EDX.Detector.Window', 'SamplePressure.High', 'SamplePressure.Medium', 'SamplePressure.Low', 'Features.CustomSpotSizeAllowed', 'Features.CustomHighTensionAllowed', 'EmissionCurrent.Nominal', 'EmissionCurrent.Low', 'SpotSize.Low', 'SpotSize.Image', 'SpotSize.Point', 'SpotSize.Map']

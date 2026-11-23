@@ -1,0 +1,4333 @@
+
+##### Application
+
+== Application.AcquisitionQuad (class)
+Set of 4 acquisitions of the individual BSD segments
+  .A: 
+  .B: 
+  .C: 
+  .D: 
+
+== Application.AimTileLoader (class)
+Class which loads tiles from disk made with Automated Image Mapping, to be used with TileStitch.
+Construct with path, image extension, defaultOverlap
+Construct with path, image extension, gridSize, encoding, tileSize, overlap
+
+== Application.ApplyAcquisitionContrastBrightness (function)
+ApplyAcquisitionContrastBrightness( (Acquisition)arg1) -> Acquisition
+
+== Application.AutoFocus (function)
+AutoFocus( (Phenom)phenom [, (float)coarseStep=0.0003]) -> None
+
+AutoFocus( (Phenom)phenom, (float)coarseStep, (Range)wd_range) -> None
+
+== Application.AutoIterStigmate (function)
+AutoIterStigmate( (Phenom)phenom [, (float)coarseStep=0.05 [, (int)NumIter=5]]) -> None
+
+== Application.AutoSourceTilt (function)
+AutoSourceTilt( (Phenom)phenom) -> None
+
+== Application.AutoStigmate (function)
+AutoStigmate( (Phenom)phenom [, (float)coarseStep=0.05]) -> None
+
+== Application.Binarize (function)
+Binarize( (object)image) -> Image
+
+Binarize( (object)arg1, (float)image) -> Image
+
+== Application.Combine (function)
+Combine( (AcquisitionQuad)arg1) -> Acquisition
+
+== Application.Copy (function)
+Copy( (Acquisition)arg1, (Rectangle)arg2) -> Acquisition
+
+== Application.CopyPhysical (function)
+CopyPhysical( (Acquisition)arg1, (RectangleD)arg2) -> Acquisition
+
+== Application.CopyPhysicalClipped (function)
+CopyPhysicalClipped( (Acquisition)arg1, (RectangleD)arg2) -> Acquisition
+
+== Application.EdsLiveMap (class)
+
+  .AbsoluteDotThreshold: 
+  .AsGridSpectrum: AsGridSpectrum( (object)arg1) -> EdsGridSpectrum
+  .AutoResetMask: 
+  .BlurCutoff: 
+  .BlurRadius: 
+  .ClustersForLayer: ClustersForLayer( (object)arg1, (int)layer) -> Image
+  .ColoringStrategy: 
+  .ConcentrationApproximation: 
+  .CountRate: 
+  .CountsMap: 
+  .DarkRenderFraction: 
+  .DotFactorThreshold: 
+  .DwellTime: 
+  .Extract: Extract( (object)arg1, (int)x, (int)y [, (int)level=-1]) -> SparseSpectrum
+  .ForElement: ForElement( (object)arg1, (Element)element) -> Image
+  .Identify: Identify( (object)arg1) -> IdentificationResult
+
+Identify( (object)arg1, (list)exclude) -> IdentificationResult
+  .IntensityBins: 
+  .Layers: 
+  .LightRenderFraction: 
+  .LiveTime: 
+  .MinimumRenderLevel: 
+  .NumberOfThreads: 
+  .QuantThreshold: 
+  .QuantifiedElements: QuantifiedElements( (object)arg1) -> list
+  .Quantify: Quantify( (object)arg1, (list)elements) -> None
+
+Quantify( (object)arg1, (IdentificationResult)identify_result) -> None
+  .RawValueThresholdHigh: 
+  .RawValueThresholdLow: 
+  .ReadWholeStream: ReadWholeStream( (object)arg1) -> None
+  .Refresh: Refresh( (object)arg1) -> None
+  .Render: Render( (object)arg1, (dict)colors [, (float)alpha=1]) -> Image
+  .RenderLevels: 
+  .RenderingStrategy: 
+  .Reset: Reset( (object)arg1) -> None
+  .Scaling: 
+  .ScalingThreshold: 
+  .SolveSingle: SolveSingle( (object)arg1, (SparseSpectrum)sparse_spectrum) -> list
+  .Start: Start( (object)arg1 [, (int)max_counts=-1]) -> None
+  .Stop: Stop( (object)arg1) -> None
+  .StreamFrom: StreamFrom( (object)arg1, (str)path [, (float)desiredCps=0]) -> None
+  .StreamTo: StreamTo( (object)arg1, (str)path) -> None
+  .SumSpectrum: 
+  .TotalCounts: 
+  .TotalTime: 
+  .TryForElement: TryForElement( (object)arg1, (Element)element) -> Image
+
+== Application.EdsLiveMapAutoReset (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Always: PyPhenom.Application.EdsLiveMapAutoReset.Always
+  .FieldWidthChanged: PyPhenom.Application.EdsLiveMapAutoReset.FieldWidthChanged
+  .HighTensionChanged: PyPhenom.Application.EdsLiveMapAutoReset.HighTensionChanged
+  .Never: PyPhenom.Application.EdsLiveMapAutoReset.Never
+  .RotationChanged: PyPhenom.Application.EdsLiveMapAutoReset.RotationChanged
+  .SampleMoved: PyPhenom.Application.EdsLiveMapAutoReset.SampleMoved
+  .SpotSizeChanged: PyPhenom.Application.EdsLiveMapAutoReset.SpotSizeChanged
+  .WorkingDistanceChanged: PyPhenom.Application.EdsLiveMapAutoReset.WorkingDistanceChanged
+
+== Application.ElementIdentification (module)
+<module 'PyPhenom.Application.ElementIdentification'>
+
+== Application.ExportMethod (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Default: PyPhenom.Application.ExportMethod.Default
+  .OptimizedFor3DPrint: PyPhenom.Application.ExportMethod.OptimizedFor3DPrint
+
+== Application.FiberMeasurementData (class)
+Results of FindFiberMeasurements
+  .averageFwhm: 
+  .position: 
+  .radius: 
+  .standardDeviation: 
+  .theta: 
+
+== Application.FilteredHeightmap (function)
+FilteredHeightmap( (RougnessReconstructionData)roughnessData, (float)lambdaLow, (float)lambdaHigh) -> Image
+
+== Application.FindFiberCandidates (function)
+FindFiberCandidates( (object)image) -> Image
+
+== Application.FindFiberMeasurement (function)
+FindFiberMeasurement( (object)candidateImage, (SizeD)pixelSize, (Point)fiberPos, (object)smoothImage, (float)maxDistFromPoint, (float)autoRadiusFraction) -> FiberMeasurementData
+
+== Application.FindFiberMeasurements (function)
+FindFiberMeasurements( (object)image, (SizeD)pixelSize, (object)candidateImage, (Rectangle)fiberRegion, (object)smoothImage, (float)maxDistFromPoint, (float)autoRadiusFraction, (int)maxSamples, (int)radius) -> list
+
+== Application.FindInOverview (function)
+FindInOverview( (Acquisition)overview, (Acquisition)tile) -> ShiftResult
+
+== Application.FindPoreCandidates (function)
+FindPoreCandidates( (object)image) -> Image
+
+== Application.FindPoreMeasurement (function)
+FindPoreMeasurement( (object)arg1, (SizeD)arg2, (Point)candidateImage) -> PoreMeasurementData
+
+== Application.FindPoreMeasurements (function)
+FindPoreMeasurements( (object)arg1, (SizeD)arg2, (Rectangle)candidateImage) -> list
+
+== Application.FineFocus (function)
+FineFocus( (Phenom)phenom [, (float)coarseStep=0.0003]) -> None
+
+FineFocus( (Phenom)phenom, (float)coarseStep, (Range)wd_range) -> None
+
+== Application.FineStigmate (function)
+FineStigmate( (Phenom)phenom [, (float)coarseStep=0.03]) -> None
+
+== Application.FocusCriterion (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .AbsoluteGradient: PyPhenom.Application.FocusCriterion.AbsoluteGradient
+  .Autocorrelation: PyPhenom.Application.FocusCriterion.Autocorrelation
+  .BrennerGradient: PyPhenom.Application.FocusCriterion.BrennerGradient
+  .Entropy: PyPhenom.Application.FocusCriterion.Entropy
+  .ImagePower: PyPhenom.Application.FocusCriterion.ImagePower
+  .Range: PyPhenom.Application.FocusCriterion.Range
+  .SquaredGradient: PyPhenom.Application.FocusCriterion.SquaredGradient
+  .StdevBasedCorrelation: PyPhenom.Application.FocusCriterion.StdevBasedCorrelation
+  .ThresholdedAbsoluteGradient: PyPhenom.Application.FocusCriterion.ThresholdedAbsoluteGradient
+  .ThresholdedBrennerGradient: PyPhenom.Application.FocusCriterion.ThresholdedBrennerGradient
+  .ThresholdedContent: PyPhenom.Application.FocusCriterion.ThresholdedContent
+  .ThresholdedImagePower: PyPhenom.Application.FocusCriterion.ThresholdedImagePower
+  .ThresholdedPixelCount: PyPhenom.Application.FocusCriterion.ThresholdedPixelCount
+  .ThresholdedSquaredGradient: PyPhenom.Application.FocusCriterion.ThresholdedSquaredGradient
+  .Variance: PyPhenom.Application.FocusCriterion.Variance
+
+== Application.GetParticleForLabel (function)
+GetParticleForLabel( (list)arg1, (int)arg2) -> object
+
+== Application.GetShift (function)
+GetShift( (Acquisition)imgA, (Acquisition)imgB) -> ShiftResult
+
+== Application.LabelPoreCandidates (function)
+LabelPoreCandidates( (object)realRegionsImage) -> tuple
+
+== Application.Levels (class)
+Black/white level pair.
+  .blackLevel: 
+  .whiteLevel: 
+
+== Application.Load (function)
+Load( (str)pathA, (str)pathB, (str)pathC, (str)pathD) -> AcquisitionQuad
+
+== Application.MakeUltraFocusAcquisition (function)
+MakeUltraFocusAcquisition( (list)acquisitions) -> Acquisition
+
+== Application.MakeUltraFocusHeightmap (function)
+MakeUltraFocusHeightmap( (list)acquisitions) -> Image
+
+== Application.MakeUltraFocusScanParams (function)
+MakeUltraFocusScanParams( (ScanParams)scanParams) -> UltraFocusScanParams
+
+== Application.NavCamGetOverviewImage (function)
+NavCamGetOverviewImage( (Phenom)arg1) -> Acquisition
+
+== Application.PaintByIntensity (function)
+PaintByIntensity( (object)intensities, (float)scale) -> Image
+
+== Application.Particle (class)
+Particle information class
+  .area: 
+  .bounds: 
+  .centroidGlobal: 
+  .centroidLocalPixels: 
+  .closestDistance: 
+  .closestParticle: 
+  .greyscaleMean: 
+  .greyscaleSD: 
+  .heightMap: 
+  .heightMax: 
+  .heightMean: 
+  .heightSD: 
+  .image: 
+  .majorAxis: 
+  .mask: 
+  .minorAxis: 
+  .mirGlobal: 
+  .mirLocalPixels: 
+  .nPixels: 
+  .originalLabel: 
+
+== Application.ParticleColors (function)
+ParticleColors( (list)particles, (list)palette) -> list
+
+== Application.ParticleFinder (class)
+Particle Finder
+  .AcquisitionImage: AcquisitionImage( (ParticleFinder)arg1) -> object
+  .ClusterBounds: ClusterBounds( (ParticleFinder)arg1, (int)arg2) -> Rectangle
+  .ClusterLabels: ClusterLabels( (ParticleFinder)arg1) -> object
+  .ClusterMinDistanceMean: 
+  .ClusterMinDistanceStdDev: 
+  .Clustering: 
+  .ClustersFound: 
+  .CornerFraction: 
+  .CrunchinessHighThreshold: 
+  .CrunchinessLowThreshold: 
+  .DebugImage1: DebugImage1( (ParticleFinder)arg1) -> object
+  .DebugImage2: DebugImage2( (ParticleFinder)arg1) -> object
+  .DebugLevel: 
+  .Find: Find( (ParticleFinder)arg1) -> list
+
+Find( (ParticleFinder)arg1, (int)arg2) -> list
+
+Find( (ParticleFinder)arg1, (int)arg2, (float)arg3) -> list
+  .FindLabeled: FindLabeled( (ParticleFinder)arg1, (Acquisition)labels [, (int)minPixelRadius=0 [, (float)maxEdgeFraction=1]]) -> list :
+    Find particles in a labeled image
+
+FindLabeled( (ParticleFinder)arg1, (Image)labels [, (int)minPixelRadius=0 [, (float)maxEdgeFraction=1]]) -> list :
+    Find particles with user-specified labels
+  .GradientImage: GradientImage( (ParticleFinder)arg1) -> object
+  .HeightCalibration: 
+  .HeightMap: HeightMap( (ParticleFinder)arg1) -> object
+  .LabeledImage: LabeledImage( (ParticleFinder)arg1) -> object
+  .LambdaMax: 
+  .LambdaMin: 
+  .Markers: Markers( (ParticleFinder)arg1) -> object
+  .MaxClusterDistance: 
+  .NumLabels: 
+  .RenderLabels: RenderLabels( (ParticleFinder)arg1, (list)arg2) -> Image
+  .SeedingGradientFraction: 
+  .SeedingIntensityFraction: 
+  .UseWatershed: 
+
+== Application.PoreMeasurementData (class)
+Result of FindPoreMeasurements
+  .area: 
+  .isValid: 
+  .labelNumber: 
+
+== Application.RenderSampleHolder (function)
+RenderSampleHolder( (Size)imageSize, (dict)sampleHolderMap, (float)radius) -> Image
+
+== Application.RoughFocus (function)
+RoughFocus( (Phenom)phenom [, (Range)range=(0, 0) [, (int)nSteps=100 [, (int)size=256 [, (int)nAvg=4 [, (float)scale=1 [, (FocusCriterion)criterion=PyPhenom.Application.FocusCriterion.Variance]]]]]]) -> list
+
+== Application.RoughnessReconstruction (function)
+RoughnessReconstruction( (AcquisitionQuad)acquisitions [, (RoughnessReconstructionOptions)options=<PyPhenom.Application.RoughnessReconstructionOptions object at 0x000001DCCEAD9A80>]) -> RougnessReconstructionData
+
+== Application.RoughnessReconstructionOptions (class)
+Options for 3DRR.
+  .allowApproxRotation: 
+  .allowRotation: 
+  .correctShadows: 
+  .resize: 
+
+== Application.RougnessReconstructionData (class)
+Results of RoughnessReconstruction
+  .heightmap: 
+  .imageDiagonal: 
+
+== Application.SaveAsObj (function)
+SaveAsObj( (object)heightmap, (SizeD)stlObjectSize, (SizeD)pixelSize, (str)filename) -> None
+
+SaveAsObj( (object)heightmap, (SizeD)stlObjectSize, (SizeD)pixelSize, (object)texture, (str)filename) -> None
+
+== Application.SaveAsStl (function)
+SaveAsStl( (object)heightmap, (SizeD)stlObjectSize, (SizeD)pixelSize, (str)filename [, (ExportMethod)exportMethod=PyPhenom.Application.ExportMethod.Default]) -> None
+
+== Application.Scale (function)
+Scale( (Acquisition)arg1, (Size)arg2) -> Acquisition
+
+== Application.ShiftResult (class)
+Result of FindInOverview
+  .quality: 
+  .shift: 
+
+== Application.SmoothImage (function)
+SmoothImage( (object)image) -> Image
+
+== Application.Stretch (function)
+Stretch( (Acquisition)arg1, (Levels)arg2, (PixelType)arg3) -> Acquisition
+
+Stretch( (Acquisition)arg1, (Thresholds)arg2, (PixelType)arg3) -> Acquisition
+
+== Application.Thresholds (class)
+Low/High fraction pair
+  .highFraction: 
+  .lowFraction: 
+
+== Application.TileStitcher (class)
+Class which can stitch tiles together to a mosaic image. Construct with nx, ny, tileSize, overlap, pixelType
+  .GetNominalTilePosition: GetNominalTilePosition( (TileStitcher)arg1, (int)row, (int)column) -> Position
+  .GetQuadResultA: GetQuadResultA( (TileStitcher)arg1) -> Acquisition
+  .GetQuadResultB: GetQuadResultB( (TileStitcher)arg1) -> Acquisition
+  .GetQuadResultC: GetQuadResultC( (TileStitcher)arg1) -> Acquisition
+  .GetQuadResultD: GetQuadResultD( (TileStitcher)arg1) -> Acquisition
+  .GetResult: GetResult( (TileStitcher)arg1) -> Acquisition
+  .GetTilePosition: GetTilePosition( (TileStitcher)arg1, (int)row, (int)column) -> Position
+  .Stitch: Stitch( (TileStitcher)arg1, (Acquisition)tile, (int)row, (int)col) -> None
+  .StitchQuad: StitchQuad( (TileStitcher)arg1, (Acquisition)acqA, (Acquisition)acqB, (Acquisition)acqC, (Acquisition)acqD, (int)row, (int)col) -> None
+
+StitchQuad( (TileStitcher)arg1, (AcquisitionQuad)quad, (int)row, (int)col) -> None
+
+== Application.ToScan (function)
+ToScan( (Image)arg1) -> Transformation
+
+== Application.ToWorld (function)
+ToWorld( (Acquisition)arg1) -> Transformation
+
+== Application.Tzxr (module)
+<module 'PyPhenom.Application.Tzxr'>
+
+== Application.UltraFocus (class)
+
+  .Cancel: Cancel( (object)arg1) -> None
+  .Construct: Construct( (object)arg1, (Phenom)phenom, (UltraFocusScanParams)ultraFocusScanParams, (Range)wdRange [, (float)wdStepSize=0.00025]) -> Acquisition
+
+== Application.UltraFocusAcquire (function)
+UltraFocusAcquire( (Phenom)phenom, (UltraFocusScanParams)ultraFocusScanParams, (Range)wdRange [, (float)wdStepSize=0.00025]) -> list
+
+== Application.UltraFocusScanParams (class)
+
+  .center: 
+  .detector: 
+  .nFrames: 
+  .scale: 
+  .size: 
+
+##### ColorMaps
+
+== ColorMaps.Blue (function)
+
+
+== ColorMaps.Clip (function)
+
+
+== ColorMaps.Green (function)
+
+
+== ColorMaps.Greyscale (function)
+
+
+== ColorMaps.Heat (function)
+
+
+== ColorMaps.Phosphor (function)
+
+
+== ColorMaps.Red (function)
+
+
+== ColorMaps.Temperature (function)
+
+
+##### Colors
+
+== Colors.AliceBlue (Rgb24)
+RGB(240,248,255)
+
+== Colors.AntiqueWhite (Rgb24)
+RGB(250,235,215)
+
+== Colors.Aqua (Rgb24)
+RGB(0,255,255)
+
+== Colors.Aquamarine (Rgb24)
+RGB(127,255,212)
+
+== Colors.Azure (Rgb24)
+RGB(240,255,255)
+
+== Colors.Beige (Rgb24)
+RGB(245,245,220)
+
+== Colors.Bisque (Rgb24)
+RGB(255,228,196)
+
+== Colors.Black (Rgb24)
+RGB(0,0,0)
+
+== Colors.BlanchedAlmond (Rgb24)
+RGB(255,235,205)
+
+== Colors.Blue (Rgb24)
+RGB(0,0,255)
+
+== Colors.BlueViolet (Rgb24)
+RGB(138,43,226)
+
+== Colors.Brown (Rgb24)
+RGB(165,42,42)
+
+== Colors.BurlyWood (Rgb24)
+RGB(222,184,135)
+
+== Colors.CadetBlue (Rgb24)
+RGB(95,158,160)
+
+== Colors.Chartreuse (Rgb24)
+RGB(127,255,0)
+
+== Colors.Chocolate (Rgb24)
+RGB(210,105,30)
+
+== Colors.Coral (Rgb24)
+RGB(255,127,80)
+
+== Colors.CornflowerBlue (Rgb24)
+RGB(100,149,237)
+
+== Colors.Cornsilk (Rgb24)
+RGB(255,248,220)
+
+== Colors.Crimson (Rgb24)
+RGB(220,20,60)
+
+== Colors.Cyan (Rgb24)
+RGB(0,255,255)
+
+== Colors.DarkBlue (Rgb24)
+RGB(0,0,139)
+
+== Colors.DarkCyan (Rgb24)
+RGB(0,139,139)
+
+== Colors.DarkGoldenrod (Rgb24)
+RGB(184,134,11)
+
+== Colors.DarkGray (Rgb24)
+RGB(169,169,169)
+
+== Colors.DarkGreen (Rgb24)
+RGB(0,100,0)
+
+== Colors.DarkKhaki (Rgb24)
+RGB(189,183,107)
+
+== Colors.DarkMagenta (Rgb24)
+RGB(139,0,139)
+
+== Colors.DarkOliveGreen (Rgb24)
+RGB(85,107,47)
+
+== Colors.DarkOrange (Rgb24)
+RGB(255,140,0)
+
+== Colors.DarkOrchid (Rgb24)
+RGB(153,50,204)
+
+== Colors.DarkRed (Rgb24)
+RGB(139,0,0)
+
+== Colors.DarkSalmon (Rgb24)
+RGB(233,150,122)
+
+== Colors.DarkSeaGreen (Rgb24)
+RGB(143,188,143)
+
+== Colors.DarkSlateBlue (Rgb24)
+RGB(72,61,139)
+
+== Colors.DarkSlateGray (Rgb24)
+RGB(47,79,79)
+
+== Colors.DarkTurquoise (Rgb24)
+RGB(0,206,209)
+
+== Colors.DarkViolet (Rgb24)
+RGB(148,0,211)
+
+== Colors.DeepPink (Rgb24)
+RGB(255,20,147)
+
+== Colors.DeepSkyBlue (Rgb24)
+RGB(0,191,255)
+
+== Colors.DimGray (Rgb24)
+RGB(105,105,105)
+
+== Colors.DodgerBlue (Rgb24)
+RGB(30,144,255)
+
+== Colors.Firebrick (Rgb24)
+RGB(178,34,34)
+
+== Colors.FloralWhite (Rgb24)
+RGB(255,250,240)
+
+== Colors.ForestGreen (Rgb24)
+RGB(34,139,34)
+
+== Colors.Fuchsia (Rgb24)
+RGB(255,0,255)
+
+== Colors.Gainsboro (Rgb24)
+RGB(220,220,220)
+
+== Colors.GhostWhite (Rgb24)
+RGB(248,248,255)
+
+== Colors.Gold (Rgb24)
+RGB(255,215,0)
+
+== Colors.Goldenrod (Rgb24)
+RGB(218,165,32)
+
+== Colors.Gray (Rgb24)
+RGB(128,128,128)
+
+== Colors.Green (Rgb24)
+RGB(0,128,0)
+
+== Colors.GreenYellow (Rgb24)
+RGB(173,255,47)
+
+== Colors.Honeydew (Rgb24)
+RGB(240,255,240)
+
+== Colors.HotPink (Rgb24)
+RGB(255,105,180)
+
+== Colors.IndianRed (Rgb24)
+RGB(205,92,92)
+
+== Colors.Indigo (Rgb24)
+RGB(75,0,130)
+
+== Colors.Ivory (Rgb24)
+RGB(255,255,240)
+
+== Colors.Khaki (Rgb24)
+RGB(240,230,140)
+
+== Colors.Lavender (Rgb24)
+RGB(230,230,250)
+
+== Colors.LavenderBlush (Rgb24)
+RGB(255,240,245)
+
+== Colors.LawnGreen (Rgb24)
+RGB(124,252,0)
+
+== Colors.LemonChiffon (Rgb24)
+RGB(255,250,205)
+
+== Colors.LightBlue (Rgb24)
+RGB(173,216,230)
+
+== Colors.LightCoral (Rgb24)
+RGB(240,128,128)
+
+== Colors.LightCyan (Rgb24)
+RGB(224,255,255)
+
+== Colors.LightGoldenrodYellow (Rgb24)
+RGB(250,250,210)
+
+== Colors.LightGray (Rgb24)
+RGB(211,211,211)
+
+== Colors.LightGreen (Rgb24)
+RGB(144,238,144)
+
+== Colors.LightPink (Rgb24)
+RGB(255,182,193)
+
+== Colors.LightSalmon (Rgb24)
+RGB(255,160,122)
+
+== Colors.LightSeaGreen (Rgb24)
+RGB(32,178,170)
+
+== Colors.LightSkyBlue (Rgb24)
+RGB(135,206,250)
+
+== Colors.LightSlateGray (Rgb24)
+RGB(119,136,153)
+
+== Colors.LightSteelBlue (Rgb24)
+RGB(176,196,222)
+
+== Colors.LightYellow (Rgb24)
+RGB(255,255,224)
+
+== Colors.Lime (Rgb24)
+RGB(0,255,0)
+
+== Colors.LimeGreen (Rgb24)
+RGB(50,205,50)
+
+== Colors.Linen (Rgb24)
+RGB(250,240,230)
+
+== Colors.Magenta (Rgb24)
+RGB(255,0,255)
+
+== Colors.Maroon (Rgb24)
+RGB(128,0,0)
+
+== Colors.MediumAquamarine (Rgb24)
+RGB(102,205,170)
+
+== Colors.MediumBlue (Rgb24)
+RGB(0,0,205)
+
+== Colors.MediumOrchid (Rgb24)
+RGB(186,85,211)
+
+== Colors.MediumPurple (Rgb24)
+RGB(147,112,219)
+
+== Colors.MediumSeaGreen (Rgb24)
+RGB(60,179,113)
+
+== Colors.MediumSlateBlue (Rgb24)
+RGB(123,104,238)
+
+== Colors.MediumSpringGreen (Rgb24)
+RGB(0,250,154)
+
+== Colors.MediumTurquoise (Rgb24)
+RGB(72,209,204)
+
+== Colors.MediumVioletRed (Rgb24)
+RGB(199,21,133)
+
+== Colors.MidnightBlue (Rgb24)
+RGB(25,25,112)
+
+== Colors.MintCream (Rgb24)
+RGB(245,255,250)
+
+== Colors.MistyRose (Rgb24)
+RGB(255,228,225)
+
+== Colors.Moccasin (Rgb24)
+RGB(255,228,181)
+
+== Colors.NavajoWhite (Rgb24)
+RGB(255,222,173)
+
+== Colors.Navy (Rgb24)
+RGB(0,0,128)
+
+== Colors.OldLace (Rgb24)
+RGB(253,245,230)
+
+== Colors.Olive (Rgb24)
+RGB(128,128,0)
+
+== Colors.OliveDrab (Rgb24)
+RGB(107,142,35)
+
+== Colors.Orange (Rgb24)
+RGB(255,165,0)
+
+== Colors.OrangeRed (Rgb24)
+RGB(255,69,0)
+
+== Colors.Orchid (Rgb24)
+RGB(218,112,214)
+
+== Colors.PaleGoldenrod (Rgb24)
+RGB(238,232,170)
+
+== Colors.PaleGreen (Rgb24)
+RGB(152,251,152)
+
+== Colors.PaleTurquoise (Rgb24)
+RGB(175,238,238)
+
+== Colors.PaleVioletRed (Rgb24)
+RGB(219,112,147)
+
+== Colors.PapayaWhip (Rgb24)
+RGB(255,239,213)
+
+== Colors.PeachPuff (Rgb24)
+RGB(255,218,185)
+
+== Colors.Peru (Rgb24)
+RGB(205,133,63)
+
+== Colors.Pink (Rgb24)
+RGB(255,192,203)
+
+== Colors.Plum (Rgb24)
+RGB(221,160,221)
+
+== Colors.PowderBlue (Rgb24)
+RGB(176,224,230)
+
+== Colors.Purple (Rgb24)
+RGB(128,0,128)
+
+== Colors.Red (Rgb24)
+RGB(255,0,0)
+
+== Colors.RosyBrown (Rgb24)
+RGB(188,143,143)
+
+== Colors.RoyalBlue (Rgb24)
+RGB(65,105,225)
+
+== Colors.SaddleBrown (Rgb24)
+RGB(139,69,19)
+
+== Colors.Salmon (Rgb24)
+RGB(250,128,114)
+
+== Colors.SandyBrown (Rgb24)
+RGB(244,164,96)
+
+== Colors.SeaGreen (Rgb24)
+RGB(46,139,87)
+
+== Colors.SeaShell (Rgb24)
+RGB(255,245,238)
+
+== Colors.Sienna (Rgb24)
+RGB(160,82,45)
+
+== Colors.Silver (Rgb24)
+RGB(192,192,192)
+
+== Colors.SkyBlue (Rgb24)
+RGB(135,206,235)
+
+== Colors.SlateBlue (Rgb24)
+RGB(106,90,205)
+
+== Colors.SlateGray (Rgb24)
+RGB(112,128,144)
+
+== Colors.Snow (Rgb24)
+RGB(255,250,250)
+
+== Colors.SpringGreen (Rgb24)
+RGB(0,255,127)
+
+== Colors.SteelBlue (Rgb24)
+RGB(70,130,180)
+
+== Colors.Tan (Rgb24)
+RGB(210,180,140)
+
+== Colors.Teal (Rgb24)
+RGB(0,128,128)
+
+== Colors.Thistle (Rgb24)
+RGB(216,191,216)
+
+== Colors.Tomato (Rgb24)
+RGB(255,99,71)
+
+== Colors.Transparent (Rgba32)
+RGBA(255,255,255,0)
+
+== Colors.Turquoise (Rgb24)
+RGB(64,224,208)
+
+== Colors.Violet (Rgb24)
+RGB(238,130,238)
+
+== Colors.Wheat (Rgb24)
+RGB(245,222,179)
+
+== Colors.White (Rgb24)
+RGB(255,255,255)
+
+== Colors.WhiteSmoke (Rgb24)
+RGB(245,245,245)
+
+== Colors.Yellow (Rgb24)
+RGB(255,255,0)
+
+== Colors.YellowGreen (Rgb24)
+RGB(154,205,50)
+
+##### DatabarField
+
+== DatabarField.Beam (int)
+48
+
+== DatabarField.DateTime (int)
+2304
+
+== DatabarField.Detector (int)
+128
+
+== DatabarField.FieldSize (int)
+8
+
+== DatabarField.HighVoltage (int)
+16
+
+== DatabarField.Label (int)
+512
+
+== DatabarField.Magnification (int)
+2
+
+== DatabarField.PolaroidMagnification (int)
+4
+
+== DatabarField.PressureEstimate (int)
+1024
+
+== DatabarField.ScaleBar (int)
+1
+
+== DatabarField.SpotSize (int)
+32
+
+== DatabarField.WorkingDistance (int)
+64
+
+##### Features
+
+== Features.AsbestosDetection (int)
+16
+
+== Features.EdsMap (int)
+128
+
+== Features.FastSpectrum (int)
+64
+
+== Features.LiveVideo (int)
+32
+
+== Features.ParticleMetric (int)
+4
+
+== Features.ResolutionMeasurement (int)
+512
+
+== Features.RoughnessReconstruction (int)
+8
+
+== Features.Spectroscopy (int)
+1
+
+== Features.Stitching (int)
+2
+
+##### Logging
+
+== Logging.Close (function)
+Close() -> None
+
+== Logging.Connect (function)
+Connect( (object)observer) -> None
+
+== Logging.GetLevel (function)
+GetLevel() -> int
+
+== Logging.Log (function)
+Log( (int)level, (str)message) -> None
+
+Log( (int)level, (str)context, (str)message) -> None
+
+== Logging.LogToFile (function)
+LogToFile( (str)filename) -> None
+
+== Logging.LogToSysLog (function)
+LogToSysLog() -> None
+
+== Logging.RotatingFile (class)
+
+  .Append: Append( (RotatingFile)arg1, (str)arg2) -> None
+  .Rotate: Rotate( (RotatingFile)arg1) -> None
+
+== Logging.SetLevel (function)
+SetLevel( (int)value) -> None
+
+##### Patterning
+
+== Patterning.AggregateScanPattern (class)
+
+  .Add: Add( (AggregateScanPattern)arg1, (ScanPattern)pattern) -> None
+  .Clear: Clear( (AggregateScanPattern)arg1) -> None
+
+== Patterning.BitmapScanPattern (class)
+
+  .SetImage: SetImage( (BitmapScanPattern)arg1, (object)arg2) -> None
+  .center: 
+  .dwellTimeRange: 
+  .intensity: 
+  .lineScanStyle: 
+  .maskColor: 
+  .rotation: 
+  .size: 
+
+== Patterning.IntensityMapping (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .MinimumBlack: PyPhenom.Patterning.IntensityMapping.MinimumBlack
+  .MinimumWhite: PyPhenom.Patterning.IntensityMapping.MinimumWhite
+
+== Patterning.LineScanPattern (class)
+
+  .begin: 
+  .dwellTime: 
+  .end: 
+  .pitch: 
+
+== Patterning.LineScanStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Serpentine: PyPhenom.Patterning.LineScanStyle.Serpentine
+  .Uniform: PyPhenom.Patterning.LineScanStyle.Uniform
+
+== Patterning.LoadScanPattern (function)
+LoadScanPattern( (str)arg1) -> ScanDefinition
+
+== Patterning.PointScanPattern (class)
+
+  .position: 
+
+== Patterning.RectangleScanPattern (class)
+
+  .center: 
+  .dwellTime: 
+  .lineScanStyle: 
+  .pitchX: 
+  .pitchY: 
+  .rotation: 
+  .size: 
+
+== Patterning.SaveScanPattern (function)
+SaveScanPattern( (ScanDefinition)arg1, (str)arg2) -> None
+
+== Patterning.ScanDefinition (class)
+
+  .jobCount: 
+  .patternCount: 
+
+== Patterning.ScanPattern (class)
+
+  .Render: Render( (ScanPattern)arg1) -> ScanDefinition
+
+##### Pdf
+
+== Pdf.Annotation (class)
+
+  .SetBorderStyle: SetBorderStyle( (Annotation)arg1, (BSSubtype)subtype, (float)width, (int)dash_on, (int)dash_off, (int)dash_phase) -> None
+
+== Pdf.AnnotationHighlightMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .DownAppearance: PyPhenom.Pdf.AnnotationHighlightMode.DownAppearance
+  .InvertBorder: PyPhenom.Pdf.AnnotationHighlightMode.InvertBorder
+  .InvertBox: PyPhenom.Pdf.AnnotationHighlightMode.InvertBox
+  .NoHighlight: PyPhenom.Pdf.AnnotationHighlightMode.NoHighlight
+
+== Pdf.AnnotationIcon (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Comment: PyPhenom.Pdf.AnnotationIcon.Comment
+  .Help: PyPhenom.Pdf.AnnotationIcon.Help
+  .Insert: PyPhenom.Pdf.AnnotationIcon.Insert
+  .Key: PyPhenom.Pdf.AnnotationIcon.Key
+  .NewParagraph: PyPhenom.Pdf.AnnotationIcon.NewParagraph
+  .Note: PyPhenom.Pdf.AnnotationIcon.Note
+  .Paragraph: PyPhenom.Pdf.AnnotationIcon.Paragraph
+
+== Pdf.BSSubtype (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Beveled: PyPhenom.Pdf.BSSubtype.Beveled
+  .Dashed: PyPhenom.Pdf.BSSubtype.Dashed
+  .Inset: PyPhenom.Pdf.BSSubtype.Inset
+  .Solid: PyPhenom.Pdf.BSSubtype.Solid
+  .Underlined: PyPhenom.Pdf.BSSubtype.Underlined
+
+== Pdf.ByteType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Lead: PyPhenom.Pdf.ByteType.Lead
+  .Single: PyPhenom.Pdf.ByteType.Single
+  .Trial: PyPhenom.Pdf.ByteType.Trial
+  .Unknown: PyPhenom.Pdf.ByteType.Unknown
+
+== Pdf.ColorSpace (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .CalGray: PyPhenom.Pdf.ColorSpace.CalGray
+  .CalRgb: PyPhenom.Pdf.ColorSpace.CalRgb
+  .DeviceCmyk: PyPhenom.Pdf.ColorSpace.DeviceCmyk
+  .DeviceGray: PyPhenom.Pdf.ColorSpace.DeviceGray
+  .DeviceN: PyPhenom.Pdf.ColorSpace.DeviceN
+  .DeviceRgb: PyPhenom.Pdf.ColorSpace.DeviceRgb
+  .IccBased: PyPhenom.Pdf.ColorSpace.IccBased
+  .Indexed: PyPhenom.Pdf.ColorSpace.Indexed
+  .Lab: PyPhenom.Pdf.ColorSpace.Lab
+  .Pattern: PyPhenom.Pdf.ColorSpace.Pattern
+  .Separation: PyPhenom.Pdf.ColorSpace.Separation
+
+== Pdf.DashMode (class)
+
+  .num_ptn: 
+  .phase: 
+
+== Pdf.Destination (class)
+
+  .SetFit: SetFit( (Destination)arg1) -> None
+  .SetFitB: SetFitB( (Destination)arg1) -> None
+  .SetFitBH: SetFitBH( (Destination)arg1, (float)top) -> None
+  .SetFitBV: SetFitBV( (Destination)arg1, (float)left) -> None
+  .SetFitH: SetFitH( (Destination)arg1, (float)top) -> None
+  .SetFitR: SetFitR( (Destination)arg1, (float)left, (float)bottom, (float)right, (float)top) -> None
+  .SetFitV: SetFitV( (Destination)arg1, (float)left) -> None
+  .SetXYZ: SetXYZ( (Destination)arg1, (float)left, (float)top, (float)zoom) -> None
+
+== Pdf.Document (class)
+PDF Document
+  .AddPage: AddPage( (Document)arg1) -> Page
+  .AddPageLabel: AddPageLabel( (Document)arg1, (int)page_num, (PageNumStyle)style, (int)first_page, (str)prefix) -> None
+  .AttachFile: AttachFile( (Document)arg1, (str)file_name) -> None
+  .AttachFileAs: AttachFileAs( (Document)arg1, (str)file_name, (str)attached_name) -> None
+  .CreateImage: CreateImage( (Document)arg1, (Image)image) -> Image
+  .CreateOutline: CreateOutline( (Document)arg1, (Outline)parent, (str)title, (Encoder)encoder) -> Outline
+  .FreeDoc: FreeDoc( (Document)arg1) -> None
+  .GetCurrentEncoder: GetCurrentEncoder( (Document)arg1) -> Encoder
+  .GetCurrentPage: GetCurrentPage( (Document)arg1) -> Page
+  .GetEncoder: GetEncoder( (Document)arg1, (str)encoding_name) -> Encoder
+  .GetFont: GetFont( (Document)arg1, (str)font_name) -> Font
+
+GetFont( (Document)arg1, (str)arg2, (str)encoding_name) -> Font
+  .GetInfoAttr: GetInfoAttr( (Document)arg1, (InfoType)type) -> str
+  .GetPageLayout: GetPageLayout( (Document)arg1) -> PageLayout
+  .GetPageMode: GetPageMode( (Document)arg1) -> PageMode
+  .GetStreamSize: GetStreamSize( (Document)arg1) -> int
+  .HasDoc: HasDoc( (Document)arg1) -> bool
+  .InsertPage: InsertPage( (Document)arg1, (Page)page) -> Page
+  .LoadJpegImage: LoadJpegImage( (Document)arg1, (str)filename) -> Image
+  .LoadTTFontFromFile: LoadTTFontFromFile( (Document)arg1, (str)file_name, (bool)embedding) -> str
+  .LoadTTFontFromFile2: LoadTTFontFromFile2( (Document)arg1, (str)file_name, (int)index, (bool)embedding) -> str
+  .LoadType1FontFromFile: LoadType1FontFromFile( (Document)arg1, (str)afm_file_name, (str)data_file_name) -> str
+  .NewDoc: NewDoc( (Document)arg1) -> None
+  .ReadFromStream: ReadFromStream( (Document)arg1, (object)arg2, (int)data) -> None
+  .ResetError: ResetError( (Document)arg1) -> None
+  .ResetStream: ResetStream( (Document)arg1) -> None
+  .SaveToFile: SaveToFile( (Document)arg1, (str)file_name) -> None
+  .SaveToStream: SaveToStream( (Document)arg1) -> None
+  .SetCompressionMode: SetCompressionMode( (Document)arg1, (int)mode) -> None
+  .SetCurrentEncoder: SetCurrentEncoder( (Document)arg1, (str)encoding_name) -> None
+  .SetEncryptionMode: SetEncryptionMode( (Document)arg1, (EncryptMode)mode, (int)key_len) -> None
+  .SetInfoAttr: SetInfoAttr( (Document)arg1, (InfoType)type, (str)value) -> None
+  .SetInfoDateAttr: SetInfoDateAttr( (Document)arg1, (InfoType)type, (object)value) -> None
+  .SetOpenAction: SetOpenAction( (Document)arg1, (Destination)value) -> None
+  .SetPageLayout: SetPageLayout( (Document)arg1, (PageLayout)value) -> None
+  .SetPageMode: SetPageMode( (Document)arg1, (PageMode)value) -> None
+  .SetPagesConfiguration: SetPagesConfiguration( (Document)arg1, (int)page_per_pages) -> None
+  .SetPassword: SetPassword( (Document)arg1, (str)owner_password, (str)user_password) -> None
+  .SetPermission: SetPermission( (Document)arg1, (int)permission) -> None
+  .UseCNSEncodings: UseCNSEncodings( (Document)arg1) -> None
+  .UseCNSFonts: UseCNSFonts( (Document)arg1) -> None
+  .UseCNTEncodings: UseCNTEncodings( (Document)arg1) -> None
+  .UseCNTFonts: UseCNTFonts( (Document)arg1) -> None
+  .UseJPEncodings: UseJPEncodings( (Document)arg1) -> None
+  .UseJPFonts: UseJPFonts( (Document)arg1) -> None
+  .UseKREncodings: UseKREncodings( (Document)arg1) -> None
+  .UseKRFonts: UseKRFonts( (Document)arg1) -> None
+  .UseUTFEncodings: UseUTFEncodings( (Document)arg1) -> None
+
+== Pdf.Encoder (class)
+
+  .GetByteType: GetByteType( (Encoder)arg1, (str)text, (int)index) -> ByteType
+  .GetType: GetType( (Encoder)arg1) -> EncoderType
+  .GetUnicode: GetUnicode( (Encoder)arg1, (object)code) -> object
+  .GetWritingMode: GetWritingMode( (Encoder)arg1) -> WritingMode
+
+== Pdf.EncoderType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .DoubleByte: PyPhenom.Pdf.EncoderType.DoubleByte
+  .SingleByte: PyPhenom.Pdf.EncoderType.SingleByte
+  .Uninitialized: PyPhenom.Pdf.EncoderType.Uninitialized
+  .Unknown: PyPhenom.Pdf.EncoderType.Unknown
+
+== Pdf.EncryptMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .R2: PyPhenom.Pdf.EncryptMode.R2
+  .R3: PyPhenom.Pdf.EncryptMode.R3
+
+== Pdf.Font (class)
+
+  .GetAscent: GetAscent( (Font)arg1) -> int
+  .GetBBox: GetBBox( (Font)arg1) -> object
+  .GetCapHeight: GetCapHeight( (Font)arg1) -> int
+  .GetDescent: GetDescent( (Font)arg1) -> int
+  .GetEncodingName: GetEncodingName( (Font)arg1) -> str
+  .GetFontName: GetFontName( (Font)arg1) -> str
+  .GetUnicodeWidth: GetUnicodeWidth( (Font)arg1, (object)code) -> int
+  .GetXHeight: GetXHeight( (Font)arg1) -> int
+  .MeasureText: MeasureText( (Font)arg1, (str)text, (float)width, (float)font_size, (float)char_space, (float)word_space, (bool)word_wrap) -> int
+  .TextWidth: TextWidth( (Font)arg1, (str)text) -> TextWidth
+
+== Pdf.Image (class)
+
+  .GetHeight: GetHeight( (Image)arg1) -> int
+  .GetWidth: GetWidth( (Image)arg1) -> int
+
+== Pdf.InfoType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Author: PyPhenom.Pdf.InfoType.Author
+  .CreationDate: PyPhenom.Pdf.InfoType.CreationDate
+  .Creator: PyPhenom.Pdf.InfoType.Creator
+  .GtsPdfx: PyPhenom.Pdf.InfoType.GtsPdfx
+  .Keywords: PyPhenom.Pdf.InfoType.Keywords
+  .ModDate: PyPhenom.Pdf.InfoType.ModDate
+  .Producer: PyPhenom.Pdf.InfoType.Producer
+  .Subject: PyPhenom.Pdf.InfoType.Subject
+  .Title: PyPhenom.Pdf.InfoType.Title
+  .Trapped: PyPhenom.Pdf.InfoType.Trapped
+
+== Pdf.LineCap (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Butt: PyPhenom.Pdf.LineCap.Butt
+  .ProjectingSquare: PyPhenom.Pdf.LineCap.ProjectingSquare
+  .Round: PyPhenom.Pdf.LineCap.Round
+
+== Pdf.LineJoin (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Bevel: PyPhenom.Pdf.LineJoin.Bevel
+  .Round: PyPhenom.Pdf.LineJoin.Round
+
+== Pdf.LinkAnnotation (class)
+
+  .SetBorderStyle: SetBorderStyle( (LinkAnnotation)arg1, (BSSubtype)subtype, (float)width, (int)dash_on, (int)dash_off, (int)dash_phase) -> None
+
+SetBorderStyle( (LinkAnnotation)arg1, (float)width, (int)dash_on, (int)dash_off) -> None
+  .SetHighlightMode: SetHighlightMode( (LinkAnnotation)arg1, (AnnotationHighlightMode)value) -> None
+
+== Pdf.Outline (class)
+
+  .SetDestination: SetDestination( (Outline)arg1, (Destination)value) -> None
+  .SetOpened: SetOpened( (Outline)arg1, (bool)value) -> None
+
+== Pdf.Page (class)
+Single page
+  .Arc: Arc( (Page)arg1, (object)position, (float)ray, (float)angle1, (float)angle2) -> None
+  .BeginText: BeginText( (Page)arg1) -> None
+  .Circle: Circle( (Page)arg1, (object)position, (float)ray) -> None
+  .Clip: Clip( (Page)arg1) -> None
+  .ClosePath: ClosePath( (Page)arg1) -> None
+  .ClosePathEofillStroke: ClosePathEofillStroke( (Page)arg1) -> None
+  .ClosePathFillStroke: ClosePathFillStroke( (Page)arg1) -> None
+  .ClosePathStroke: ClosePathStroke( (Page)arg1) -> None
+  .Concat: Concat( (Page)arg1, (Transformation)transformation) -> None
+  .CreateDestination: CreateDestination( (Page)arg1) -> Destination
+  .CreateLinkAnnot: CreateLinkAnnot( (Page)arg1, (object)rectangle, (Destination)destination) -> LinkAnnotation
+  .CreateTextAnnot: CreateTextAnnot( (Page)arg1, (object)rectangle, (str)text, (Encoder)encoder) -> TextAnnotation
+  .CreateURILinkAnnot: CreateURILinkAnnot( (Page)arg1, (object)rectangle, (str)text) -> LinkAnnotation
+  .CurveTo: CurveTo( (Page)arg1, (object)p1, (object)p2, (object)p3) -> None
+  .CurveTo2: CurveTo2( (Page)arg1, (object)p2, (object)p3) -> None
+  .CurveTo3: CurveTo3( (Page)arg1, (object)p1, (object)p3) -> None
+  .DrawImage: DrawImage( (Page)arg1, (Image)image, (Position)position, (SizeD)size) -> None
+
+DrawImage( (Page)arg1, (Image)image, (Position)position, (SizeD)size) -> None
+
+DrawImage( (Page)arg1, (Image)image, (float)x, (float)y, (float)width, (float)height) -> None
+
+DrawImage( (Page)arg1, (Image)image, (float)x, (float)y, (float)width, (float)height) -> None
+  .Ellipse: Ellipse( (Page)arg1, (object)position, (float)xray, (float)yray) -> None
+  .EndPath: EndPath( (Page)arg1) -> None
+  .EndText: EndText( (Page)arg1) -> None
+  .Eoclip: Eoclip( (Page)arg1) -> None
+  .Eofill: Eofill( (Page)arg1) -> None
+  .EofillStroke: EofillStroke( (Page)arg1) -> None
+  .Fill: Fill( (Page)arg1) -> None
+  .FillStroke: FillStroke( (Page)arg1) -> None
+  .GRestore: GRestore( (Page)arg1) -> None
+  .GSave: GSave( (Page)arg1) -> None
+  .GetCharSpace: GetCharSpace( (Page)arg1) -> float
+  .GetCurrentFont: GetCurrentFont( (Page)arg1) -> Font
+  .GetCurrentFontSize: GetCurrentFontSize( (Page)arg1) -> float
+  .GetCurrentPos: GetCurrentPos( (Page)arg1) -> Position
+  .GetCurrentTextPos: GetCurrentTextPos( (Page)arg1) -> Position
+  .GetDash: GetDash( (Page)arg1) -> DashMode
+  .GetFillingColorSpace: GetFillingColorSpace( (Page)arg1) -> ColorSpace
+  .GetFlat: GetFlat( (Page)arg1) -> float
+  .GetGMode: GetGMode( (Page)arg1) -> int
+  .GetGStateDepth: GetGStateDepth( (Page)arg1) -> int
+  .GetGrayFill: GetGrayFill( (Page)arg1) -> float
+  .GetGrayStroke: GetGrayStroke( (Page)arg1) -> float
+  .GetHeight: GetHeight( (Page)arg1) -> float
+  .GetHorizontalScalling: GetHorizontalScalling( (Page)arg1) -> float
+  .GetLineCap: GetLineCap( (Page)arg1) -> LineCap
+  .GetLineJoin: GetLineJoin( (Page)arg1) -> LineJoin
+  .GetLineWidth: GetLineWidth( (Page)arg1) -> float
+  .GetMiterLimit: GetMiterLimit( (Page)arg1) -> float
+  .GetRGBFill: GetRGBFill( (Page)arg1) -> Rgb24
+  .GetRGBStroke: GetRGBStroke( (Page)arg1) -> Rgb24
+  .GetStrokingColorSpace: GetStrokingColorSpace( (Page)arg1) -> ColorSpace
+  .GetTextLeading: GetTextLeading( (Page)arg1) -> float
+  .GetTextMatrix: GetTextMatrix( (Page)arg1) -> Transformation
+  .GetTextRenderingMode: GetTextRenderingMode( (Page)arg1) -> TextRenderingMode
+  .GetTextRise: GetTextRise( (Page)arg1) -> float
+  .GetTransMatrix: GetTransMatrix( (Page)arg1) -> Transformation
+  .GetWidth: GetWidth( (Page)arg1) -> float
+  .GetWordSpace: GetWordSpace( (Page)arg1) -> float
+  .LineTo: LineTo( (Page)arg1, (Position)position) -> None
+
+LineTo( (Page)arg1, (float)x, (float)y) -> None
+  .MeasureText: MeasureText( (Page)arg1, (str)text, (float)width, (bool)word_wrap) -> int
+  .MoveTextPos: MoveTextPos( (Page)arg1, (Position)position) -> None
+
+MoveTextPos( (Page)arg1, (float)x, (float)y) -> None
+  .MoveTextPos2: MoveTextPos2( (Page)arg1, (Position)position) -> None
+
+MoveTextPos2( (Page)arg1, (float)x, (float)y) -> None
+  .MoveTo: MoveTo( (Page)arg1, (float)x, (float)y) -> None
+
+MoveTo( (Page)arg1, (Position)position) -> None
+  .MoveToNextLine: MoveToNextLine( (Page)arg1) -> None
+  .Rectangle: Rectangle( (Page)arg1, (RectangleD)rectangle) -> None
+
+Rectangle( (Page)arg1, (float)x, (float)y, (float)width, (float)height) -> None
+  .SetCMYKFill: SetCMYKFill( (Page)arg1, (float)c, (float)m, (float)y, (float)k) -> None
+  .SetCMYKStroke: SetCMYKStroke( (Page)arg1, (float)c, (float)m, (float)y, (float)k) -> None
+  .SetCharSpace: SetCharSpace( (Page)arg1, (float)value) -> None
+  .SetDash: SetDash( (Page)arg1, (DashMode)value) -> None
+  .SetFontAndSize: SetFontAndSize( (Page)arg1, (Font)font, (float)size) -> None
+  .SetGrayFill: SetGrayFill( (Page)arg1, (float)value) -> None
+  .SetGrayStroke: SetGrayStroke( (Page)arg1, (float)value) -> None
+  .SetHeight: SetHeight( (Page)arg1, (float)value) -> None
+  .SetHorizontalScalling: SetHorizontalScalling( (Page)arg1, (float)value) -> None
+  .SetLineCap: SetLineCap( (Page)arg1, (LineCap)value) -> None
+  .SetLineJoin: SetLineJoin( (Page)arg1, (LineJoin)value) -> None
+  .SetLineWidth: SetLineWidth( (Page)arg1, (float)line_width) -> None
+  .SetMiterLimit: SetMiterLimit( (Page)arg1, (float)line_width) -> None
+  .SetRGBFill: SetRGBFill( (Page)arg1, (Rgb24)value) -> None
+  .SetRGBStroke: SetRGBStroke( (Page)arg1, (Rgb24)value) -> None
+  .SetRotate: SetRotate( (Page)arg1, (int)angle) -> None
+  .SetSize: SetSize( (Page)arg1, (PageSize)size [, (PageDirection)direction=PyPhenom.Pdf.PageDirection.Portrait]) -> None
+  .SetSlideShow: SetSlideShow( (Page)arg1, (TransitionStyle)style, (float)disp_time, (float)trans_time) -> None
+  .SetTextLeading: SetTextLeading( (Page)arg1, (float)value) -> None
+  .SetTextMatrix: SetTextMatrix( (Page)arg1, (Transformation)transformation) -> None
+  .SetTextRenderingMode: SetTextRenderingMode( (Page)arg1, (TextRenderingMode)value) -> None
+  .SetTextRise: SetTextRise( (Page)arg1, (float)value) -> None
+  .SetWidth: SetWidth( (Page)arg1, (float)value) -> None
+  .SetWordSpace: SetWordSpace( (Page)arg1, (float)value) -> None
+  .ShowText: ShowText( (Page)arg1, (str)text) -> None
+
+ShowText( (Page)arg1, (str)text, (float)width) -> None
+  .ShowTextNextLine: ShowTextNextLine( (Page)arg1, (str)text) -> None
+
+ShowTextNextLine( (Page)arg1, (float)word_space, (float)char_space, (str)text) -> None
+  .Stroke: Stroke( (Page)arg1) -> None
+  .TextOut: TextOut( (Page)arg1, (float)xpos, (float)ypos, (str)text) -> None
+  .TextRect: TextRect( (Page)arg1, (RectangleD)rect, (str)text, (TextAlignment)alignment) -> int
+  .TextWidth: TextWidth( (Page)arg1, (str)text) -> float
+
+== Pdf.PageDirection (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Landscape: PyPhenom.Pdf.PageDirection.Landscape
+  .Portrait: PyPhenom.Pdf.PageDirection.Portrait
+
+== Pdf.PageLayout (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .OneColumn: PyPhenom.Pdf.PageLayout.OneColumn
+  .Single: PyPhenom.Pdf.PageLayout.Single
+  .TwoColumnLeft: PyPhenom.Pdf.PageLayout.TwoColumnLeft
+  .TwoColumnRight: PyPhenom.Pdf.PageLayout.TwoColumnRight
+  .TwoPageLeft: PyPhenom.Pdf.PageLayout.TwoPageLeft
+  .TwoPageRight: PyPhenom.Pdf.PageLayout.TwoPageRight
+
+== Pdf.PageMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .FullScreen: PyPhenom.Pdf.PageMode.FullScreen
+  .UseNone: PyPhenom.Pdf.PageMode.UseNone
+  .UseOutline: PyPhenom.Pdf.PageMode.UseOutline
+  .UseThumbs: PyPhenom.Pdf.PageMode.UseThumbs
+
+== Pdf.PageNumStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Decimal: PyPhenom.Pdf.PageNumStyle.Decimal
+  .LowerLetters: PyPhenom.Pdf.PageNumStyle.LowerLetters
+  .LowerRoman: PyPhenom.Pdf.PageNumStyle.LowerRoman
+  .UpperLetters: PyPhenom.Pdf.PageNumStyle.UpperLetters
+  .UpperRoman: PyPhenom.Pdf.PageNumStyle.UpperRoman
+
+== Pdf.PageSize (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .A3: PyPhenom.Pdf.PageSize.A3
+  .A4: PyPhenom.Pdf.PageSize.A4
+  .A5: PyPhenom.Pdf.PageSize.A5
+  .B4: PyPhenom.Pdf.PageSize.B4
+  .B5: PyPhenom.Pdf.PageSize.B5
+  .Comm10: PyPhenom.Pdf.PageSize.Comm10
+  .Executive: PyPhenom.Pdf.PageSize.Executive
+  .Legal: PyPhenom.Pdf.PageSize.Legal
+  .Letter: PyPhenom.Pdf.PageSize.Letter
+  .US4x6: PyPhenom.Pdf.PageSize.US4x6
+  .US4x8: PyPhenom.Pdf.PageSize.US4x8
+  .US5x7: PyPhenom.Pdf.PageSize.US5x7
+
+== Pdf.PdfParser (class)
+Parse Phenom-World generated Pdf documents
+  .GetAttachedFileNames: GetAttachedFileNames( (PdfParser)arg1) -> list
+  .GetAttachmentDataAsString: GetAttachmentDataAsString( (PdfParser)arg1, (str)attached_name) -> str
+  .GetAttachmentDataAsTiff: GetAttachmentDataAsTiff( (PdfParser)arg1, (str)attached_name) -> Acquisition
+  .GetInfoAttr: GetInfoAttr( (PdfParser)arg1, (InfoType)type) -> str
+  .GetPath: GetPath( (PdfParser)arg1) -> str
+  .HasInfoAttr: HasInfoAttr( (PdfParser)arg1, (InfoType)type) -> bool
+  .IsValidPhenomPdf: IsValidPhenomPdf( (PdfParser)arg1) -> bool
+  .SaveAttachment: SaveAttachment( (PdfParser)arg1, (str)attached_name, (str)file_name) -> None
+
+== Pdf.TextAlignment (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Center: PyPhenom.Pdf.TextAlignment.Center
+  .Justify: PyPhenom.Pdf.TextAlignment.Justify
+  .Left: PyPhenom.Pdf.TextAlignment.Left
+  .Right: PyPhenom.Pdf.TextAlignment.Right
+
+== Pdf.TextAnnotation (class)
+
+  .SetIcon: SetIcon( (TextAnnotation)arg1, (AnnotationIcon)icon) -> None
+  .SetOpened: SetOpened( (TextAnnotation)arg1, (bool)value) -> None
+
+== Pdf.TextFormatter (class)
+Multi page text formatting
+  .BeginText: BeginText( (TextFormatter)arg1) -> None
+
+BeginText( (TextFormatter)arg1, (float)y) -> None
+  .EndText: EndText( (TextFormatter)arg1) -> None
+  .GetBottom: GetBottom( (TextFormatter)arg1) -> float
+  .GetCurrentPage: GetCurrentPage( (TextFormatter)arg1) -> Page
+  .GetCurrentTextPos: GetCurrentTextPos( (TextFormatter)arg1) -> Position
+  .GetLeft: GetLeft( (TextFormatter)arg1) -> float
+  .GetRight: GetRight( (TextFormatter)arg1) -> float
+  .GetTop: GetTop( (TextFormatter)arg1) -> float
+  .MeasureText: MeasureText( (TextFormatter)arg1, (str)arg2, (float)arg3, (bool)text) -> int
+  .MoveToNextLine: MoveToNextLine( (TextFormatter)arg1) -> Page
+  .MoveToNextPage: MoveToNextPage( (TextFormatter)arg1) -> Page
+  .SetBottom: SetBottom( (TextFormatter)arg1, (float)value) -> None
+  .SetFontAndSize: SetFontAndSize( (TextFormatter)arg1, (Font)font, (float)size) -> None
+  .SetLeft: SetLeft( (TextFormatter)arg1, (float)value) -> None
+  .SetMargins: SetMargins( (TextFormatter)arg1, (float)left, (float)top, (float)right, (float)bottom) -> None
+  .SetRight: SetRight( (TextFormatter)arg1, (float)value) -> None
+  .SetTextLeading: SetTextLeading( (TextFormatter)arg1, (float)value) -> None
+  .SetTop: SetTop( (TextFormatter)arg1, (float)value) -> None
+  .ShowText: ShowText( (TextFormatter)arg1, (str)text) -> None
+  .ShowTextNextLine: ShowTextNextLine( (TextFormatter)arg1, (str)text) -> None
+  .TextColumn: TextColumn( (TextFormatter)arg1, (float)left, (float)right, (str)text [, (TextAlignment)alignment=PyPhenom.Pdf.TextAlignment.Left]) -> None
+
+TextColumn( (TextFormatter)arg1, (float)left, (float)right, (str)text, (Rgb24)textColor [, (TextAlignment)alignment=PyPhenom.Pdf.TextAlignment.Left]) -> None
+
+== Pdf.TextRenderingMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Clipping: PyPhenom.Pdf.TextRenderingMode.Clipping
+  .Fill: PyPhenom.Pdf.TextRenderingMode.Fill
+  .FillClipping: PyPhenom.Pdf.TextRenderingMode.FillClipping
+  .FillStrokeClipping: PyPhenom.Pdf.TextRenderingMode.FillStrokeClipping
+  .FillThenStroke: PyPhenom.Pdf.TextRenderingMode.FillThenStroke
+  .Invisible: PyPhenom.Pdf.TextRenderingMode.Invisible
+  .Stroke: PyPhenom.Pdf.TextRenderingMode.Stroke
+  .StrokeClipping: PyPhenom.Pdf.TextRenderingMode.StrokeClipping
+
+== Pdf.TextWidth (class)
+
+  .numchars: 
+  .numspace: 
+  .numwords: 
+  .width: 
+
+== Pdf.TransitionStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .BarnDoorsHorizontalIn: PyPhenom.Pdf.TransitionStyle.BarnDoorsHorizontalIn
+  .BarnDoorsHorizontalOut: PyPhenom.Pdf.TransitionStyle.BarnDoorsHorizontalOut
+  .BarnDoorsVerticalIn: PyPhenom.Pdf.TransitionStyle.BarnDoorsVerticalIn
+  .BarnDoorsVerticalOut: PyPhenom.Pdf.TransitionStyle.BarnDoorsVerticalOut
+  .BlindsHorizontal: PyPhenom.Pdf.TransitionStyle.BlindsHorizontal
+  .BlindsVertical: PyPhenom.Pdf.TransitionStyle.BlindsVertical
+  .BoxIn: PyPhenom.Pdf.TransitionStyle.BoxIn
+  .BoxOut: PyPhenom.Pdf.TransitionStyle.BoxOut
+  .Dissolve: PyPhenom.Pdf.TransitionStyle.Dissolve
+  .GlitterDown: PyPhenom.Pdf.TransitionStyle.GlitterDown
+  .GlitterRight: PyPhenom.Pdf.TransitionStyle.GlitterRight
+  .GlitterTopLeftToBottomRight: PyPhenom.Pdf.TransitionStyle.GlitterTopLeftToBottomRight
+  .Replace: PyPhenom.Pdf.TransitionStyle.Replace
+  .WipeDown: PyPhenom.Pdf.TransitionStyle.WipeDown
+  .WipeLeft: PyPhenom.Pdf.TransitionStyle.WipeLeft
+  .WipeRight: PyPhenom.Pdf.TransitionStyle.WipeRight
+  .WipeUp: PyPhenom.Pdf.TransitionStyle.WipeUp
+
+== Pdf.WritingMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Horizontal: PyPhenom.Pdf.WritingMode.Horizontal
+  .Vertical: PyPhenom.Pdf.WritingMode.Vertical
+
+##### Plot
+
+== Plot.DataStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Bars: PyPhenom.Plot.DataStyle.Bars
+  .Dots: PyPhenom.Plot.DataStyle.Dots
+  .Line: PyPhenom.Plot.DataStyle.Line
+
+== Plot.Plotter (class)
+
+  .BackgroundColor: 
+  .BottomMargin: 
+  .DataStyle: 
+  .LabelFontSize: 
+  .LeftMargin: 
+  .Legend: 
+  .LegendFontSize: 
+  .PenColor: 
+  .PenWidth: 
+  .RightMargin: 
+  .ScatterPlot: ScatterPlot( (Plotter)arg1, (list)x/y data, (Size)size) -> Image
+
+ScatterPlot( (Plotter)arg1, (list)x/y data, (Page)page, (RectangleD)rect) -> None
+  .Title: 
+  .TitleFontSize: 
+  .TopMargin: 
+  .XLabel: 
+  .YLabel: 
+
+##### Processing
+
+== Processing.ACos (function)
+ACos( (object)arg1) -> Image
+
+== Processing.ASin (function)
+ASin( (object)arg1) -> Image
+
+== Processing.ATan2 (function)
+ATan2( (object)arg1, (object)arg2) -> Image
+
+== Processing.AnisotropicDiffusion (function)
+AnisotropicDiffusion( (object)src, (object)dst, (int)NIters, (float)Kappa, (float)time_step, (EdgeStopFunTypes)EdgeStopFunType) -> None
+
+AnisotropicDiffusion( (object)src, (int)NIters, (float)Kappa, (float)time_step, (EdgeStopFunTypes)EdgeStopFunType) -> Image
+
+== Processing.Apply (function)
+Apply( (object)image, (object)function [, (float)blackLevel=0 [, (float)whiteLevel=1]]) -> Image
+
+== Processing.Ascend (function)
+Ascend( (object)image, (Point)startPos, (float)maxDistance, (float)threshold) -> Point
+
+== Processing.BandPass (function)
+BandPass( (object)src, (float)orderLow, (float)freqLow, (float)orderHigh, (float)freqHigh, (object)dst) -> None
+
+BandPass( (object)image, (float)orderLow, (float)freqLow, (float)orderHigh, (float)freqHigh) -> Image
+
+== Processing.BandStop (function)
+BandStop( (object)src, (float)orderLow, (float)freqLow, (float)orderHigh, (float)freqHigh, (object)dst) -> None
+
+BandStop( (object)image, (float)orderLow, (float)freqLow, (float)orderHigh, (float)freqHigh) -> Image
+
+== Processing.Blend (function)
+Blend( (object)image, (object)tile, (Point)tilePos, (Rectangle)nonOverlappedTileRect) -> None
+
+== Processing.BoundaryErf (class)
+Boundary parameters for the error function coefficients
+  .a: 
+  .c: 
+  .s: 
+  .x0: 
+
+== Processing.Calculate12_88Resolution (function)
+Calculate12_88Resolution( (float)slope) -> float
+
+== Processing.Calculate25_75Resolution (function)
+Calculate25_75Resolution( (float)slope) -> float
+
+== Processing.Calculate35_65Resolution (function)
+Calculate35_65Resolution( (float)slope) -> float
+
+== Processing.CalculateIsoResolution (function)
+CalculateIsoResolution( (float)slope) -> float
+
+== Processing.Canny (function)
+Canny( (object)src, (object)dst) -> None
+
+Canny( (object)src, (float)lowThreshold, (float)highThreshold, (object)dst) -> None
+
+Canny( (object)image) -> Image
+
+Canny( (object)src, (float)lowThreshold, (float)highThreshold) -> Image
+
+== Processing.CartographicColors (function)
+CartographicColors( (object)image, (list)palette, (bool)skipBackground) -> list
+
+== Processing.CenterOfGravity (function)
+CenterOfGravity( (object)image) -> Position
+
+== Processing.CircleParams (class)
+
+  .center: 
+  .intensity: 
+  .radius: 
+
+== Processing.CircularAverage (function)
+CircularAverage( (object)image) -> list
+
+CircularAverage( (object)image, (Position)center [, (float)radiusStep=1]) -> list
+
+== Processing.CircularGaussianParams (class)
+
+  .center: 
+  .offset: 
+  .scale: 
+  .sigma: 
+
+== Processing.CircularHough (function)
+CircularHough( (object)image, (int)radius) -> Image
+
+== Processing.Close (function)
+Close( (object)image) -> Image
+
+Close( (object)image, (object)structureElement) -> Image
+
+== Processing.ColorMap32 (class)
+Color map for interpolating rgba values.
+
+== Processing.Colorize (function)
+Colorize( (object)grey_image, (object)marked_image [, (int)window_radius=1 [, (bool)usingFast=True]]) -> Image
+
+== Processing.Compact (function)
+Compact( (object)image) -> tuple
+
+== Processing.CompactIP (function)
+CompactIP( (object)image) -> int
+
+== Processing.Connectedness (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Connected4: PyPhenom.Processing.Connectedness.Connected4
+  .Connected8: PyPhenom.Processing.Connectedness.Connected8
+
+== Processing.ConsolidateLabels (function)
+ConsolidateLabels( (object)image, (int)minSize) -> Image
+
+== Processing.ContrastingColors (function)
+ContrastingColors( (int)numColors [, (float)min_saturation=1.0 [, (float)min_value=1.0]]) -> list
+
+ContrastingColors( (int)numColors [, (float)min_saturation=1.0 [, (float)min_value=1.0]]) -> list
+
+== Processing.Convert (function)
+Convert( (object)image, (PixelType)encoding) -> Image
+
+== Processing.Convolve (function)
+Convolve( (object)src, (object)kernel) -> Image
+
+== Processing.ConvolveGaussian (function)
+ConvolveGaussian( (object)src, (float)sigma, (object)dst) -> None
+
+ConvolveGaussian( (object)src, (float)sigma) -> Image
+
+== Processing.Copy (function)
+Copy( (object)src, (object)dst) -> None
+
+Copy( (object)src, (object)dst, (Point)pos) -> None
+
+Copy( (object)src) -> Image
+
+== Processing.Cos (function)
+Cos( (object)arg1) -> Image
+
+== Processing.Count (function)
+Count( (object)image, (float)value) -> int
+
+== Processing.CountGreaterOrEqual (function)
+CountGreaterOrEqual( (object)image, (float)value) -> int
+
+== Processing.CountGreaterThan (function)
+CountGreaterThan( (object)image, (float)value) -> int
+
+== Processing.CountLessOrEqual (function)
+CountLessOrEqual( (object)image, (float)value) -> int
+
+== Processing.CountLessThan (function)
+CountLessThan( (object)image, (float)value) -> int
+
+== Processing.Dilate (function)
+Dilate( (object)image) -> Image
+
+Dilate( (object)image, (object)structureElement) -> Image
+
+== Processing.DistanceTransform (function)
+DistanceTransform( (object)mask) -> Image
+
+== Processing.EdgeData (class)
+
+  .maxIndex: 
+  .maxValue: 
+  .minIndex: 
+  .minValue: 
+
+== Processing.EdgeProfile (class)
+Coefficients defining the edge profile function
+  .a: 
+  .c: 
+  .s: 
+  .x0: 
+
+== Processing.EdgeStopFunTypes (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Gaussian: PyPhenom.Processing.EdgeStopFunTypes.Gaussian
+  .Lorentzian: PyPhenom.Processing.EdgeStopFunTypes.Lorentzian
+  .SqrtLorentzian: PyPhenom.Processing.EdgeStopFunTypes.SqrtLorentzian
+
+== Processing.Equalize (function)
+Equalize( (object)src, (object)dst) -> None
+
+Equalize( (object)image) -> Image
+
+== Processing.Erode (function)
+Erode( (object)image) -> Image
+
+Erode( (object)image, (object)structureElement) -> Image
+
+== Processing.ExpandHalfComplex (function)
+ExpandHalfComplex( (object)src, (object)dst) -> None
+
+ExpandHalfComplex( (object)image) -> Image
+
+== Processing.Fft (function)
+Fft( (object)image) -> Image
+
+== Processing.Fill (function)
+Fill( (object)image, (object)value) -> None
+
+== Processing.FillByElement (function)
+FillByElement( (object)image, (object)element, (object)stamp, (Point)anchor [, (float)threshold=1.0]) -> Image
+
+FillByElement( (object)image, (object)element, (object)stamp [, (float)threshold=1.0]) -> Image
+
+== Processing.FillCircle (function)
+FillCircle( (object)image, (Position)center, (float)radius, (object)value) -> None
+
+FillCircle( (object)image, (CircleParams)circle, (object)value) -> None
+
+== Processing.FindBounds (function)
+FindBounds( (object)image, (float)value) -> Rectangle
+
+== Processing.FindCircles (function)
+FindCircles( (object)image, (int)minRadius, (int)maxRadius, (float)threshold) -> list
+
+FindCircles( (object)image, (int)minRadius, (int)maxRadius, (float)threshold, (object)mask) -> list
+
+== Processing.FindCorners (function)
+FindCorners( (object)image [, (float)denoise_sigma=1 [, (float)filter_sigma=1 [, (float)harris_k=0.05 [, (HarrisAlgorithm)algorithm=PyPhenom.Processing.HarrisAlgorithm.CornersOnly]]]]) -> Image
+
+== Processing.FindEdge (function)
+FindEdge( (list)profile) -> EdgeData
+
+== Processing.FindHoughLinePeaks (function)
+FindHoughLinePeaks( (object)image, (list)thetas, (list)rhos, (int)threshold, (int)npeaks, (int)min_distance, (float)min_angle) -> list
+
+== Processing.FindInscribedRect (function)
+FindInscribedRect( (object)image) -> Rectangle
+
+== Processing.FindLevel (function)
+FindLevel( (object)image, (float)blackFraction) -> float
+
+FindLevel( (Histogram)histogram, (float)blackFraction) -> float
+
+== Processing.FindLevels (function)
+FindLevels( (Histogram)histogram, (float)lowFraction, (float)highFraction) -> tuple
+
+FindLevels( (object)image, (float)lowFraction, (float)highFraction) -> tuple
+
+== Processing.FindMaxima (function)
+FindMaxima( (Histogram)histogram [, (float)thresholdFraction=0.0 [, (int)radius=0]]) -> list
+
+== Processing.FindThreshold (function)
+FindThreshold( (object)image) -> ThresholdInfo
+
+FindThreshold( (Histogram)histogram) -> ThresholdInfo
+
+== Processing.FitCircle (function)
+FitCircle( (list)points) -> FitCircleResult
+
+== Processing.FitCircleResult (class)
+
+  .center: 
+  .radius: 
+
+== Processing.FitCircularGaussian (function)
+FitCircularGaussian( (object)image) -> CircularGaussianParams
+
+== Processing.FitEdgeProfile (function)
+FitEdgeProfile( (list)x, (list)y, (EdgeProfile)initial, (int)maxiterations [, (BoundaryErf)boundary=BoundaryErf{ a: (0, 0), s: (0, 0), x0: (0, 0), c: (0, 0) }]) -> EdgeProfile
+
+== Processing.FitGaussProfile (function)
+FitGaussProfile( (list)x, (list)y, (GaussProfile)initial, (int)maxiterations) -> GaussProfile
+
+== Processing.FitPlane (function)
+FitPlane( (object)image) -> Plane
+
+== Processing.Float32 (function)
+Float32( (object)image) -> Image
+
+== Processing.FloatMap (class)
+Map for interpolating float values.
+
+== Processing.FloodFill (function)
+FloodFill( (object)image, (Point)position, (float)lowThreshold, (float)highThreshold, (float)value) -> None
+
+FloodFill( (object)src, (Point)position, (float)lowThreshold, (float)highThreshold, (float)value, (object)dst) -> None
+
+== Processing.FocusCriteria (class)
+
+  .absoluteGradient: 
+  .autocorrelation: 
+  .brennerGradient: 
+  .entropy: 
+  .imagePower: 
+  .range: 
+  .squaredGradient: 
+  .stdevBasedCorrelation: 
+  .thresholdedAbsoluteGradient: 
+  .thresholdedBrennerGradient: 
+  .thresholdedContent: 
+  .thresholdedImagePower: 
+  .thresholdedPixelCount: 
+  .thresholdedSquaredGradient: 
+  .variance: 
+
+== Processing.FromRectangles (function)
+FromRectangles( (RectangleD)arg1, (RectangleD)from) -> Transformation
+
+== Processing.FuseSegments (function)
+FuseSegments( (object)labels, (object)image, (float)maxStdDev, (float)maxDelta) -> Image
+
+== Processing.GHT (function)
+GHT( (object)image [, (float)nu=0 [, (float)tau=0 [, (float)kappa=0 [, (float)omega=0.5]]]]) -> ThresholdInfo
+
+GHT( (Histogram)histogram [, (float)nu=0 [, (float)tau=0 [, (float)kappa=0 [, (float)omega=0.5]]]]) -> ThresholdInfo
+
+== Processing.GaussProfile (class)
+Coefficients defining the gauss profile function
+  .a: 
+  .s: 
+  .x0: 
+
+== Processing.GaussianDerivative (function)
+GaussianDerivative( (object)image, (float)sigma) -> Image
+
+== Processing.Generate (function)
+Generate( (Size)size, (object)function) -> Image
+
+== Processing.GenerateLinearGradient (function)
+GenerateLinearGradient( (object)image, (int)startPixel, (float)firstValue, (int)endPixel, (float)lastValue, (GradientDirection)direction) -> None
+
+GenerateLinearGradient( (object)image, (int)startPixel, (Rgba32)firstColor, (int)endPixel, (Rgba32)lastColor, (GradientDirection)direction) -> None
+
+GenerateLinearGradient( (object)image, (Position)startPoint, (Position)endPoint, (object)callable) -> None
+
+GenerateLinearGradient( (object)image, (tuple)startPoint, (tuple)endPoint, (object)callable) -> None
+
+== Processing.GenerateRadialGradient (function)
+GenerateRadialGradient( (object)image, (Position)center, (float)innerRadius, (float)outerRadius, (object)callable) -> None
+
+GenerateRadialGradient( (object)image, (tuple)center, (float)innerRadius, (float)outerRadius, (object)callable) -> None
+
+== Processing.GetFocusCriteria (function)
+GetFocusCriteria( (object)image) -> FocusCriteria
+
+== Processing.GetResolutionIso20xx (function)
+GetResolutionIso20xx( (object)image [, (ResolutionParameters)parameters=<PyPhenom.Processing.ResolutionParameters object at 0x000001DCCE9AB4C0>]) -> ResolutionResults
+
+== Processing.GetShift (function)
+GetShift( (object)image1, (object)image2) -> tuple
+
+GetShift( (object)image1, (object)image2, (ShiftPreProcessOptions)ShiftPreProcessOptions, (ShiftAlgorithm)ShiftAlgorithm) -> tuple
+
+== Processing.GetShiftResult (function)
+GetShiftResult( (object)image1, (object)image2) -> ShiftResult
+
+== Processing.GradientDirection (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .LeftRight: PyPhenom.Processing.GradientDirection.LeftRight
+  .TopDown: PyPhenom.Processing.GradientDirection.TopDown
+
+== Processing.HProject (function)
+HProject( (object)image) -> list
+
+== Processing.HStack (function)
+HStack( (object)left, (object)right) -> Image
+
+== Processing.HammingWindow (function)
+HammingWindow( (object)image) -> Image
+
+HammingWindow( (object)src, (object)dst) -> None
+
+== Processing.HanningWindow (function)
+HanningWindow( (object)image) -> Image
+
+HanningWindow( (object)src, (object)dst) -> None
+
+== Processing.HarrisAlgorithm (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .CornersOnly: PyPhenom.Processing.HarrisAlgorithm.CornersOnly
+  .EdgesAndCorners: PyPhenom.Processing.HarrisAlgorithm.EdgesAndCorners
+
+== Processing.HighPass (function)
+HighPass( (object)src, (float)order, (float)frequency, (object)dst) -> None
+
+HighPass( (object)image, (float)order, (float)frequency) -> Image
+
+== Processing.Histogram (class)
+Image intensity histogram data.
+  .BinCount: 
+  .Max: 
+  .MaxBinValue: 
+  .MinBinValue: 
+  .TotalCount: 
+
+== Processing.Hough (function)
+Hough( (object)image) -> Image
+
+== Processing.HoughLineTransform (function)
+HoughLineTransform( (object)image, (float)theta_begin, (float)theta_end, (float)dtheta, (int)min_pixel_value) -> dict :
+    image: 8bit binary; theta_range: [theta_begin, theta_end] in radian
+
+== Processing.IFft (function)
+IFft( (object)image) -> Image
+
+== Processing.IgnoreAlpha (function)
+IgnoreAlpha( (object)image) -> Image
+
+== Processing.Kernels (module)
+<module 'PyPhenom.Processing.Kernels'>
+
+== Processing.LabelBoundaries (function)
+LabelBoundaries( (object)image) -> Image
+
+== Processing.LabelRegions (function)
+LabelRegions( (object)image, (Connectedness)connectedness [, (int)minSize=0]) -> tuple
+
+== Processing.Levels (class)
+Helper class for gain/offset calculation based on levels.
+  .Gain: Gain( (Levels)arg1, (PixelType)arg2) -> float
+  .Offset: Offset( (Levels)arg1, (PixelType)arg2, (PixelType)arg3) -> float
+
+== Processing.LineInfo (class)
+HoughLineInfo
+  .rho: 
+  .theta: 
+
+== Processing.LocalMax (function)
+LocalMax( (object)image, (int)radius, (float)threshold) -> Image
+
+== Processing.LocalStdDev (function)
+LocalStdDev( (object)image, (int)radius [, (PixelType)dest_encoding=PyPhenom.PixelType.Float32]) -> Image
+
+== Processing.LocalVariance (function)
+LocalVariance( (object)image, (int)radius [, (PixelType)dest_encoding=PyPhenom.PixelType.Float32]) -> Image
+
+== Processing.Log (function)
+Log( (object)image) -> Image
+
+Log( (object)src, (object)dst) -> None
+
+== Processing.LogPower (function)
+LogPower( (object)src, (object)dst) -> None
+
+LogPower( (object)src [, (PixelType)encoding=PyPhenom.PixelType.Float32]) -> Image
+
+== Processing.LowPass (function)
+LowPass( (object)src, (float)order, (float)frequency, (object)dst) -> None
+
+LowPass( (object)image, (float)order, (float)frequency) -> Image
+
+== Processing.MakeBGR (function)
+MakeBGR( (object)greyscale) -> Image
+
+== Processing.MakeHistogram (function)
+MakeHistogram( (object)image [, (int)bins=256]) -> Histogram
+
+== Processing.MakePowerSpectrum (function)
+MakePowerSpectrum( (object)image) -> list
+
+== Processing.MakeRGB (function)
+MakeRGB( (object)greyscale) -> Image
+
+MakeRGB( (object)red, (object)green, (object)blue) -> Image
+
+== Processing.MakeRGBA (function)
+MakeRGBA( (object)greyscale) -> Image
+
+MakeRGBA( (object)red, (object)green, (object)blue, (object)alpha) -> Image
+
+== Processing.MakeStatistics (function)
+MakeStatistics( (object)image) -> Statistics
+
+== Processing.MatchCircle (function)
+MatchCircle( (object)image, (Position)center, (float)radius) -> float
+
+MatchCircle( (object)image, (float)radius) -> float
+
+== Processing.MatchTemplate (function)
+MatchTemplate( (object)image, (object)template, (MatchType)matchType) -> Image
+
+== Processing.MatchType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .CrossCorrelate: PyPhenom.Processing.MatchType.CrossCorrelate
+  .SquaredDifference: PyPhenom.Processing.MatchType.SquaredDifference
+
+== Processing.Max (function)
+Max( (object)image1, (object)image2, (object)dst) -> None
+
+Max( (object)image1, (object)image2) -> Image
+
+Max( (object)src, (float)value, (object)dst) -> None
+
+Max( (object)image, (float)value) -> Image
+
+Max( (list)images) -> Image
+
+== Processing.MaxFilter (function)
+MaxFilter( (object)src, (Size)kernelSize, (object)dst) -> None
+
+MaxFilter( (object)image, (Size)kernelSize) -> Image
+
+== Processing.MaximumInfo (class)
+Results of FindMaxima().
+  .bin: 
+  .height: 
+  .realValue: 
+
+== Processing.MeanFilter (function)
+MeanFilter( (object)src, (Size)kernelSize, (object)dst) -> None
+
+MeanFilter( (object)image, (Size)kernelSize) -> Image
+
+== Processing.MeanSquareDifference (function)
+MeanSquareDifference( (object)image1, (object)image2) -> float
+
+== Processing.Median (function)
+Median( (Histogram)histogram) -> float
+
+== Processing.MedianFilter (function)
+MedianFilter( (object)src, (Size)kernelSize, (object)dst) -> None
+
+MedianFilter( (object)image, (Size)kernelSize) -> Image
+
+== Processing.Min (function)
+Min( (object)image1, (object)image2, (object)dst) -> None
+
+Min( (object)image1, (object)image2) -> Image
+
+Min( (object)src, (float)value, (object)dst) -> None
+
+Min( (object)image, (float)value) -> Image
+
+Min( (list)images) -> Image
+
+== Processing.MinFilter (function)
+MinFilter( (object)src, (Size)kernelSize, (object)dst) -> None
+
+MinFilter( (object)image, (Size)kernelSize) -> Image
+
+== Processing.Mode (function)
+Mode( (Histogram)histogram) -> float
+
+== Processing.Moment (function)
+Moment( (object)image, (int)i [, (int)j]) -> float
+
+== Processing.MultiplyCC (function)
+MultiplyCC( (object)image1, (object)image2, (object)dst) -> None
+
+MultiplyCC( (object)image1, (object)image2) -> Image
+
+== Processing.Normalize (function)
+Normalize( (object)src, (object)dst) -> None
+
+Normalize( (object)image [, (PixelType)encoding]) -> Image
+
+== Processing.Open (function)
+Open( (object)image) -> Image
+
+Open( (object)image, (object)structureElement) -> Image
+
+== Processing.Overlay (function)
+Overlay( (object)overlay, (ColorMap32)colormap, (object)source) -> Image
+
+Overlay( (object)overlay, (object)source, (Rectangle)dest_rect [, (float)alpha=1.0]) -> Image
+
+== Processing.PSNR (function)
+PSNR( (object)image1, (object)image2) -> float
+
+== Processing.Plane (class)
+
+  .a: 
+  .b: 
+  .c: 
+  .d: 
+
+== Processing.Power (function)
+Power( (object)image, (float)exponent) -> Image
+
+Power( (object)src, (float)exponent, (object)dst) -> None
+
+== Processing.Prewitt (function)
+Prewitt( (object)image) -> Image
+
+== Processing.Profile (function)
+Profile( (object)image, (Position)p0, (Position)p1, (int)width) -> list
+
+== Processing.ProjectionMatrix (class)
+2D perspective projection matrix.
+  .Determinant: Determinant( (ProjectionMatrix)arg1) -> float
+  .Inverse: Inverse( (ProjectionMatrix)arg1) -> ProjectionMatrix
+  .Invertable: Invertable( (ProjectionMatrix)arg1) -> bool
+  .a11: 
+  .a12: 
+  .a13: 
+  .a21: 
+  .a22: 
+  .a23: 
+  .a31: 
+  .a32: 
+  .a33: 
+
+== Processing.RFindLevel (function)
+RFindLevel( (object)arg1, (float)arg2) -> float
+
+RFindLevel( (Histogram)arg1, (float)arg2) -> float
+
+== Processing.RadialAverage (function)
+RadialAverage( (object)image) -> list
+
+RadialAverage( (object)image, (Position)center [, (float)angleStep=0.017453292519943295]) -> list
+
+RadialAverage( (object)image, (Position)center, (float)angleStep, (float)minRadius, (float)maxRadius) -> list
+
+== Processing.Rebin (function)
+Rebin( (object)image, (int)factor) -> Image
+
+== Processing.Recode (function)
+Recode( (object)src, (float)offset, (float)gain, (object)dst) -> None
+
+Recode( (object)src, (object)dst) -> None
+
+Recode( (object)src, (float)offset, (float)gain, (PixelType)encoding) -> Image
+
+Recode( (object)src, (PixelType)encoding) -> Image
+
+Recode( (object)src, (Levels)levels, (PixelType)encoding) -> Image
+
+== Processing.RemoveCrossings (function)
+RemoveCrossings( (object)arg1, (int)image) -> Image
+
+RemoveCrossings( (object)image, (int)radius, (int)minPaths, (int)maxPaths) -> Image
+
+== Processing.RemoveFegNoise (function)
+RemoveFegNoise( (object)image, (int)lines) -> None
+
+== Processing.RemoveRegions (function)
+RemoveRegions( (object)image, (int)minSize [, (Connectedness)connectedness=PyPhenom.Processing.Connectedness.Connected4]) -> Image
+
+== Processing.Render (function)
+Render( (object)image, (float)contrast, (float)brightness [, (ColorMap32)colormap]) -> Image
+
+Render( (object)image) -> Image
+
+Render( (object)image, (list)colors) -> Image
+
+== Processing.RenderCircle (function)
+RenderCircle( (object)image, (Position)center, (float)radius, (object)value) -> None
+
+RenderCircle( (object)image, (CircleParams)circle, (object)value) -> None
+
+== Processing.RenderPlane (function)
+RenderPlane( (Plane)plane, (Size)size, (PixelType)encoding) -> Image
+
+RenderPlane( (Plane)plane, (object)reference_image) -> Image
+
+== Processing.ResolutionMeasurement (class)
+
+  .line: 
+  .slope: 
+
+== Processing.ResolutionParameters (class)
+
+  .check_clip: 
+  .check_min_grey_level: 
+  .clip_max: 
+  .distance: 
+  .half_length: 
+  .is_debug: 
+  .min_num_lines: 
+  .remove_bad_lines: 
+  .size_of_smallest_object: 
+  .with_image_borders_to_zero: 
+
+== Processing.ResolutionResults (class)
+
+  .mean: 
+  .measurements: 
+  .sigma: 
+
+== Processing.Rotate (function)
+Rotate( (object)image, (float)angle [, (float)bgColor=0]) -> Image
+
+== Processing.Saturate (function)
+Saturate( (object)src, (float)lowLimit, (float)lowValue, (float)highLimit, (float)highValue, (object)dst) -> None
+
+Saturate( (object)src, (float)lowLimit, (float)lowValue, (float)highLimit, (float)highValue) -> Image
+
+== Processing.Scale (function)
+Scale( (object)image, (Size)size) -> Image
+
+== Processing.Scharr (function)
+Scharr( (object)image) -> Image
+
+== Processing.SegmentInfo (function)
+SegmentInfo( (object)labels, (object)image, (SegmentInfoType)type) -> Image
+
+== Processing.SegmentInfoType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .MeanValue: PyPhenom.Processing.SegmentInfoType.MeanValue
+  .StdDev: PyPhenom.Processing.SegmentInfoType.StdDev
+
+== Processing.Select (function)
+Select( (object)image, (float)value) -> Image
+
+Select( (object)image, (float)lowLimit, (float)highLimit) -> Image
+
+== Processing.SelectAndCut (function)
+SelectAndCut( (object)image, (float)value [, (int)margin=0]) -> tuple
+
+== Processing.ShiftAlgorithm (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .CrossCorrelation: PyPhenom.Processing.ShiftAlgorithm.CrossCorrelation
+  .PhaseCorrelation: PyPhenom.Processing.ShiftAlgorithm.PhaseCorrelation
+
+== Processing.ShiftPreProcessOptions (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .ExtendGaussian: PyPhenom.Processing.ShiftPreProcessOptions.ExtendGaussian
+  .Raw: PyPhenom.Processing.ShiftPreProcessOptions.Raw
+  .Traditional: PyPhenom.Processing.ShiftPreProcessOptions.Traditional
+
+== Processing.ShiftResult (class)
+Result of GetShift.
+  .quality: 
+  .shift: 
+
+== Processing.SigmaMask (function)
+SigmaMask( (object)image, (int)radius, (float)sigma_threshold) -> Image
+
+== Processing.Sin (function)
+Sin( (object)arg1) -> Image
+
+== Processing.Skeleton (function)
+Skeleton( (object)image) -> Image
+
+== Processing.Slico (function)
+Slico( (object)image, (int)k, (float)m) -> Image
+
+== Processing.Sobel (function)
+Sobel( (object)image) -> Image
+
+== Processing.Sqrt (function)
+Sqrt( (object)arg1) -> Image
+
+== Processing.Statistics (class)
+Image statistics data.
+  .firstMaxPos: 
+  .firstMinPos: 
+  .max: 
+  .maxCount: 
+  .mean: 
+  .min: 
+  .minCount: 
+  .stddev: 
+  .sumSquares: 
+  .variance: 
+
+== Processing.Stretch (function)
+Stretch( (object)image, (float)blackLevel, (float)whiteLevel) -> Image
+
+Stretch( (object)image, (tuple)levels) -> Image
+
+Stretch( (object)image, (PixelType)encoding, (tuple)levels) -> Image
+
+== Processing.StretchLocalContrast (function)
+StretchLocalContrast( (object)image, (int)radius) -> Image
+
+== Processing.Tan (function)
+Tan( (object)arg1) -> Image
+
+== Processing.Taper (function)
+Taper( (object)image, (Rectangle)rect, (object)value, (int)maxWidth) -> None
+
+== Processing.Threshold (function)
+Threshold( (object)image, (float)threshold) -> Image
+
+Threshold( (object)src, (float)threshold, (object)dst) -> None
+
+Threshold( (object)src, (object)dst) -> object
+
+Threshold( (object)image) -> Image
+
+== Processing.ThresholdInfo (class)
+Result of FindThreshold.
+  .maxBackgroundBin: 
+  .maxForegroundBin: 
+  .meanBackground: 
+  .meanForeground: 
+  .threshold: 
+  .thresholdBin: 
+
+== Processing.ToGrey (function)
+ToGrey( (object)image) -> Image
+
+== Processing.Transform (function)
+Transform( (object)image, (Transformation)transform [, (float)bgColor=0]) -> Image
+
+== Processing.Transformation (class)
+2D affine transformation matrix.
+  .Determinant: Determinant( (Transformation)arg1) -> float
+  .Inverse: Inverse( (Transformation)arg1) -> Transformation
+  .Invertable: Invertable( (Transformation)arg1) -> bool
+  .Offset: staticmethod(function) -> method
+
+Convert a function to be a static method.
+
+A static method does not receive an implicit first argument.
+To declare a static method, use this idiom:
+
+     class C:
+         @staticmethod
+         def f(arg1, arg2, argN):
+             ...
+
+It can be called either on the class (e.g. C.f()) or on an instance
+(e.g. C().f()). Both the class and the instance are ignored, and
+neither is passed implicitly as the first argument to the method.
+
+Static methods in Python are similar to those found in Java or C++.
+For a more advanced concept, see the classmethod builtin.
+  .Rotate: staticmethod(function) -> method
+
+Convert a function to be a static method.
+
+A static method does not receive an implicit first argument.
+To declare a static method, use this idiom:
+
+     class C:
+         @staticmethod
+         def f(arg1, arg2, argN):
+             ...
+
+It can be called either on the class (e.g. C.f()) or on an instance
+(e.g. C().f()). Both the class and the instance are ignored, and
+neither is passed implicitly as the first argument to the method.
+
+Static methods in Python are similar to those found in Java or C++.
+For a more advanced concept, see the classmethod builtin.
+  .Scale: staticmethod(function) -> method
+
+Convert a function to be a static method.
+
+A static method does not receive an implicit first argument.
+To declare a static method, use this idiom:
+
+     class C:
+         @staticmethod
+         def f(arg1, arg2, argN):
+             ...
+
+It can be called either on the class (e.g. C.f()) or on an instance
+(e.g. C().f()). Both the class and the instance are ignored, and
+neither is passed implicitly as the first argument to the method.
+
+Static methods in Python are similar to those found in Java or C++.
+For a more advanced concept, see the classmethod builtin.
+  .a11: 
+  .a12: 
+  .a13: 
+  .a21: 
+  .a22: 
+  .a23: 
+
+== Processing.UintMap16 (class)
+Color map for interpolating uint16 values.
+
+== Processing.UintMap8 (class)
+Map for interpolating uint8 values.
+
+== Processing.UniqueValues (function)
+UniqueValues( (object)image) -> int
+
+UniqueValues( (Histogram)histogram) -> int
+
+== Processing.Unsigned16 (function)
+Unsigned16( (object)image) -> Image
+
+== Processing.Unsigned8 (function)
+Unsigned8( (object)image) -> Image
+
+== Processing.VProject (function)
+VProject( (object)image) -> list
+
+== Processing.VStack (function)
+VStack( (object)top, (object)bottom) -> Image
+
+== Processing.Vignet (function)
+Vignet( (object)image, (int)left, (int)top, (int)right, (int)bottom) -> None
+
+Vignet( (object)image, (int)margin) -> None
+
+== Processing.Watershed (function)
+Watershed( (object)image, (object)markers) -> Image
+
+##### SampleHolderType
+
+== SampleHolderType.ChargeReduction (int)
+2
+
+== SampleHolderType.CorePlug (int)
+8
+
+== SampleHolderType.Delphi (int)
+200
+
+== SampleHolderType.InsertXView (int)
+6
+
+== SampleHolderType.Metallurgical (int)
+3
+
+== SampleHolderType.MetallurgicalChargeReduction (int)
+4
+
+== SampleHolderType.MicroElectronicsInsert (int)
+7
+
+== SampleHolderType.MicrotoolTiltRotation (int)
+5
+
+== SampleHolderType.Name (function)
+Name( (int)arg1) -> str
+
+== SampleHolderType.ReducedDrift (int)
+10
+
+== SampleHolderType.Standard (int)
+1
+
+== SampleHolderType.TemperatureControlled (int)
+513
+
+== SampleHolderType.Tensile (int)
+612
+
+== SampleHolderType.TiltRotation (int)
+514
+
+== SampleHolderType.Unknown (int)
+0
+
+== SampleHolderType.Xl1MotorizedHeight (int)
+868
+
+== SampleHolderType.Xl1MotorizedHeightWithFaradayCup (int)
+871
+
+== SampleHolderType.XlManualHeight (int)
+100
+
+== SampleHolderType.XlMotorizedHeightV2 (int)
+872
+
+== SampleHolderType.XlMotorizedHeightV2WithFaradayCup (int)
+873
+
+== SampleHolderType.XlMotorizedHeightV3 (int)
+874
+
+== SampleHolderType.XlMotorizedHeightV3WithFaradayCup (int)
+875
+
+== SampleHolderType.XlMotorizedTZXR_11 (int)
+870
+
+##### SaveConversion
+
+== SaveConversion.NoConversion (int)
+0
+
+== SaveConversion.ToCompatibleFormat (int)
+1
+
+##### SaveOption
+
+== SaveOption.NoConversion (int)
+0
+
+== SaveOption.SkipThumbnailCreation (int)
+2
+
+== SaveOption.ToCompatibleFormat (int)
+1
+
+##### Solver
+
+== Solver.Algorithm (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Ceres: PyPhenom.Solver.Algorithm.Ceres
+  .NewtonRaphson: PyPhenom.Solver.Algorithm.NewtonRaphson
+
+== Solver.Solver (class)
+Simple solver
+  .Parameter: Parameter( (Solver)arg1, (float)initial [, (float)min_value=-inf [, (float)max_value=inf]]) -> object
+  .Parameters: Parameters( (Solver)arg1, (float)arg2) -> None
+
+Parameters( (Solver)arg1, (float)arg2, (float)arg3) -> None
+
+Parameters( (Solver)arg1, (float)arg2, (float)arg3, (float)arg4) -> None
+
+Parameters( (Solver)arg1, (float)arg2, (float)arg3, (float)arg4, (float)arg5) -> None
+
+Parameters( (Solver)arg1, (float)arg2, (float)arg3, (float)arg4, (float)arg5, (float)arg6) -> None
+
+Parameters( (Solver)arg1, (float)arg2, (float)arg3, (float)arg4, (float)arg5, (float)arg6, (float)arg7) -> None
+  .Solve: Solve( (Solver)arg1, (object)arg2) -> list
+  .algorithm: 
+  .debugLevel: 
+  .maxIterations: 
+
+##### Spectroscopy
+
+== Spectroscopy.Accumulate (function)
+Accumulate( (FloatSpectrum)spectrum) -> FloatSpectrum
+
+== Spectroscopy.Actinides (function)
+Actinides() -> list
+
+== Spectroscopy.AddGaussianPeak (function)
+AddGaussianPeak( (FloatSpectrum)spectrum, (float)mu, (float)sigma, (float)intensity) -> None
+
+== Spectroscopy.AddModeledPeak (function)
+AddModeledPeak( (FloatSpectrum)spectrum, (float)mu, (float)sigma, (float)intensity [, (float)icc_f_loss=0.4 [, (float)icc_r_e=2e-07 [, (float)icc_scale=1.0 [, (float)icc_E_min=0]]]]) -> None
+
+== Spectroscopy.AlkaliMetals (function)
+AlkaliMetals() -> list
+
+== Spectroscopy.AlkalineEarthMetals (function)
+AlkalineEarthMetals() -> list
+
+== Spectroscopy.AllElements (function)
+AllElements() -> list
+
+== Spectroscopy.AreaToHeight (function)
+AreaToHeight( (float)area, (float)energy, (float)MnKaFWHM) -> float
+
+== Spectroscopy.AtomicConstituent (class)
+Constituent by atomic fraction.
+  .Z: 
+  .atomicFraction: 
+
+== Spectroscopy.AtomicShell (class)
+Element and shell
+  .Z: 
+  .shell: 
+
+== Spectroscopy.AtomicToWeights (function)
+AtomicToWeights( (Composition)composition) -> CompositionByWeights
+
+== Spectroscopy.AtomicTransition (function)
+AtomicTransition( (str)name) -> AtomicTransition
+
+== Spectroscopy.AtomicWeight (function)
+AtomicWeight( (Element)element) -> float
+
+== Spectroscopy.BinData (class)
+EID BinFile Data.
+  .highTension: 
+  .liveTime: 
+  .realTime: 
+  .resolution: 
+  .spectrum: 
+
+== Spectroscopy.CS_Electron (function)
+CS_Electron( (Element)Z, (Shell)shell, (float)E) -> float
+
+== Spectroscopy.Composition (class)
+Generic (chemical) composition.
+  .Density: Density( (Composition)arg1) -> float
+  .constituents: 
+
+== Spectroscopy.CompositionByWeights (function)
+CompositionByWeights( (dict)arg1) -> CompositionByWeights
+
+CompositionByWeights([  (str)formula='' [, (float)density=0]]) -> CompositionByWeights
+
+== Spectroscopy.ComputeIntensities (function)
+ComputeIntensities( (DetectorConfiguration)detector, (float)Ebeam, (CompositionByWeights)comp [, (bool)withZA=True [, (bool)withF=True [, (FamilyPreference)prefs=<PyPhenom.Spectroscopy.FamilyPreference object at 0x000001DCCEA85C60>]]]) -> list
+
+== Spectroscopy.ConfigurationForType (function)
+ConfigurationForType( (DetectorType)type) -> DetectorConfiguration
+
+== Spectroscopy.DebugSpectrum (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .CutOff: PyPhenom.Spectroscopy.DebugSpectrum.CutOff
+  .None: PyPhenom.Spectroscopy.DebugSpectrum.None
+  .TotalWeights: PyPhenom.Spectroscopy.DebugSpectrum.TotalWeights
+  .Weights: PyPhenom.Spectroscopy.DebugSpectrum.Weights
+
+== Spectroscopy.DefaultTrincavelliParameters (function)
+DefaultTrincavelliParameters() -> TrincavelliParameters
+
+== Spectroscopy.Density (function)
+Density( (Element)element) -> float
+
+Density( (Composition)composition) -> float
+
+== Spectroscopy.Description (function)
+Description( (Element)Z) -> ElementDescr
+
+== Spectroscopy.Detector (class)
+
+  .Bins: 
+  .Dispersion: 
+  .Map: 
+  .SumSpectrum: 
+  .id: 
+
+== Spectroscopy.DetectorConfiguration (class)
+EDS Detector Configuration.
+  .activeLayer: 
+  .addAbsorber: addAbsorber( (DetectorConfiguration)arg1, (Layer)arg2) -> None
+  .coveredFraction: 
+  .elevationAngleRad: 
+  .resolution: 
+  .windowSupport: 
+
+== Spectroscopy.DetectorConfigurations (module)
+<module 'PyPhenom.Spectroscopy.DetectorConfigurations'>
+
+== Spectroscopy.DetectorEfficiency (function)
+DetectorEfficiency( (FloatSpectrum)arg1, (DetectorConfiguration)detector [, (float)wd=0]) -> None
+
+DetectorEfficiency( (SpectrumDimensions)dimensions, (DetectorConfiguration)detector [, (float)wd=0]) -> FloatSpectrum
+
+DetectorEfficiency( (SpectrumDimensions)dimensions) -> FloatSpectrum
+
+DetectorEfficiency( (MsaData)msa) -> FloatSpectrum
+
+== Spectroscopy.DetectorFromMsa (function)
+DetectorFromMsa( (MsaData)msa) -> DetectorConfiguration
+
+== Spectroscopy.DetectorType (type)
+EDS Detector Type presets.
+  .Empty: PyPhenom.Spectroscopy.DetectorType.Empty
+  .FastSDD_C1: PyPhenom.Spectroscopy.DetectorType.FastSDD_C1
+  .FastSDD_C2: PyPhenom.Spectroscopy.DetectorType.FastSDD_C2
+  .FastSDD_C5: PyPhenom.Spectroscopy.DetectorType.FastSDD_C5
+
+== Spectroscopy.DrawElementMapOverlay (function)
+DrawElementMapOverlay( (Acquisition)acquisition, (QuantMap)quantMap, (RectangleD)region, (dict)colors [, (float)alpha=0.5]) -> Image
+
+== Spectroscopy.DrawLineSpectrum (function)
+DrawLineSpectrum( (Acquisition)acquisition, (EdsAcquisition)sumSpectrum, (Line)line, (EdsLineSpectrum)spectrum [, (FractionType)fractionType=PyPhenom.Spectroscopy.FractionType.Weight [, (Size)size=(640, 480)]]) -> Image
+
+DrawLineSpectrum( (Acquisition)acquisition, (EdsLineData)lineData [, (FractionType)fractionType=PyPhenom.Spectroscopy.FractionType.Weight [, (Size)size=(640, 480)]]) -> Image
+
+DrawLineSpectrum( (Acquisition)acquisition, (EdsLineScanAnalysis)lineScanAnalysis [, (FractionType)fractionType=PyPhenom.Spectroscopy.FractionType.Weight [, (Size)size=(640, 480)]]) -> Image
+
+== Spectroscopy.DrawSpectrum (function)
+DrawSpectrum( (Spectrum)spectrum [, (Range)energyRange=(0, 0) [, (Size)size=(640, 480)]]) -> Image
+
+DrawSpectrum( (FloatSpectrum)spectrum [, (Range)energyRange=(0, 0) [, (Size)size=(640, 480)]]) -> Image
+
+DrawSpectrum( (EdsAcquisition)acquisition [, (Range)energyRange=(0, 0) [, (Size)size=(640, 480)]]) -> Image
+
+DrawSpectrum( (EdsAcquisition)acquisition, (QuantificationResult)quantification [, (Range)energyRange=(0, 0) [, (Size)size=(640, 480)]]) -> Image
+
+DrawSpectrum( (Spectrum)spectrum, (Range)energyRange=(0, 0), (Page)page, (RectangleD)rect) -> None
+
+DrawSpectrum( (Spectrum)spectrum, (Range)energyRange=(0, 0), (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+DrawSpectrum( (FloatSpectrum)spectrum, (Range)energyRange=(0, 0), (Page)page, (RectangleD)rect) -> None
+
+DrawSpectrum( (FloatSpectrum)spectrum, (Range)energyRange=(0, 0), (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+DrawSpectrum( (EdsAcquisition)acquisition, (Range)energyRange=(0, 0), (Page)page, (RectangleD)rect) -> None
+
+DrawSpectrum( (EdsAcquisition)acquisition, (Range)energyRange=(0, 0), (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+DrawSpectrum( (EdsAcquisition)acquisition, (QuantificationResult)quantification, (Range)energyRange=(0, 0), (Page)page, (RectangleD)rect) -> None
+
+DrawSpectrum( (EdsAcquisition)acquisition, (QuantificationResult)quantification, (Range)energyRange=(0, 0), (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+== Spectroscopy.DuaneHuntLimit (function)
+DuaneHuntLimit( (EdsAcquisition)spectrum [, (float)relativeAreaOfTail=0.01]) -> float
+
+== Spectroscopy.DuaneHuntParams (class)
+
+  .E0: 
+  .fromBin: 
+  .scale: 
+
+== Spectroscopy.EdgeEnergy (function)
+EdgeEnergy( (AtomicShell)shell) -> float
+
+== Spectroscopy.Eds (class)
+
+  .Detectors: 
+  .GetDetectorForId: GetDetectorForId( (Eds)arg1, (str)arg2) -> Detector
+  .Spectra: 
+
+== Spectroscopy.EdsAcquisition (class)
+Combination of XRay spectrum and acquisition metadata
+  .metadata: 
+  .spectrum: 
+
+== Spectroscopy.EdsAcquisitionFromMsa (function)
+EdsAcquisitionFromMsa( (MsaData)msa) -> EdsAcquisition
+
+== Spectroscopy.EdsAcquisitionToMsa (function)
+EdsAcquisitionToMsa( (EdsAcquisition)acquisition) -> MsaData
+
+EdsAcquisitionToMsa( (object)acquisition) -> MsaData
+
+== Spectroscopy.EdsAnalysis (class)
+
+  .ClearActiveOxideForElement: ClearActiveOxideForElement( (EdsAnalysis)arg1, (Element)arg2) -> None
+  .ClearFamilyOverride: ClearFamilyOverride( (EdsAnalysis)arg1, (Element)arg2) -> None
+  .GetActiveOxideForElement: GetActiveOxideForElement( (EdsAnalysis)arg1, (Element)arg2) -> Oxide
+  .SetActiveOxideForElement: SetActiveOxideForElement( (EdsAnalysis)arg1, (Oxide)oxide) -> None
+  .analysisOrderNr: 
+  .autoIdEnabled: 
+  .backgroundFitPoints: 
+  .elementsWithActiveOxides: 
+  .elementsWithFamilyOverrides: 
+  .excludedElements: 
+  .familyOverride: 
+  .ignoredElements: 
+  .imageCutout: 
+  .includedElements: 
+  .spectrum: 
+
+== Spectroscopy.EdsDifferenceAnalysis (class)
+
+  .minuendAnalysisOrderNr: 
+  .subtrahendAnalysisOrderNr: 
+
+== Spectroscopy.EdsGridSpectrum (class)
+
+  .Accumulate: Accumulate( (EdsGridSpectrum)arg1, (Rectangle)arg2) -> EdsAcquisition
+
+Accumulate( (EdsGridSpectrum)arg1, (Position)a, (Position)b, (int)width [, (GridSpectrumSampleType)sampleType=PyPhenom.Spectroscopy.GridSpectrumSampleType.Center [, (int)nPoints=0]]) -> EdsLineSpectrum
+  .Extract: Extract( (EdsGridSpectrum)arg1, (int)arg2, (int)arg3) -> Spectrum
+  .ExtractAcquisition: ExtractAcquisition( (EdsGridSpectrum)arg1, (int)arg2, (int)arg3) -> EdsAcquisition
+
+ExtractAcquisition( (EdsGridSpectrum)arg1, (Point)arg2) -> EdsAcquisition
+  .GetLiveTime: GetLiveTime( (EdsGridSpectrum)arg1, (int)x, (int)y) -> float
+  .GetRealTime: GetRealTime( (EdsGridSpectrum)arg1, (int)x, (int)y) -> float
+  .SetLiveTime: SetLiveTime( (EdsGridSpectrum)arg1, (int)x, (int)y, (float)time) -> None
+  .SetRealTime: SetRealTime( (EdsGridSpectrum)arg1, (int)x, (int)y, (float)time) -> None
+  .binSize: 
+  .dispersion: 
+  .empty: 
+  .hasVariableLiveTime: 
+  .hasVariableRealTime: 
+  .height: 
+  .metadata: 
+  .offset: 
+  .size: 
+  .width: 
+
+== Spectroscopy.EdsImage (class)
+
+  .AddAnalysis: AddAnalysis( (EdsImage)arg1, (EdsAnalysis)arg2) -> None
+
+AddAnalysis( (EdsImage)arg1, (EdsRegionData)arg2) -> None
+
+AddAnalysis( (EdsImage)arg1, (EdsSpotData)arg2) -> None
+
+AddAnalysis( (EdsImage)arg1, (EdsLineData)arg2) -> None
+
+AddAnalysis( (EdsImage)arg1, (EdsMapData)arg2) -> None
+  .acquisition: 
+  .name: 
+
+== Spectroscopy.EdsLineScanAnalysis (class)
+
+  .line: 
+  .spectra: 
+
+== Spectroscopy.EdsLineSpectrum (class)
+
+  .Extract: Extract( (EdsLineSpectrum)arg1, (int)arg2) -> Spectrum
+  .ExtractAcquisition: ExtractAcquisition( (EdsLineSpectrum)arg1, (int)arg2) -> EdsAcquisition
+  .GetLiveTime: GetLiveTime( (EdsLineSpectrum)arg1, (int)index) -> float
+  .GetRealTime: GetRealTime( (EdsLineSpectrum)arg1, (int)index) -> float
+  .SetLiveTime: SetLiveTime( (EdsLineSpectrum)arg1, (int)index, (float)time) -> None
+  .SetRealTime: SetRealTime( (EdsLineSpectrum)arg1, (int)index, (float)time) -> None
+  .binSize: 
+  .dispersion: 
+  .empty: 
+  .hasVariableLiveTime: 
+  .hasVariableRealTime: 
+  .metadata: 
+  .offset: 
+  .size: 
+
+== Spectroscopy.EdsMapAnalysis (class)
+
+  .ImageToMap: ImageToMap( (EdsMapAnalysis)arg1, (Acquisition)arg2) -> Transformation
+  .area: 
+  .mapColorIntensities: 
+  .spectra: 
+
+== Spectroscopy.EdsMetadata (class)
+EDS acquisition metadata
+  .Ccorrection: 
+  .azimuthAngle: 
+  .detectorToOpticalAxis: 
+  .detectorType: 
+  .detectorWdOffset: 
+  .elevationAngle: 
+  .fastPeakingTime: 
+  .highTension: 
+  .holderTiltAngle: 
+  .instrumentId: 
+  .liveTime: 
+  .realTime: 
+  .resolution: 
+  .sddSurfaceArea: 
+  .slowPeakingTime: 
+  .spectrumCorrection: 
+  .workingDistance: 
+
+== Spectroscopy.EdsMsaAnalysis (class)
+
+
+== Spectroscopy.EdsProject (class)
+
+  .AddImage: AddImage( (EdsProject)arg1, (EdsImage)arg2) -> None
+
+== Spectroscopy.EdsRegionAnalysis (class)
+
+  .area: 
+
+== Spectroscopy.EdsSpotAnalysis (class)
+
+  .location: 
+
+== Spectroscopy.Element (type)
+Element symbols
+  .Ac: PyPhenom.Spectroscopy.Element.Ac
+  .Ag: PyPhenom.Spectroscopy.Element.Ag
+  .Al: PyPhenom.Spectroscopy.Element.Al
+  .Am: PyPhenom.Spectroscopy.Element.Am
+  .Ar: PyPhenom.Spectroscopy.Element.Ar
+  .As: PyPhenom.Spectroscopy.Element.As
+  .At: PyPhenom.Spectroscopy.Element.At
+  .Au: PyPhenom.Spectroscopy.Element.Au
+  .B: PyPhenom.Spectroscopy.Element.B
+  .Ba: PyPhenom.Spectroscopy.Element.Ba
+  .Be: PyPhenom.Spectroscopy.Element.Be
+  .Bi: PyPhenom.Spectroscopy.Element.Bi
+  .Bk: PyPhenom.Spectroscopy.Element.Bk
+  .Br: PyPhenom.Spectroscopy.Element.Br
+  .C: PyPhenom.Spectroscopy.Element.C
+  .Ca: PyPhenom.Spectroscopy.Element.Ca
+  .Cd: PyPhenom.Spectroscopy.Element.Cd
+  .Ce: PyPhenom.Spectroscopy.Element.Ce
+  .Cf: PyPhenom.Spectroscopy.Element.Cf
+  .Cl: PyPhenom.Spectroscopy.Element.Cl
+  .Cm: PyPhenom.Spectroscopy.Element.Cm
+  .Co: PyPhenom.Spectroscopy.Element.Co
+  .Cr: PyPhenom.Spectroscopy.Element.Cr
+  .Cs: PyPhenom.Spectroscopy.Element.Cs
+  .Cu: PyPhenom.Spectroscopy.Element.Cu
+  .Dy: PyPhenom.Spectroscopy.Element.Dy
+  .Er: PyPhenom.Spectroscopy.Element.Er
+  .Es: PyPhenom.Spectroscopy.Element.Es
+  .Eu: PyPhenom.Spectroscopy.Element.Eu
+  .F: PyPhenom.Spectroscopy.Element.F
+  .Fe: PyPhenom.Spectroscopy.Element.Fe
+  .Fr: PyPhenom.Spectroscopy.Element.Fr
+  .Ga: PyPhenom.Spectroscopy.Element.Ga
+  .Gd: PyPhenom.Spectroscopy.Element.Gd
+  .Ge: PyPhenom.Spectroscopy.Element.Ge
+  .H: PyPhenom.Spectroscopy.Element.H
+  .He: PyPhenom.Spectroscopy.Element.He
+  .Hf: PyPhenom.Spectroscopy.Element.Hf
+  .Hg: PyPhenom.Spectroscopy.Element.Hg
+  .Ho: PyPhenom.Spectroscopy.Element.Ho
+  .I: PyPhenom.Spectroscopy.Element.I
+  .In: PyPhenom.Spectroscopy.Element.In
+  .Ir: PyPhenom.Spectroscopy.Element.Ir
+  .K: PyPhenom.Spectroscopy.Element.K
+  .Kr: PyPhenom.Spectroscopy.Element.Kr
+  .La: PyPhenom.Spectroscopy.Element.La
+  .Li: PyPhenom.Spectroscopy.Element.Li
+  .Lu: PyPhenom.Spectroscopy.Element.Lu
+  .Mg: PyPhenom.Spectroscopy.Element.Mg
+  .Mn: PyPhenom.Spectroscopy.Element.Mn
+  .Mo: PyPhenom.Spectroscopy.Element.Mo
+  .N: PyPhenom.Spectroscopy.Element.N
+  .Na: PyPhenom.Spectroscopy.Element.Na
+  .Nb: PyPhenom.Spectroscopy.Element.Nb
+  .Nd: PyPhenom.Spectroscopy.Element.Nd
+  .Ne: PyPhenom.Spectroscopy.Element.Ne
+  .Ni: PyPhenom.Spectroscopy.Element.Ni
+  .None: PyPhenom.Spectroscopy.Element.None
+  .Np: PyPhenom.Spectroscopy.Element.Np
+  .O: PyPhenom.Spectroscopy.Element.O
+  .Os: PyPhenom.Spectroscopy.Element.Os
+  .P: PyPhenom.Spectroscopy.Element.P
+  .Pa: PyPhenom.Spectroscopy.Element.Pa
+  .Pb: PyPhenom.Spectroscopy.Element.Pb
+  .Pd: PyPhenom.Spectroscopy.Element.Pd
+  .Pm: PyPhenom.Spectroscopy.Element.Pm
+  .Po: PyPhenom.Spectroscopy.Element.Po
+  .Pr: PyPhenom.Spectroscopy.Element.Pr
+  .Pt: PyPhenom.Spectroscopy.Element.Pt
+  .Pu: PyPhenom.Spectroscopy.Element.Pu
+  .Ra: PyPhenom.Spectroscopy.Element.Ra
+  .Rb: PyPhenom.Spectroscopy.Element.Rb
+  .Re: PyPhenom.Spectroscopy.Element.Re
+  .Rh: PyPhenom.Spectroscopy.Element.Rh
+  .Rn: PyPhenom.Spectroscopy.Element.Rn
+  .Ru: PyPhenom.Spectroscopy.Element.Ru
+  .S: PyPhenom.Spectroscopy.Element.S
+  .Sb: PyPhenom.Spectroscopy.Element.Sb
+  .Sc: PyPhenom.Spectroscopy.Element.Sc
+  .Se: PyPhenom.Spectroscopy.Element.Se
+  .Si: PyPhenom.Spectroscopy.Element.Si
+  .Sm: PyPhenom.Spectroscopy.Element.Sm
+  .Sn: PyPhenom.Spectroscopy.Element.Sn
+  .Sr: PyPhenom.Spectroscopy.Element.Sr
+  .Ta: PyPhenom.Spectroscopy.Element.Ta
+  .Tb: PyPhenom.Spectroscopy.Element.Tb
+  .Tc: PyPhenom.Spectroscopy.Element.Tc
+  .Te: PyPhenom.Spectroscopy.Element.Te
+  .Th: PyPhenom.Spectroscopy.Element.Th
+  .Ti: PyPhenom.Spectroscopy.Element.Ti
+  .Tl: PyPhenom.Spectroscopy.Element.Tl
+  .Tm: PyPhenom.Spectroscopy.Element.Tm
+  .U: PyPhenom.Spectroscopy.Element.U
+  .V: PyPhenom.Spectroscopy.Element.V
+  .W: PyPhenom.Spectroscopy.Element.W
+  .Xe: PyPhenom.Spectroscopy.Element.Xe
+  .Y: PyPhenom.Spectroscopy.Element.Y
+  .Yb: PyPhenom.Spectroscopy.Element.Yb
+  .Zn: PyPhenom.Spectroscopy.Element.Zn
+  .Zr: PyPhenom.Spectroscopy.Element.Zr
+
+== Spectroscopy.ElementDescr (class)
+EDS Element descriptor.
+  .fullName: 
+  .symbol: 
+
+== Spectroscopy.EmissionCurve (function)
+EmissionCurve( (AtomicTransition)transition, (float)Ebeam, (Composition)composition, (float)takeoff_angle, (float)min_rhoZ, (float)max_rhoZ, (float)step_rhoZ) -> list
+
+== Spectroscopy.EmpiricalLowEnergyFit (function)
+EmpiricalLowEnergyFit( (FloatSpectrum)arg1, (FloatSpectrum)spectrum) -> FloatSpectrum
+
+== Spectroscopy.EstimateIcr (function)
+EstimateIcr( (EdsAcquisition)spectrum) -> float
+
+EstimateIcr( (MsaData)spectrum) -> float
+
+== Spectroscopy.FWHM (function)
+FWHM( (float)FHWM_MnKa, (float)energy) -> float
+
+== Spectroscopy.FamilyPreference (class)
+Options for the Simulate() call.
+  .allTransitions: 
+  .constituentThreshold: 
+  .energyThresholdFraction: 
+  .ironBridge: 
+  .overrideCX: 
+  .preferFamily: 
+  .preferLowPeaks: 
+
+== Spectroscopy.FindDuaneHuntParams (function)
+FindDuaneHuntParams( (EdsAcquisition)spectrum [, (float)relatvieAreaOfTail=0.01]) -> DuaneHuntParams
+
+== Spectroscopy.FindMaxima (function)
+FindMaxima( (Spectrum)spectrum) -> list
+
+FindMaxima( (FloatSpectrum)spectrum) -> list
+
+== Spectroscopy.FitBackground (function)
+FitBackground( (FloatSpectrum)spectrum, (float)beamEnergy, (float)alpha, (float)beta) -> FloatSpectrum
+
+FitBackground( (FloatSpectrum)spectrum, (float)beamEnergy) -> FloatSpectrum
+
+FitBackground( (Spectrum)spectrum, (float)beamEnergy) -> FloatSpectrum
+
+FitBackground( (MsaData)msa) -> FloatSpectrum
+
+FitBackground( (EdsAcquisition)spectrum) -> FloatSpectrum
+
+== Spectroscopy.FitGaussian (function)
+FitGaussian( (FloatSpectrum)spectrum, (float)energy, (float)estimatedFWHM) -> GaussianParameters
+
+== Spectroscopy.FitModeledBackground (function)
+FitModeledBackground( (FloatSpectrum)spectrum, (CompositionByWeights)composition, (DetectorConfiguration)detector, (float)beamEnergy [, (bool)empiricalLowEnergyFill=True [, (float)Esplit=0]]) -> FloatSpectrum
+
+FitModeledBackground( (MsaData)msa, (CompositionByWeights)composition [, (bool)empiricalLowEnergyFill=True [, (float)Esplit=0]]) -> FloatSpectrum
+
+FitModeledBackground( (MsaData)msa, (Composition)composition [, (bool)empiricalLowEnergyFill=True [, (float)Esplit=0]]) -> FloatSpectrum
+
+== Spectroscopy.FitTrincavelli (function)
+FitTrincavelli( (MsaData)msa, (CompositionByWeights)composition [, (float)Emin=0 [, (float)Emax=0]]) -> TrincavelliParameters
+
+== Spectroscopy.FloatSpectrum (class)
+XRay Spectrum (offset, dispersion, size)
+  .bin: bin( (FloatSpectrum)arg1, (float)arg2) -> int
+  .counts: sum of counts in the spectrum
+  .data: copy spectrum data as Python list
+  .dimensions: 
+  .dispersion: 
+  .energies: energies( (FloatSpectrum)arg1) -> list
+  .energy: energy( (FloatSpectrum)arg1, (int)arg2) -> float
+  .intensities: intensities( (FloatSpectrum)arg1) -> list
+  .offset: 
+
+== Spectroscopy.FractionType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Atomic: PyPhenom.Spectroscopy.FractionType.Atomic
+  .Weight: PyPhenom.Spectroscopy.FractionType.Weight
+
+== Spectroscopy.FromAtomicNumber (function)
+FromAtomicNumber( (int)Number) -> Element
+
+== Spectroscopy.FromSymbol (function)
+FromSymbol( (str)symbol) -> Element
+
+== Spectroscopy.GaussianParameters (class)
+Result of FitGaussian().
+  .a: 
+  .bg: 
+  .e0: 
+  .sigma: 
+
+== Spectroscopy.GenerateBackground (function)
+GenerateBackground( (SpectrumDimensions)dimensions, (DetectorConfiguration)detector, (float)beamEnergy, (CompositionByWeights)weights, (float)d, (float)G) -> FloatSpectrum
+
+GenerateBackground( (SpectrumDimensions)dimensions, (float)beamEnergy, (CompositionByWeights)weights, (float)d, (float)G) -> FloatSpectrum
+
+GenerateBackground( (MsaData)spectrum, (CompositionByWeights)weights, (TrincavelliParameters)parameters) -> FloatSpectrum
+
+== Spectroscopy.GeneratePeaks (function)
+GeneratePeaks( (SpectrumDimensions)dimensions, (Element)Z, (float)beamEnergy, (float)MnKaFWHM, (float)scale) -> FloatSpectrum
+
+GeneratePeaks( (SpectrumDimensions)dimensions, (Element)Z, (float)beamEnergy, (float)MnKaFWHM, (float)scale, (float)weightL) -> FloatSpectrum
+
+== Spectroscopy.GridSpectrumSampleType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Center: PyPhenom.Spectroscopy.GridSpectrumSampleType.Center
+  .Edge: PyPhenom.Spectroscopy.GridSpectrumSampleType.Edge
+
+== Spectroscopy.Halogens (function)
+Halogens() -> list
+
+== Spectroscopy.HeightToArea (function)
+HeightToArea( (float)height, (float)energy, (float)MnKaFWHM) -> float
+
+== Spectroscopy.IdentificationOptions (class)
+Options for the Identify() call.
+  .alpha: 
+  .applyHeuristics: 
+  .beta: 
+  .boost_low_E: 
+  .computeIntensities: 
+  .debugLevel: 
+  .hasNp2Es: 
+  .icc_E_min: 
+  .maxElements: 
+  .minCoef: 
+  .minElements: 
+  .tau: 
+  .variable_tau: 
+  .verifyPeaks: 
+  .weightL0: 
+  .weightL1: 
+  .withF: 
+  .withZA: 
+
+== Spectroscopy.IdentificationResult (class)
+Results of Identify().
+  .constituents: 
+  .fit: 
+
+== Spectroscopy.IdentifiedElement (class)
+Element found by Identify().
+  .element: 
+  .value: 
+
+== Spectroscopy.IdentifiedToWeights (function)
+IdentifiedToWeights( (list)weights) -> CompositionByWeights
+
+== Spectroscopy.Identify (function)
+Identify( (Spectrum)spectrum, (float)beamEnergy, (DetectorConfiguration)detector) -> IdentificationResult
+
+Identify( (Spectrum)spectrum, (float)beamEnergy, (DetectorConfiguration)detector, (list)exclusions) -> IdentificationResult
+
+Identify( (FloatSpectrum)spectrum, (float)beamEnergy, (DetectorConfiguration)detector [, (IdentificationOptions)options=<PyPhenom.Spectroscopy.IdentificationOptions object at 0x000001DCD04B1150>]) -> IdentificationResult
+
+Identify( (FloatSpectrum)spectrum, (float)beamEnergy, (DetectorConfiguration)detector, (list)exclusions [, (IdentificationOptions)options=<PyPhenom.Spectroscopy.IdentificationOptions object at 0x000001DCD04B1220>]) -> IdentificationResult
+
+Identify( (MsaData)spectrum) -> IdentificationResult
+
+Identify( (MsaData)arg1, (IdentificationOptions)spectrum) -> IdentificationResult
+
+Identify( (MsaData)spectrum, (list)exclusions) -> IdentificationResult
+
+Identify( (EdsAcquisition)acquisition [, (IdentificationOptions)options=<PyPhenom.Spectroscopy.IdentificationOptions object at 0x000001DCD04B12F0>]) -> IdentificationResult
+
+Identify( (EdsAcquisition)acquisition, (list)exclusions [, (IdentificationOptions)options=<PyPhenom.Spectroscopy.IdentificationOptions object at 0x000001DCD04B13C0>]) -> IdentificationResult
+
+== Spectroscopy.IntensityMap (function)
+IntensityMap( (EdsGridSpectrum)gridSpectrum [, (float)minEnergy=0 [, (float)maxEnergy=0]]) -> Image
+
+== Spectroscopy.InvertElementList (function)
+InvertElementList( (list)elements) -> list
+
+== Spectroscopy.IsActinide (function)
+IsActinide( (Element)element) -> bool
+
+== Spectroscopy.IsAlkaliMetal (function)
+IsAlkaliMetal( (Element)element) -> bool
+
+== Spectroscopy.IsAlkalineEarthMetal (function)
+IsAlkalineEarthMetal( (Element)element) -> bool
+
+== Spectroscopy.IsHalogen (function)
+IsHalogen( (Element)element) -> bool
+
+== Spectroscopy.IsIdentifiable (function)
+IsIdentifiable( (Element)element) -> bool
+
+== Spectroscopy.IsLanthanide (function)
+IsLanthanide( (Element)element) -> bool
+
+== Spectroscopy.IsMetal (function)
+IsMetal( (Element)element) -> bool
+
+== Spectroscopy.IsMetalloid (function)
+IsMetalloid( (Element)element) -> bool
+
+== Spectroscopy.IsNobleGas (function)
+IsNobleGas( (Element)element) -> bool
+
+== Spectroscopy.IsNonMetal (function)
+IsNonMetal( (Element)element) -> bool
+
+== Spectroscopy.IsPostTransitionMetal (function)
+IsPostTransitionMetal( (Element)element) -> bool
+
+== Spectroscopy.IsTransitionMetal (function)
+IsTransitionMetal( (Element)element) -> bool
+
+== Spectroscopy.KLratio (function)
+KLratio( (Element)Z) -> float
+
+== Spectroscopy.KanayaOkayamaRange (function)
+KanayaOkayamaRange( (float)Ebeam, (Composition)composition) -> float
+
+== Spectroscopy.L2 (function)
+L2( (FloatSpectrum)spectrum) -> float
+
+== Spectroscopy.L2Norm (function)
+L2Norm( (FloatSpectrum)spectrum) -> float
+
+== Spectroscopy.LMratio (function)
+LMratio( (Element)Z) -> float
+
+== Spectroscopy.Lanthanides (function)
+Lanthanides() -> list
+
+== Spectroscopy.Layer (class)
+EDS Detector Layer.
+  .thickness: 
+
+== Spectroscopy.Line (type)
+Spectral line name
+  .Ka1: PyPhenom.Spectroscopy.Line.Ka1
+  .Ka2: PyPhenom.Spectroscopy.Line.Ka2
+  .Kb1: PyPhenom.Spectroscopy.Line.Kb1
+  .Kb2: PyPhenom.Spectroscopy.Line.Kb2
+  .Kb3: PyPhenom.Spectroscopy.Line.Kb3
+  .La1: PyPhenom.Spectroscopy.Line.La1
+  .La2: PyPhenom.Spectroscopy.Line.La2
+  .Lb1: PyPhenom.Spectroscopy.Line.Lb1
+  .Lb2: PyPhenom.Spectroscopy.Line.Lb2
+  .Lb3: PyPhenom.Spectroscopy.Line.Lb3
+  .Lb4: PyPhenom.Spectroscopy.Line.Lb4
+  .Lb5: PyPhenom.Spectroscopy.Line.Lb5
+  .Lb6: PyPhenom.Spectroscopy.Line.Lb6
+  .Lg1: PyPhenom.Spectroscopy.Line.Lg1
+  .Lg2: PyPhenom.Spectroscopy.Line.Lg2
+  .Lg3: PyPhenom.Spectroscopy.Line.Lg3
+  .Ll1: PyPhenom.Spectroscopy.Line.Ll1
+  .Ln: PyPhenom.Spectroscopy.Line.Ln
+  .Ma1: PyPhenom.Spectroscopy.Line.Ma1
+  .Ma2: PyPhenom.Spectroscopy.Line.Ma2
+  .Mb: PyPhenom.Spectroscopy.Line.Mb
+  .Mg1: PyPhenom.Spectroscopy.Line.Mg1
+  .Mg2: PyPhenom.Spectroscopy.Line.Mg2
+  .Mz1: PyPhenom.Spectroscopy.Line.Mz1
+  .Mz2: PyPhenom.Spectroscopy.Line.Mz2
+
+== Spectroscopy.LineEnergy (function)
+LineEnergy( (Element)element, (Line)line) -> float
+
+== Spectroscopy.LineIdentifier (class)
+EDS Spectral Line identifier.
+  .Z: 
+  .energy: 
+  .intensity: 
+  .lineIndex: 
+
+== Spectroscopy.LineIdentifierStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Ascii: PyPhenom.Spectroscopy.LineIdentifierStyle.Ascii
+  .DoNotDraw: PyPhenom.Spectroscopy.LineIdentifierStyle.DoNotDraw
+  .Unicode: PyPhenom.Spectroscopy.LineIdentifierStyle.Unicode
+  .Utf: PyPhenom.Spectroscopy.LineIdentifierStyle.Utf
+
+== Spectroscopy.LineName (function)
+LineName( (Line)line) -> str
+
+== Spectroscopy.LineNameHtml (function)
+LineNameHtml( (Line)line) -> str
+
+== Spectroscopy.LineNameU16 (function)
+LineNameU16( (Line)line) -> str
+
+== Spectroscopy.LinesForElement (function)
+LinesForElement( (Element)Z) -> list
+
+== Spectroscopy.LinesForEnergy (function)
+LinesForEnergy( (float)energy, (float)maxDelta) -> list
+
+LinesForEnergy( (float)energy, (CompositionByWeights)composition [, (float)maxDelta=10 [, (float)minIntensityOfOthers=1]]) -> list
+
+== Spectroscopy.LoadEdsProject (function)
+LoadEdsProject( (str)arg1) -> EdsProject
+
+== Spectroscopy.LoadPad (function)
+LoadPad( (str)arg1) -> Pad
+
+== Spectroscopy.LowestCommonEnergy (function)
+LowestCommonEnergy( (list)elements, (float)beamEnergy) -> LineIdentifier
+
+LowestCommonEnergy( (CompositionByWeights)composition, (float)beamEnergy) -> LineIdentifier
+
+== Spectroscopy.MassAbsorptionCoefficient (function)
+MassAbsorptionCoefficient( (Element)Z, (float)E) -> float
+
+== Spectroscopy.MassAbsorptionCoefficientPrecise (function)
+MassAbsorptionCoefficientPrecise( (Element)Z, (float)E) -> float
+
+== Spectroscopy.MassAbsorptionCurve (function)
+MassAbsorptionCurve( (SpectrumDimensions)dimensions, (CompositionByWeights)composition) -> FloatSpectrum
+
+== Spectroscopy.MaxIntensity (function)
+MaxIntensity( (Spectrum)spectrum) -> float
+
+MaxIntensity( (FloatSpectrum)spectrum) -> float
+
+== Spectroscopy.Metalloids (function)
+Metalloids() -> list
+
+== Spectroscopy.Metals (function)
+Metals() -> list
+
+== Spectroscopy.MnKaFromZeroWidth (function)
+MnKaFromZeroWidth( (float)zeroWidth) -> float
+
+== Spectroscopy.MsaData (class)
+MSA File Data.
+  .Ccorrection: 
+  .addVendorSpecific: addVendorSpecific( (MsaData)arg1, (str)arg2, (str)arg3) -> None
+  .azimuthAngle: 
+  .detectorToOpticalAxis: 
+  .detectorType: 
+  .detectorWdOffset: 
+  .elevationAngle: 
+  .highTension: 
+  .liveTime: 
+  .owner: 
+  .realTime: 
+  .resolution: 
+  .signalType: 
+  .spectrum: 
+  .spectrumCorrection: 
+  .time: 
+  .title: 
+  .vendorSpecifics: 
+  .version: 
+  .workingDistance: 
+  .xLabel: 
+  .yLabel: 
+
+== Spectroscopy.NobleGases (function)
+NobleGases() -> list
+
+== Spectroscopy.NonMetals (function)
+NonMetals() -> list
+
+== Spectroscopy.Normalize (function)
+Normalize( (FloatSpectrum)source [, (float)counts=1]) -> FloatSpectrum
+
+Normalize( (Spectrum)source [, (float)counts=1]) -> FloatSpectrum
+
+== Spectroscopy.OptimalScale (function)
+OptimalScale( (FloatSpectrum)scalee, (FloatSpectrum)b [, (float)min_step=0.001]) -> float
+
+== Spectroscopy.Oxide (class)
+
+  .ToElementConcentration: ToElementConcentration( (Oxide)arg1, (float)arg2) -> float
+  .ToOxideConcentration: ToOxideConcentration( (Oxide)arg1, (float)arg2) -> float
+  .element: 
+  .elementCount: 
+  .oxygenCount: 
+
+== Spectroscopy.Pad (class)
+
+
+== Spectroscopy.PeakInfo (class)
+Results of FindMaxima().
+  .bin: 
+  .energy: 
+  .height: 
+
+== Spectroscopy.PhiCurve (function)
+PhiCurve( (XppParameters)parameters, (float)min_rhoZ, (float)max_rhoZ, (float)step_rhoZ) -> list
+
+PhiCurve( (AtomicTransition)transition, (float)Ebeam, (Composition)composition [, (int)nSteps=100]) -> list
+
+== Spectroscopy.PostTransitionMetals (function)
+PostTransitionMetals() -> list
+
+== Spectroscopy.QuantMap (class)
+
+  .AbsoluteDotThreshold: 
+  .ColoringStrategy: 
+  .ConcentrationApproximation: 
+  .DarkRenderFraction: 
+  .DotFactorThreshold: 
+  .DrawElementMapOverlay: DrawElementMapOverlay( (QuantMap)arg1, (Acquisition)acquisition, (dict)colors [, (float)alpha=0.5]) -> Image
+  .ForElement: ForElement( (QuantMap)arg1, (Element)element) -> Image
+  .LightRenderFraction: 
+  .MinimumRenderLevel: 
+  .NumberOfThreads: 
+  .QuantThreshold: 
+  .Quantify: Quantify( (QuantMap)arg1) -> IdentificationResult
+
+Quantify( (QuantMap)arg1, (list)elements) -> None
+  .RawValueThresholdHigh: 
+  .RawValueThresholdLow: 
+  .Render: Render( (QuantMap)arg1, (dict)element_colors [, (float)alpha=1]) -> Image
+  .RenderLevels: 
+  .RenderingStrategy: 
+  .Scaling: 
+  .ScalingThreshold: 
+  .SolveSingle: SolveSingle( (QuantMap)arg1, (int)x, (int)y [, (list)elements=[]]) -> list
+
+SolveSingle( (QuantMap)arg1, (EdsAcquisition)spectrum, (list)elements) -> list
+
+== Spectroscopy.QuantMapApproximation (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .AtomicConcentrations: PyPhenom.Spectroscopy.QuantMapApproximation.AtomicConcentrations
+  .RawValues: PyPhenom.Spectroscopy.QuantMapApproximation.RawValues
+  .WeightConcentrations: PyPhenom.Spectroscopy.QuantMapApproximation.WeightConcentrations
+
+== Spectroscopy.QuantMapColoring (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Blend: PyPhenom.Spectroscopy.QuantMapColoring.Blend
+  .Modulate: PyPhenom.Spectroscopy.QuantMapColoring.Modulate
+
+== Spectroscopy.QuantMapRendering (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Mix: PyPhenom.Spectroscopy.QuantMapRendering.Mix
+  .WinnerTakesAll: PyPhenom.Spectroscopy.QuantMapRendering.WinnerTakesAll
+
+== Spectroscopy.QuantMapScaling (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .NoScaling: PyPhenom.Spectroscopy.QuantMapScaling.NoScaling
+  .SqrtTotalCounts: PyPhenom.Spectroscopy.QuantMapScaling.SqrtTotalCounts
+  .TotalCounts: PyPhenom.Spectroscopy.QuantMapScaling.TotalCounts
+
+== Spectroscopy.QuantificationOptions (class)
+Options for the Quantify() call.
+  .absorptionTiltThreshold: 
+  .alwaysInclude: alwaysInclude( (QuantificationOptions)arg1, (Element)arg2) -> None
+  .applyHeuristics: 
+  .backgroundMixMax: 
+  .debugLevel: 
+  .debugSpectrum: 
+  .doFitBackground: 
+  .doFitResidualBackground: 
+  .doModelBackground: 
+  .finalFit: 
+  .finalFitScaleByMaxPeak: 
+  .finalMatrixInversion: 
+  .finalPass: 
+  .fitICC: 
+  .fixedCutOff: 
+  .fixedCutOffEnergy: 
+  .initialMatrixInversion: 
+  .initialThreshold: 
+  .lowEnergyFit: 
+  .maxIterations: 
+  .numSumPeaks: 
+  .numberOfSolverThreads: 
+  .overFitElision: 
+  .precision: 
+  .preferLowPeaks: 
+  .recalibrateDimensions: 
+  .recalibrateFWHM: 
+  .sortElements: 
+  .stripBelowThreshold: 
+  .trincavelliSplit: 
+  .verifyPeaks: 
+  .virtualTilt: 
+  .weighByEfficiency: 
+  .withF: 
+
+== Spectroscopy.QuantificationResult (class)
+Results of Quantify().
+  .MnKaFWHM: 
+  .approxBackground: 
+  .approxComposition: 
+  .background: 
+  .composition: 
+  .cutOff: 
+  .debug: 
+  .dimensions: 
+  .fit: 
+  .percentagePrecision: 
+  .scale: 
+  .sumPeaks: 
+  .sumPeaksScale: 
+  .virtualTilt: 
+
+== Spectroscopy.Quantify (function)
+Quantify( (Spectrum)spectrum, (float)beamEnergy, (DetectorConfiguration)detector, (list)elements) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (list)elements) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (str)elements) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (str)elements, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (list)elements, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (IdentificationResult)id_result) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (IdentificationResult)id_result, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (EdsAcquisition)acquisition, (list)elements) -> QuantificationResult
+
+Quantify( (EdsAcquisition)acquisition, (str)elements) -> QuantificationResult
+
+Quantify( (EdsAcquisition)acquisition, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (EdsAcquisition)acquisition, (str)elements, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (EdsAcquisition)acquisition, (list)elements, (QuantificationOptions)options) -> QuantificationResult
+
+Quantify( (MsaData)spectrum) -> QuantificationResult
+
+Quantify( (EdsAcquisition)spectrum) -> QuantificationResult
+
+Quantify( (MsaData)spectrum, (QuantificationOptions)options) -> QuantificationResult
+
+== Spectroscopy.QuantifyEx (function)
+QuantifyEx( (EdsAcquisition)spectrum, (list)elements [, (QuantificationOptions)options=<PyPhenom.Spectroscopy.QuantificationOptions object at 0x000001DCCEA21440>]) -> QuantificationResult
+
+== Spectroscopy.ReadBinFile (function)
+ReadBinFile( (str)filename) -> BinData
+
+== Spectroscopy.ReadCompositionFile (function)
+ReadCompositionFile( (str)filename) -> CompositionByWeights
+
+== Spectroscopy.ReadMsaFile (function)
+ReadMsaFile( (str)filename) -> MsaData
+
+== Spectroscopy.RenderGaussian (function)
+RenderGaussian( (SpectrumDimensions)dimensions, (GaussianParameters)parameters) -> FloatSpectrum
+
+== Spectroscopy.RenderPeaks (function)
+RenderPeaks( (SpectrumDimensions)dimensions, (list)intensities, (DetectorConfiguration)detector, (float)scale [, (float)icc_f_loss=0.4 [, (float)icc_r_e=2e-07 [, (float)icc_scale=1 [, (float)icc_E_min=0]]]]) -> FloatSpectrum
+
+== Spectroscopy.RenderSimpleBackgroundTail (function)
+RenderSimpleBackgroundTail( (EdsAcquisition)spectrum, (DuaneHuntParams)params) -> FloatSpectrum
+
+== Spectroscopy.Resample (function)
+Resample( (FloatSpectrum)arg1, (object)arg2) -> FloatSpectrum
+
+Resample( (Spectrum)arg1, (object)arg2) -> FloatSpectrum
+
+Resample( (FloatSpectrum)arg1, (SpectrumDimensions)arg2) -> FloatSpectrum
+
+Resample( (Spectrum)arg1, (SpectrumDimensions)arg2) -> FloatSpectrum
+
+== Spectroscopy.ReverseAccumulate (function)
+ReverseAccumulate( (FloatSpectrum)spectrum) -> FloatSpectrum
+
+== Spectroscopy.SaveEdsProject (function)
+SaveEdsProject( (EdsProject)arg1, (str)arg2) -> None
+
+== Spectroscopy.SelectBackgroundMask (function)
+SelectBackgroundMask( (FloatSpectrum)spectrum, (float)beamEnergy) -> Spectrum
+
+SelectBackgroundMask( (Spectrum)spectrum, (float)beamEnergy) -> Spectrum
+
+SelectBackgroundMask( (MsaData)msa) -> Spectrum
+
+== Spectroscopy.Session (class)
+
+  .id: 
+
+== Spectroscopy.Shell (type)
+Elemental shell
+  .K: PyPhenom.Spectroscopy.Shell.K
+  .L1: PyPhenom.Spectroscopy.Shell.L1
+  .L2: PyPhenom.Spectroscopy.Shell.L2
+  .L3: PyPhenom.Spectroscopy.Shell.L3
+  .M1: PyPhenom.Spectroscopy.Shell.M1
+  .M2: PyPhenom.Spectroscopy.Shell.M2
+  .M3: PyPhenom.Spectroscopy.Shell.M3
+  .M4: PyPhenom.Spectroscopy.Shell.M4
+  .M5: PyPhenom.Spectroscopy.Shell.M5
+  .N1: PyPhenom.Spectroscopy.Shell.N1
+  .N2: PyPhenom.Spectroscopy.Shell.N2
+  .N3: PyPhenom.Spectroscopy.Shell.N3
+  .N4: PyPhenom.Spectroscopy.Shell.N4
+  .N5: PyPhenom.Spectroscopy.Shell.N5
+  .N6: PyPhenom.Spectroscopy.Shell.N6
+  .N7: PyPhenom.Spectroscopy.Shell.N7
+  .O1: PyPhenom.Spectroscopy.Shell.O1
+  .O2: PyPhenom.Spectroscopy.Shell.O2
+  .O3: PyPhenom.Spectroscopy.Shell.O3
+  .O4: PyPhenom.Spectroscopy.Shell.O4
+  .O5: PyPhenom.Spectroscopy.Shell.O5
+  .O6: PyPhenom.Spectroscopy.Shell.O6
+  .O7: PyPhenom.Spectroscopy.Shell.O7
+  .O8: PyPhenom.Spectroscopy.Shell.O8
+  .O9: PyPhenom.Spectroscopy.Shell.O9
+  .P1: PyPhenom.Spectroscopy.Shell.P1
+  .P2: PyPhenom.Spectroscopy.Shell.P2
+  .P3: PyPhenom.Spectroscopy.Shell.P3
+
+== Spectroscopy.Shells (function)
+Shells( (CompositionByWeights)composition, (float)beamEnergy) -> list
+
+== Spectroscopy.Sigma (function)
+Sigma( (float)FWHM_MnKa, (float)energy) -> float
+
+== Spectroscopy.Simulate (function)
+Simulate( (SpectrumDimensions)dimensions, (CompositionByWeights)constituents, (DetectorConfiguration)detector, (float)wd=0, (float)beamEnergy, (float)scale [, (float)virtualTilt=0 [, (bool)withZA=True [, (bool)withF=True [, (float)ICC_E_min=0 [, (TrincavelliParameters)background=<PyPhenom.Spectroscopy.TrincavelliParameters object at 0x000001DCCEAD9540>]]]]]) -> FloatSpectrum
+
+Simulate( (SpectrumDimensions)dimensions, (CompositionByWeights)constituents, (DetectorConfiguration)detector, (float)wd=0, (float)beamEnergy, (float)scale [, (float)ICC_E_min=0 [, (TrincavelliParameters)background=<PyPhenom.Spectroscopy.TrincavelliParameters object at 0x000001DCCEAD95B0>]]) -> FloatSpectrum
+
+Simulate( (SpectrumDimensions)dimensions, (Composition)composition, (DetectorConfiguration)detector, (float)wd=0, (float)beamEnergy, (float)scale [, (float)ICC_E_min=0 [, (TrincavelliParameters)background=<PyPhenom.Spectroscopy.TrincavelliParameters object at 0x000001DCCEAD9690>]]) -> FloatSpectrum
+
+Simulate( (MsaData)spectrum, (CompositionByWeights)weights [, (bool)withZA=True [, (bool)withF=True [, (float)virtualTilt=0]]]) -> FloatSpectrum
+
+Simulate( (MsaData)spectrum, (Composition)composition) -> FloatSpectrum
+
+Simulate( (MsaData)spectrum, (str)formula [, (bool)withZA=True [, (bool)withF=True [, (float)virtualTilt=0 [, (FamilyPreference)prefs=<PyPhenom.Spectroscopy.FamilyPreference object at 0x000001DCCEA85D00>]]]]) -> FloatSpectrum
+
+Simulate( (MsaData)spectrum, (QuantificationResult)quantificationResult) -> FloatSpectrum
+
+Simulate( (EdsAcquisition)spectrum, (QuantificationResult)quantificationResult [, (bool)withZA=True [, (bool)withF=True]]) -> FloatSpectrum
+
+Simulate( (EdsAcquisition)acquisition, (CompositionByWeights)composition) -> FloatSpectrum
+
+Simulate( (EdsAcquisition)acquisition, (str)formula, (float)virtualTilt [, (bool)withZA=True [, (bool)withF=True]]) -> FloatSpectrum
+
+Simulate( (EdsAcquisition)acquisition, (Composition)composition) -> FloatSpectrum
+
+Simulate( (EdsAcquisition)acquisition, (str)composition) -> FloatSpectrum
+
+== Spectroscopy.SimulatePartial (function)
+SimulatePartial( (QuantificationResult)quantification_result, (Element)element) -> FloatSpectrum
+
+SimulatePartial( (SpectrumDimensions)dimensions, (CompositionByWeights)constituents, (Element)element, (DetectorConfiguration)detector, (float)wd=0, (float)beamEnergy, (float)scale [, (float)virtualTilt=0 [, (bool)withZA=True [, (bool)withF=True [, (float)ICC_E_min=0 [, (TrincavelliParameters)background=<PyPhenom.Spectroscopy.TrincavelliParameters object at 0x000001DCCEAD9770>]]]]]) -> FloatSpectrum
+
+== Spectroscopy.SimulateSumPeaks (function)
+SimulateSumPeaks( (FloatSpectrum)spectrum, (int)numPeaks, (DetectorConfiguration)detector [, (float)beta=1]) -> FloatSpectrum
+
+SimulateSumPeaks( (MsaData)spectrum, (int)numPeaks [, (float)beta=1]) -> FloatSpectrum
+
+== Spectroscopy.SimulateSumSpectrum (function)
+SimulateSumSpectrum( (FloatSpectrum)spectrum, (float)beta) -> FloatSpectrum
+
+SimulateSumSpectrum( (MsaData)spectrum, (float)beta) -> FloatSpectrum
+
+== Spectroscopy.Site (class)
+
+  .Acquisitions: 
+  .Eds: 
+  .Views: 
+  .id: 
+
+== Spectroscopy.SparseSpectrum (class)
+Sparse, Energy-Compressed Spectrum.
+  .FloatSpectrum: FloatSpectrum( (SparseSpectrum)arg1) -> FloatSpectrum
+  .bin: bin( (SparseSpectrum)arg1, (int)arg2) -> int
+  .count: count( (SparseSpectrum)arg1, (int)arg2) -> int
+  .counts: sum of counts in the spectrum
+
+== Spectroscopy.Spectrum (class)
+XRay Spectrum (offset, dispersion, size).
+  .bin: bin( (Spectrum)arg1, (float)arg2) -> int
+  .counts: sum of counts in the spectrum
+  .data: copy spectrum data as Python list
+  .dimensions: 
+  .dispersion: 
+  .energies: energies( (Spectrum)arg1) -> list
+  .energy: energy( (Spectrum)arg1, (int)arg2) -> float
+  .intensities: intensities( (Spectrum)arg1) -> list
+  .offset: 
+
+== Spectroscopy.SpectrumCorrection (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Linearized: PyPhenom.Spectroscopy.SpectrumCorrection.Linearized
+  .Raw: PyPhenom.Spectroscopy.SpectrumCorrection.Raw
+  .Unknown: PyPhenom.Spectroscopy.SpectrumCorrection.Unknown
+
+== Spectroscopy.SpectrumDimensions (class)
+XRay Spectrum dimensions (offset, dispersion, size).
+  .dispersion: 
+  .offset: 
+  .size: 
+
+== Spectroscopy.SpectrumDrawer (class)
+
+  .BremsstrahlungColor: 
+  .BremsstrahlungLegend: 
+  .Draw: Draw( (SpectrumDrawer)arg1, (Spectrum)spectrum, (Range)energyRange, (Size)size) -> Image
+
+Draw( (SpectrumDrawer)arg1, (FloatSpectrum)spectrum, (Range)energyRange, (Size)size) -> Image
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)acquisition, (Range)energyRange, (Size)size) -> Image
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)acquisition, (QuantificationResult)quantification, (Range)energyRange, (Size)size) -> Image
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)acquisition, (Range)energyRange, (Page)page, (RectangleD)rect) -> None
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)acquisition, (Range)energyRange, (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+Draw( (SpectrumDrawer)arg1, (Spectrum)spectrum, (Range)energyRange, (Page)page, (RectangleD)rect) -> None
+
+Draw( (SpectrumDrawer)arg1, (Spectrum)spectrum, (Range)energyRange, (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+Draw( (SpectrumDrawer)arg1, (FloatSpectrum)spectrum, (Range)energyRange, (Page)page, (RectangleD)rect) -> None
+
+Draw( (SpectrumDrawer)arg1, (FloatSpectrum)spectrum, (Range)energyRange, (Page)page, (Position)leftBottom, (SizeD)size) -> None
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)aquisition, (QuantificationResult)quantification, (Range)energyRange, (Page)page, (RectangleD)rect) -> None
+
+Draw( (SpectrumDrawer)arg1, (EdsAcquisition)aquisition, (QuantificationResult)quantification, (Range)energyRange, (Page)page, (Position)leftBottom, (SizeD)size) -> None
+  .FitColor: 
+  .FitLegend: 
+  .LabelFontSize: 
+  .LeftMargin: 
+  .LegendFontSize: 
+  .LineFontSize: 
+  .LineIdentifierStyle: 
+  .PenWidth: 
+  .SpectrumColor: 
+  .SpectrumLegend: 
+  .TopMargin: 
+  .XLabel: 
+  .YLabel: 
+
+== Spectroscopy.Subsample (function)
+Subsample( (FloatSpectrum)source, (int)counts) -> FloatSpectrum
+
+Subsample( (Spectrum)source, (int)counts) -> FloatSpectrum
+
+== Spectroscopy.Threshold (function)
+Threshold( (CompositionByWeights)composition, (dict)min_concentrations) -> CompositionByWeights
+
+== Spectroscopy.TopHatFilter (function)
+TopHatFilter( (FloatSpectrum)spectrum, (int)bins) -> FloatSpectrum
+
+== Spectroscopy.TotalCounts (function)
+TotalCounts( (Spectrum)spectrum) -> float
+
+TotalCounts( (FloatSpectrum)spectrum) -> float
+
+TotalCounts( (EdsAcquisition)acquisition) -> float
+
+== Spectroscopy.Transition (class)
+XRay transition.
+  .from_shell: 
+  .to_shell: 
+
+== Spectroscopy.TransitionEnergy (function)
+TransitionEnergy( (Element)Z, (Transition)transition) -> float
+
+TransitionEnergy( (AtomicTransition)transition) -> float
+
+== Spectroscopy.TransitionForLine (function)
+TransitionForLine( (Line)line) -> Transition
+
+== Spectroscopy.TransitionIntensity (class)
+
+  .at: 
+  .energy: 
+  .intensity: 
+  .ionized: 
+  .total: 
+
+== Spectroscopy.TransitionMetals (function)
+TransitionMetals() -> list
+
+== Spectroscopy.TrincavelliParameters (class)
+Result of FitTrincavelli().
+  .G: 
+  .d: 
+
+== Spectroscopy.View (class)
+
+  .AcquiredSpectrumId: 
+  .EdsDetectorId: 
+  .Type: 
+  .id: 
+
+== Spectroscopy.WeightConstituent (class)
+Constituent by weight fraction.
+  .Z: 
+  .weightFraction: 
+
+== Spectroscopy.WeightsToAtomic (function)
+WeightsToAtomic( (CompositionByWeights)weights) -> Composition
+
+== Spectroscopy.WriteMsaFile (function)
+WriteMsaFile( (MsaData)msa, (str)filename [, (bool)overwrite=False]) -> None
+
+WriteMsaFile( (EdsAcquisition)acquisition, (str)filename [, (bool)overwrite=False]) -> None
+
+== Spectroscopy.XppParameters (function)
+XppParameters( (float)beamEnergy, (CompositionByWeights)weights, (AtomicShell)shell) -> XppParameters
+
+== Spectroscopy.ZAFCorrection (function)
+ZAFCorrection( (DetectorConfiguration)detector, (float)beamEnergy, (CompositionByWeights)weights, (AtomicTransition)transition) -> float
+
+ZAFCorrection( (DetectorConfiguration)detector, (float)beamEnergy, (CompositionByWeights)weights, (Element)Z, (Line)line) -> float
+
+== Spectroscopy.ZeroWithFromSigma (function)
+ZeroWithFromSigma( (float)sigma, (float)Eref) -> float
+
+== Spectroscopy.dot (function)
+dot( (FloatSpectrum)arg1, (FloatSpectrum)arg2) -> float
+
+dot( (FloatSpectrum)arg1, (Spectrum)arg2) -> float
+
+dot( (Spectrum)arg1, (FloatSpectrum)arg2) -> float
+
+dot( (Spectrum)arg1, (Spectrum)arg2) -> float
+
+== Spectroscopy.max (function)
+max( (Spectrum)arg1, (Spectrum)arg2) -> Spectrum
+
+max( (Spectrum)arg1, (int)arg2) -> Spectrum
+
+max( (int)arg1, (Spectrum)arg2) -> Spectrum
+
+max( (FloatSpectrum)arg1, (FloatSpectrum)arg2) -> FloatSpectrum
+
+max( (FloatSpectrum)arg1, (float)arg2) -> FloatSpectrum
+
+max( (float)arg1, (FloatSpectrum)arg2) -> FloatSpectrum
+
+== Spectroscopy.min (function)
+min( (Spectrum)arg1, (Spectrum)arg2) -> Spectrum
+
+min( (Spectrum)arg1, (int)arg2) -> Spectrum
+
+min( (int)arg1, (Spectrum)arg2) -> Spectrum
+
+min( (FloatSpectrum)arg1, (FloatSpectrum)arg2) -> FloatSpectrum
+
+min( (FloatSpectrum)arg1, (float)arg2) -> FloatSpectrum
+
+min( (float)arg1, (FloatSpectrum)arg2) -> FloatSpectrum
+
+##### Stitch
+
+== Stitch.AcquisitionTileWriter (class)
+Class which writes tiles to an in memory Acquisition, to be used with StitchOuter or StitchInner.
+  .GetResult: GetResult( (AcquisitionTileWriter)arg1) -> Acquisition
+
+== Stitch.DziTileWriter (class)
+Class which writes tiles to disk in the DZI format, to be used with StitchOuter or StitchInner.
+Construct with path, image extension, dziTileSize
+
+== Stitch.MemoryTileLoader (class)
+Class which holds acquisitions in memory, to be used with StitchOuter or StitchInner.
+  .Add: Add( (MemoryTileLoader)arg1, (int)row, (int)column, (Acquisition)acquisition) -> None
+
+== Stitch.OptimalTilePlacer (class)
+Class which determines tile placement for tile stitching with optimal tile placementConstruct with TileLoader
+
+== Stitch.StitchInner (function)
+StitchInner( (TilePlacer)tilePlacer, (TileWriter)tileWriter) -> None
+
+StitchInner( (TilePlacer)tilePlacer, (TileLoader)tileLoader, (TileWriter)tileWriter) -> None
+
+== Stitch.StitchOuter (function)
+StitchOuter( (TilePlacer)tilePlacer, (TileWriter)tileWriter) -> None
+
+StitchOuter( (TilePlacer)tilePlacer, (TileLoader)tileLoader, (TileWriter)tileWriter) -> None
+
+== Stitch.TileLoader (class)
+
+  .InputTileSize: InputTileSize( (TileLoader)arg1) -> Size
+
+== Stitch.TilePlacer (class)
+
+  .AddTile: AddTile( (TilePlacer)arg1, (int)row, (int)column) -> None
+  .GetNominalTilePosition: GetNominalTilePosition( (TilePlacer)arg1, (int)row, (int)column) -> Position
+  .GetTilePosition: GetTilePosition( (TilePlacer)arg1, (int)row, (int)column) -> Position
+  .ImageSize: ImageSize( (TilePlacer)arg1) -> Size
+  .InnerRectangle: InnerRectangle( (TilePlacer)arg1) -> Rectangle
+  .NominalImageRectangle: NominalImageRectangle( (TilePlacer)arg1) -> Rectangle
+  .Solve: Solve( (TilePlacer)arg1) -> None
+
+== Stitch.TileWriter (class)
+
+
+== Stitch.TrivialTilePlacer (class)
+Class which determines tile placement for tile stitching with nominal tile placement
+Construct with TileLoader

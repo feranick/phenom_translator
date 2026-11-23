@@ -1,0 +1,11 @@
+PS C:\Users\jalavall> py -3.12 -c "import PyPhenom as ppi; print({n: ppi.HasLicense(getattr(ppi.Features, n)) for n in dir(ppi.Features) if not n.startswith('_')})"
+>>
+{'AsbestosDetection': False, 'EdsMap': False, 'FastSpectrum': False, 'LiveVideo': False, 'ParticleMetric': False, 'ResolutionMeasurement': False, 'RoughnessReconstruction': False, 'Spectroscopy': False, 'Stitching': False}
+PS C:\Users\jalavall> py .\py5.py
+SemAcquireImage: OK Acquisition
+SemAutoFocus: OK NoneType
+RoughFocus: OK list
+Spectrometer status: RuntimeError('Missing license: Spectroscopy')
+AcquireSpectrum 1 s: RuntimeError('Missing license: Spectroscopy')
+Identify: RuntimeError('Missing license: Spectroscopy')
+TileStitcher: ArgumentError('Python argument types in\n    TileStitcher.__init__(TileStitcher, int, int, Size, float, PixelType)\ndid not match C++ signature:\n    __init__(struct _object * __ptr64, int nx, int ny, int tileSize, double overlap=0.1, enum PhenomWorld::PixelType encoding=PyPhenom.PixelType.Unsigned16)')

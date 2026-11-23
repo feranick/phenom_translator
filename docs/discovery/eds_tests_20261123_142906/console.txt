@@ -1,0 +1,83 @@
+PS C:\Users\jalavall> py .\eds_tests.py
+PyPhenom 2.1.0 | operational mode: LiveSem
+
+== state_before
+   ok (0.229 s): {"operational_mode": "LiveSem", "high_tension_V": -15000.0, "spot_size": 5.1, "emission_current_A": 4.0300000000000004e-05, "wd_m": 0.0063, "hfw_m": 0.000877216182013485, "hfw_range_m": {"begin": 2.4714285714285713e-06, "end": 0.000877216182013485}, "spot_range": {"begin": 0.0, "end": 5.8}, "viewing_mode": {"scanMode": "Imaging", "scanParams": {"center": {"x": 0.0, "y": 0.0}, "detector": "All", "hdr": false, "nFrames": 4, "scale": 1.0, "size": {"height": 540, "width": 960}}}, "spectrometer_statu
+
+== properties
+   ok (0.515 s): {"HighTension.AllMaterials": -5300.0, "HighTension.HighResolution": -10000.0, "HighTension.Analysis": -15000.0, "SpotPosition.Accuracy": 0.005, "MultiStage.MaximumSampleRadius": 0.035, "TransitionTime.OffToOperational": 52200.0, "TransitionTime.StandbyToOperational": 30.0, "BSD.NominalMountingAngle": 1.5708, "EDX.TakeOffAngle": 28.5, "EDX.WdOptimalLowerBound": 0.0045, "EDX.WdOptimalUpperBound": 0.01, "EDX.WdAcceptableLowerBound": 0.003, "EDX.WdAcceptableUpperBound": 0.012, "EDX.DppConnectionType
+
+== spectrometer_settings
+   ok (0.06 s): {"bins": 2048, "deviceId": "AmptekDigitalPulseProcessor(SerialNr:15430 Fw:6.9.7 Fpga:7.1.0)", "dispersion": 10.0, "energyPerChannel": 10.0, "fastPeakingTime": 1.0000000000000001e-07, "fastThreshold": 0.01318359375, "gain": 14.949, "offset": 0.0, "peakingTime": 1e-06, "pileUpRejection": true, "resolution": 135.0, "slowPeakingTime": 1e-06, "slowThreshold": 0.012199999999999999}
+
+== pulse_processor_presets
+   ok (0.044 s): {"deviceId": "AmptekDigitalPulseProcessor(SerialNr:15430 Fw:6.9.7 Fpga:7.1.0)", "map": {"bins": 2048, "dispersion": 9.861634874103531, "fastPeakingTime": 1e-07, "fastThreshold": 0.01318359375, "flatTopWidth": 4e-07, "gain": 14.95000062969783, "measuredCKa": 0.0, "offset": -56.23099449253562, "peakingTime": 1e-06, "resolution": 127.9548928156522, "slowThreshold": 0.01221299462628236}, "presets": "{'map': <PyPhenom.PulseProcessorPreset object at 0x000002D941A87880>, 'spot': <PyPhenom.PulseProcesso
+
+== field_1s_acq
+   ok (5.173 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 24715, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 1.1408989789183523, "realTime": 1.207, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== field_2s_live
+   ok (5.097 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 45757, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 2.1050459205197436, "realTime": 2.215, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== field_1s_repeat0
+   ok (5.109 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 24742, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 1.1432105856293475, "realTime": 1.207, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== field_1s_repeat1
+   ok (5.093 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 24659, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 1.1444902412366307, "realTime": 1.207, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== field_1s_repeat2
+   ok (5.134 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 24901, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 1.138779831674417, "realTime": 1.209, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== async_start_poll_stop
+   ok (5.453 s): {"trace": [{"t": 0.0, "acquiring": true, "status": {"accumulationTime": 0.001, "detectorTemperature": 234.70000000000002, "fastCount": 0, "realTime": 0.001, "slowCount": 0}}, {"t": 0.5, "acquiring": true, "status": {"accumulationTime": 0.495, "detectorTemperature": 234.70000000000002, "fastCount": 10715, "realTime": 0.503, "slowCount": 10254}}, {"t": 1.0, "acquiring": true, "status": {"accumulationTime": 0.988, "detectorTemperature": 234.70000000000002, "fastCount": 21471, "realTime": 1.004, "sl
+
+== spot_center
+   ok (5.468 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 44034, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 2.1072408080985148, "realTime": 2.216, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== spot_offset_0.1_0.1
+   ok (5.433 s): {"offset": -56.23099449253562, "dispersion": 9.861634874103531, "bins": 2048, "counts": 43170, "metadata": {"Ccorrection": 0.0, "azimuthAngle": 0.0, "detectorToOpticalAxis": 0.03506, "detectorType": "FastSDD_C2", "detectorWdOffset": 0.0107, "elevationAngle": 0.4974188368183839, "fastPeakingTime": 1e-07, "highTension": 15000.0, "holderTiltAngle": 0.0, "instrumentId": "MVE082023-10818-L", "liveTime": 2.1402641260901167, "realTime": 2.213, "resolution": 127.9548928156522, "sddSurfaceArea": 2.5e-05,
+
+== viewing_mode_restored
+   ok (0.013 s): {"scanMode": "Imaging", "scanParams": {"center": {"x": 0.0, "y": 0.0}, "detector": "All", "hdr": false, "nFrames": 4, "scale": 1.0, "size": {"height": 540, "width": 960}}}
+
+== image_full
+   ok (0.19 s): {"asked": {"scale": 1.0, "center": [0.0, 0.0], "size": 512}, "hfw_m": 0.000877216182013485, "pixelSize": {"height": 1.713312855495088e-06, "width": 1.713312855495088e-06}, "position": {"x": 6.02434271662765e-05, "y": 0.003988864624543326}, "scanCenter": {"x": 0.0, "y": 0.0}, "scanScale": 1.0, "rotation": 0.0, "workingDistance": 0.0063, "saved": "image_full.tiff"}
+
+== image_half_x0.25
+   ok (0.171 s): {"asked": {"scale": 0.5, "center": [0.25, 0.0], "size": 512}, "hfw_m": 0.000877216182013485, "pixelSize": {"height": 8.56656427747544e-07, "width": 8.56656427747544e-07}, "position": {"x": 6.02434271662765e-05, "y": 0.003988864624543326}, "scanCenter": {"x": 0.25, "y": 0.0}, "scanScale": 0.5, "rotation": 0.0, "workingDistance": 0.0063, "saved": "image_half_x.tiff"}
+
+== image_half_y0.25
+   ok (0.162 s): {"asked": {"scale": 0.5, "center": [0.0, 0.25], "size": 512}, "hfw_m": 0.000877216182013485, "pixelSize": {"height": 8.56656427747544e-07, "width": 8.56656427747544e-07}, "position": {"x": 6.02434271662765e-05, "y": 0.003988864624543326}, "scanCenter": {"x": 0.0, "y": 0.25}, "scanScale": 0.5, "rotation": 0.0, "workingDistance": 0.0063, "saved": "image_half_y.tiff"}
+
+== lic_write_msa
+   ok (0.003 s): "field_1s_acq.msa"
+
+== lic_line_energy_FeKa1
+   ok (0.0 s): 6402.0
+
+== lic_duane_hunt
+   FAILED: RuntimeError('Missing license: Spectroscopy')
+
+== lic_estimate_icr
+   ok (0.001 s): 21370.543208559156
+
+== lic_identify
+   FAILED: RuntimeError('Missing license: Spectroscopy')
+
+== lic_eds_live_map_construct
+   FAILED: ArgumentError('Python argument types in\n    EdsLiveMap.__init__(EdsLiveMap)\ndid not match C++ signature:\n    __init__(class boost::python::api::object, class PhenomWorld::PyPhenom::PyPhenom {lvalue})')
+
+== lic_get_shift
+   ok (0.082 s): [-3.0826005081863173e-09, 0.0]
+
+== lic_focus_criteria
+   ok (0.004 s): {"absoluteGradient": 4353164.0, "autocorrelation": 181.595699663274, "brennerGradient": 181045946.0, "entropy": 7.537992626613674, "imagePower": -3413498742.0, "range": 255.0, "squaredGradient": 84031542.0, "stdevBasedCorrelation": -4639734344.460693, "thresholdedAbsoluteGradient": 20225.0, "thresholdedBrennerGradient": 172040839.0, "thresholdedContent": -22036881.0, "thresholdedImagePower": -3360406943.0, "thresholdedPixelCount": 149987.0, "thresholdedSquaredGradient": 81547376.0, "variance": 5
+
+== lic_to_world
+   ok (0.0 s): {"a11": 1.713312855495088e-06, "a12": 0.0, "a13": -0.000378364663840466, "a21": 0.0, "a22": -1.713312855495088e-06, "a23": 0.004427472715550068}
+
+== state_after
+   ok (0.145 s): {"operational_mode": "LiveSem", "high_tension_V": -15000.0, "spot_size": 5.1, "emission_current_A": 4.0300000000000004e-05, "wd_m": 0.0063, "hfw_m": 0.000877216182013485, "hfw_range_m": {"begin": 2.4714285714285713e-06, "end": 0.000877216182013485}, "spot_range": {"begin": 0.0, "end": 5.8}, "viewing_mode": {"scanMode": "Imaging", "scanParams": {"center": {"x": 0.0, "y": 0.0}, "detector": "All", "hdr": false, "nFrames": 4, "scale": 1.0, "size": {"height": 540, "width": 960}}}, "spectrometer_statu
+
+Done: 23 ok, 3 failed: ['lic_duane_hunt', 'lic_identify', 'lic_eds_live_map_construct']
+Zip and send the folder eds_tests_20261123_142906

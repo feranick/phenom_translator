@@ -1,0 +1,98 @@
+[
+ {
+  "step": "A1 sync 1 s (reference)",
+  "counts": 26469,
+  "live_s": 1.098,
+  "real_s": 1.206,
+  "counts_per_live_s": 24116,
+  "wall_s": 5.23
+ },
+ {
+  "step": "A2 start 1 s",
+  "counts": 26829,
+  "live_s": 1.094,
+  "real_s": 1.203,
+  "counts_per_live_s": 24527,
+  "wall_s": 1.35
+ },
+ {
+  "step": "A3 start 1 s",
+  "counts": 53354,
+  "live_s": 2.187,
+  "real_s": 2.406,
+  "counts_per_live_s": 24393,
+  "wall_s": 1.26
+ },
+ {
+  "step": "A4 start 1 s",
+  "counts": 79533,
+  "live_s": 3.283,
+  "real_s": 3.608,
+  "counts_per_live_s": 24223,
+  "wall_s": 1.26
+ },
+ {
+  "step": "A5 start 1 s, acquisition time",
+  "counts": 105837,
+  "live_s": 4.376,
+  "real_s": 4.811,
+  "counts_per_live_s": 24186,
+  "wall_s": 1.26
+ },
+ {
+  "step": "B1 sync 1 s",
+  "counts": 26665,
+  "live_s": 1.098,
+  "real_s": 1.209,
+  "counts_per_live_s": 24280,
+  "wall_s": 5.04
+ },
+ {
+  "step": "B2 start 1 s after sync",
+  "counts": 53076,
+  "live_s": 2.189,
+  "real_s": 2.411,
+  "counts_per_live_s": 24248,
+  "wall_s": 1.28
+ },
+ {
+  "step": "C1 clear + start 1 s",
+  "counts": 26334,
+  "live_s": 1.1,
+  "real_s": 1.203,
+  "counts_per_live_s": 23936,
+  "wall_s": 1.28
+ },
+ {
+  "step": "C2 clear + start 1 s",
+  "counts": 26513,
+  "live_s": 1.091,
+  "real_s": 1.202,
+  "counts_per_live_s": 24311,
+  "wall_s": 1.26
+ },
+ {
+  "step": "C3 clear + start 1 s",
+  "counts": 26396,
+  "live_s": 1.094,
+  "real_s": 1.202,
+  "counts_per_live_s": 24131,
+  "wall_s": 1.26
+ },
+ {
+  "step": "D1 start 1 s (no clear)",
+  "counts": 52796,
+  "live_s": 2.191,
+  "real_s": 2.405,
+  "counts_per_live_s": 24095,
+  "wall_s": 1.26
+ },
+ {
+  "step": "E1 sync 1 s (end)",
+  "counts": 26697,
+  "live_s": 1.094,
+  "real_s": 1.208,
+  "counts_per_live_s": 24401,
+  "wall_s": 5.03
+ }
+]

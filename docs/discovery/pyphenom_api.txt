@@ -1,0 +1,3065 @@
+PyPhenom 2.1.0 C:\Program Files\Python312\DLLs\PyPhenom.pyd
+
+== Acquisition (class)
+Combination of image and metadata.
+  .databar: 
+  .fullImage: 
+  .image: 
+  .magnification: 
+  .metadata: 
+  .rawMetadata: 
+
+== AcquisitionSource (class)
+
+  .AcquisitionFinished: Acquisition finished event
+  .AcquisitionUpdate: Acquisition update event (Acquisition)
+  .BeginSemAcquireImage: BeginSemAcquireImage( (AcquisitionSource)arg1, (ScanParams)scanParams) -> None
+
+BeginSemAcquireImage( (AcquisitionSource)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> None
+
+BeginSemAcquireImage( (AcquisitionSource)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0) [, (ScanExtClockMode)extClockMode=PyPhenom.ScanExtClockMode.Off [, (DriftCorrection)driftCorrection=PyPhenom.DriftCorrection.Default]]]]]]]) -> None
+  .CancelSemAcquireImage: CancelSemAcquireImage( (AcquisitionSource)arg1) -> None
+  .Close: Close( (AcquisitionSource)arg1) -> None
+  .EndSemAcquireImage: EndSemAcquireImage( (AcquisitionSource)arg1) -> Acquisition
+  .GetSemViewingMode: GetSemViewingMode( (AcquisitionSource)arg1) -> SemViewingModeEx
+  .Run: Run( (AcquisitionSource)arg1) -> None
+  .SemAcquireImage: SemAcquireImage( (AcquisitionSource)arg1, (ScanParams)scanParams) -> Acquisition
+
+SemAcquireImage( (AcquisitionSource)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> Acquisition
+
+SemAcquireImage( (AcquisitionSource)arg1, (ScanParamsEx)scanParamsEx) -> Acquisition
+
+SemAcquireImage( (AcquisitionSource)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0) [, (ScanExtClockMode)extClockMode=PyPhenom.ScanExtClockMode.Off [, (DriftCorrection)driftCorrection=PyPhenom.DriftCorrection.Default]]]]]]]) -> Acquisition
+  .SetSemViewingMode: SetSemViewingMode( (AcquisitionSource)arg1, (SemViewingMode)viewingMode) -> None
+
+== AcquisitionState (class)
+Metadata describing microscope state at the time of acquisition
+  .acqHW: 
+  .acquisitionType: 
+  .annotations: 
+  .applicationID: name and version number of the software package used to create the image
+  .appliedBrightness: as currently applied by the Phenom
+  .appliedContrast: as currently applied by the Phenom
+  .appliedGamma: as currently applied by the Phenom
+  .beamShift: optional [m]
+  .bsdGain: [dB]
+  .bsdMixFactor: mix factor of the BSD signal in the acquisition
+  .bsdOffset: [V]
+  .colorLabels: 
+  .cropHint: rectangle with full integration signal (drift correction)
+  .currentUser: user currently logged in on Phenom
+  .dataBarFields: selected data bar fields, see ppi.DatabarField constants
+  .dataBarHeight: data bar height in pixels
+  .dataBarLabel: data bar label
+  .detector: detector mode used for the acquisition
+  .detectorMixFactors: detector mix factors used for the acquisition
+  .displayBlackLevel: black level used for display, relative to full scale 0..1
+  .displayWhiteLevel: white level used for display, relative to full scale 0..1
+  .displayWidth: display width [meter]
+  .dwellTime: pixel dwell time [second] (only valid for SEM images)
+  .emissionCurrent: emission current [Ampere]
+  .emissionCurrentPresetName: emission current preset name
+  .filamentPower: electron source filament power [Watt]
+  .highVoltage: acceleration voltage [Volt]
+  .instrumentEdition: 
+  .instrumentID: 
+  .instrumentType: 
+  .integrations: 
+  .interlace: scan interlace
+  .multiStage: Multi-axis stage position
+  .pixelSize: [meter]
+  .position: stage position in [meter]
+  .rotation: scan rotation in [radian]
+  .sampleHeight: [m]
+  .sampleHolderID: optional
+  .sampleHolderType: optional
+  .samplePressureEstimate: [Pa]
+  .sampleRadius: [m]
+  .scanCenter: Center of the scan in the available range
+  .scanHW: 
+  .scanScale: Scale of the scan in the available range
+  .sedGain: [dB]
+  .sedMixFactor: Factor of the SED signal in the acquisition
+  .sedOffset: [V]
+  .sedScintillatorVoltage: [V]
+  .segments: detector configuration used for the acquisition
+  .softwareVersion: 
+  .sourceId: ID of the electron source module
+  .sourceTilt: 
+  .sourceTime: total time [hour] the electron source has been "on"
+  .spotPresetName: optional
+  .spotSize: optional
+  .stemMixFactor: 
+  .stemSegmentSelection: 
+  .stigmator: 
+  .time: [seconds since epoch]
+  .workingDistance: distance from sample to lens [meter]
+
+== AcquisitionType (type)
+NavCam -- NavCam acquisition
+Sem    -- SEM acquisition
+  .NavCam: NavCam -- NavCam acquisition
+Sem    -- SEM acquisition
+  .Sem: NavCam -- NavCam acquisition
+Sem    -- SEM acquisition
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== AddDatabar (function)
+AddDatabar( (Acquisition)acquisition) -> Acquisition
+
+== AngleAnnotation (class)
+
+  .begin: 
+  .end: 
+  .origin: 
+  .radius: 
+
+== Annotation (class)
+
+
+== Application (module)
+
+
+== ArcAnnotation (class)
+
+  .begin: 
+  .end: 
+  .origin: 
+  .radius: 
+
+== AreaSelectionProgress (class)
+
+  .progress: 
+  .target: 
+
+== AutoFocusAlgorithm (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Auto: 
+  .CoarseFine: 
+  .FineOnly: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== BackupSupplyStatus (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Absent: 
+  .Charged: 
+  .Charging: 
+  .Disabled: 
+  .Discharging: 
+  .Disconnected: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Bgr24 (class)
+
+  .blue: 
+  .green: 
+  .red: 
+
+== Bgra32 (class)
+
+  .alpha: 
+  .blue: 
+  .green: 
+  .red: 
+
+== Bounds (function)
+Bounds( (Rectangle)rectangle1, (Rectangle)rectangle2) -> Rectangle
+
+== CamParams (class)
+Parameters from a NavCam acquisition
+The original NavCam delivered only 480 x 480 RGB images; any other size
+is an invalid parameter. The improved NavCam in Phenom G2 and onwards delivers images
+with a native resolution of 912 x 912 pixels. When requesting a different size, the image
+is scaled by the Phenom to the requested resolution.
+  .nFrames: 
+  .size: 
+
+== CenteredRectangle (function)
+CenteredRectangle( (Point)center, (Size)size) -> Rectangle
+
+== CenteredRectangleD (function)
+CenteredRectangleD( (Position)center, (SizeD)size) -> RectangleD
+
+== CheckLicense (function)
+CheckLicense( (int)features) -> None
+
+== ColorLabel (class)
+
+  .color: 
+  .label: 
+
+== ColorMaps (module)
+
+
+== Colors (module)
+
+
+== ConnectSignedScript (function)
+ConnectSignedScript( (str)address) -> Phenom
+
+== DatabarField (module)
+
+
+== DatabarRenderer (class)
+
+  .AddDatabar: AddDatabar( (DatabarRenderer)arg1, (Acquisition)acquisition) -> Acquisition
+  .Render: Render( (DatabarRenderer)arg1, (Acquisition)acquisition) -> Acquisition
+  .bgColor: 
+  .detectorLabel: 
+  .fieldSizeLabel: 
+  .fontSize: 
+  .highVoltageLabel: 
+  .magnificationLabel: 
+  .magnificationStyle: 
+  .polaroidMagnificationLabel: 
+  .samplePressureEstimateLabel: 
+  .showColorLabels: 
+  .showDate: 
+  .showDetector: 
+  .showFieldSize: 
+  .showHighVoltage: 
+  .showLabel: 
+  .showMagnification: 
+  .showSamplePressureEstimate: 
+  .showScaleBar: 
+  .showSpotSize: 
+  .showTime: 
+  .showWorkingDistance: 
+  .spotSizeLabel: 
+  .textColor: 
+  .workingDistanceLabel: 
+
+== DegaussMode (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .All: 
+  .Condensor: 
+  .Focus: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== DetectorMixFactors (class)
+
+  .bsdA: 
+  .bsdB: 
+  .bsdC: 
+  .bsdD: 
+  .sed: 
+  .stem: 
+
+== DetectorMode (type)
+Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .A: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .All: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .B: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .C: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .D: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .EastWest: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .Mix: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .NorthSouth: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .Sed: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .Stem: Detector mode for the SEM:
+All -- Use all BSD detector segments
+NorthSouth -- Subtract bottom two BSD segments from top two
+EastWest -- Subtract left two BSD segments from right two
+A -- Select only BSD segment A
+B -- Select only BSD segment B
+C -- Select only BSD segment C
+D -- Select only BSD segment D
+Sed -- Select SE detector
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== DetectorSegment (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Invert: 
+  .Off: 
+  .On: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Distance (function)
+Distance( (Line)line, (Position)point) -> float
+
+Distance( (Position)point1, (Position)point2) -> float
+
+Distance( (Point)point1, (Point)point2) -> float
+
+Distance( (Rectangle)rectangle1, (Rectangle)rectangle2) -> float
+
+== DoorStatus (type)
+Door status
+  .Closed: Door status
+  .Open: Door status
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== DriftCorrection (type)
+DriftCorrection option:
+Off -- Disable drift correction
+On -- Enable drift correction while averaging
+Default -- Depends on phenom settings (On or Off)
+  .Default: DriftCorrection option:
+Off -- Disable drift correction
+On -- Enable drift correction while averaging
+Default -- Depends on phenom settings (On or Off)
+  .Off: DriftCorrection option:
+Off -- Disable drift correction
+On -- Enable drift correction while averaging
+Default -- Depends on phenom settings (On or Off)
+  .On: DriftCorrection option:
+Off -- Disable drift correction
+On -- Enable drift correction while averaging
+Default -- Depends on phenom settings (On or Off)
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== EdsTimeType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .AcquisitionTime: 
+  .LiveTime: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Error (type)
+Phenom Error see message and code attributes for details.
+
+== Event (class)
+The event class provides broadcast notifications to a collection of observers.
+  .connect: connect( (Event)arg1, (object)observer) -> None :
+    connect an additional observer to this event
+  .disconnect: disconnect( (Event)arg1, (object)observer) -> None :
+    disconnect an observer from this event
+
+== ExclusiveAccessStatus (class)
+
+  .isExclusive: 
+  .message: 
+
+== ExpiryDate (class)
+
+  .month: 
+  .year: 
+
+== FaradayCupInfo (class)
+SampleHolder faraday cup information
+  .isPresent: 
+  .position: 
+  .radius: 
+
+== Features (module)
+
+
+== FindPhenom (function)
+FindPhenom( (float)timeOutInSeconds) -> PhenomIdentifier :
+    Returns the first Phenom detected on your local area network.  A PhenomIdentifier with empty
+    name and ip is returned if no Phenom responds within the specified timeout.
+    timeOutInSeconds -- timeout for each subnet in secondsreturns PhenomIdentifier corresponding to Phenom which responded to the query.
+
+== FindPhenoms (function)
+FindPhenoms( (float)timeOutInSeconds) -> list :
+    Returns a list of Phenoms detected on your local area network. It will probe each
+    subnet and report IP addresses and hostnames of all Phenoms which responded.
+    timeOutInSeconds -- timeout for each subnet in secondsreturns list of PhenomIdentifiers corresponding to Phenoms which responded to the query.
+
+== GetImageInfo (function)
+GetImageInfo( (str)filename) -> ImageInfo
+
+== GetLicenseExpiryDate (function)
+GetLicenseExpiryDate( (str)username) -> object
+
+== GetLicenses (function)
+GetLicenses() -> list :
+    The list of installed PPI licenses
+
+== GetSampleHolderMap (function)
+GetSampleHolderMap( (int)holderType) -> dict
+
+== HasLicense (function)
+HasLicense( (int)features) -> bool
+
+== Hsv (class)
+
+  .hue: 
+  .saturation: 
+  .value: 
+
+== Hsv2Rgb (function)
+Hsv2Rgb( (Hsv)hsv) -> Rgb24
+
+== Image (class)
+
+  .IsEmpty: IsEmpty( (Image)arg1) -> bool
+  .MakeRef: MakeRef( (Image)arg1, (ViewOrientation)orientation) -> Image
+
+MakeRef( (Image)arg1, (Rectangle)rectangle) -> Image
+
+MakeRef( (Image)arg1, (int)left, (int)top, (int)right, (int)bottom) -> Image
+  .Resize: Resize( (Image)arg1, (Size)size, (PixelType)encoding [, (float)fill=0]) -> None
+
+Resize( (Image)arg1, (int)width, (int)height, (PixelType)encoding [, (float)fill=0]) -> None
+  .encoding: 
+  .height: 
+  .pixelCount: 
+  .size: 
+  .strideX: 
+  .strideY: 
+  .width: 
+
+== ImageInfo (class)
+Metadata describing microscope state at the time of acquisition
+  .size: 
+
+== ImagingDevice (type)
+Imaging devices:
+NavCam -- The optical microscope ("NavCam")
+Sem    -- The scanning electron microscope ("SEM")
+  .NavCam: Imaging devices:
+NavCam -- The optical microscope ("NavCam")
+Sem    -- The scanning electron microscope ("SEM")
+  .Sem: Imaging devices:
+NavCam -- The optical microscope ("NavCam")
+Sem    -- The scanning electron microscope ("SEM")
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== InstallLicense (function)
+InstallLicense( (str)instrumentId, (str)username, (str)password) -> None :
+    Install Phenom license details on the system
+
+== InstrumentHealth (class)
+
+  .DoorOpen: 
+  .ElectronicsAR: 
+  .ElectronicsOK: 
+  .ImageEngineAR: 
+  .ImageEngineOK: 
+  .NavCamAR: 
+  .NavCamOK: 
+  .OpticsAR: 
+  .OpticsOK: 
+  .SampleAR: 
+  .SampleOK: 
+  .ServiceCallCode: ServiceCallCode( (InstrumentHealth)arg1) -> int
+  .SourceAR: 
+  .SourceOK: 
+  .StageAR: 
+  .StageOK: 
+  .SystemAR: 
+  .SystemOK: 
+  .VacuumAR: 
+  .VacuumOK: 
+
+== InstrumentMode (type)
+Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .ClosingDown: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Error: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Hibernate: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Initializing: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Off: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Operational: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .Standby: Instrument modes:
+Off          -- In "off" state (but still running)
+Operational  -- Operational
+Standby      -- Standby (takes approx. 5 minutes to become operational)
+Hibernate    -- In hibernation mode (takes approx. 6 minutes to become operational)
+Initializing -- Initializing
+ClosingDown  -- Closing down (going to "off" state)
+Error        -- In error condition
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== LengthAnnotation (class)
+
+  .line: 
+
+== LicenseInfo (class)
+PPI License information
+  .instrumentId: InstrumentId of the Phenom
+  .password: PPI password
+  .username: PPI username
+
+== Line (class)
+Line
+  .begin: 
+  .end: 
+
+== Load (function)
+Load( (str)filename) -> Acquisition
+
+== LoadEidSettings (function)
+LoadEidSettings() -> PulseProcessorSettings :
+    Load ElementIdentification settings from default location [deprecated]
+
+LoadEidSettings( (str)path) -> PulseProcessorSettings :
+    Load ElementIdentification settings [deprecated]
+
+== LoadEidSettings_ (function)
+LoadEidSettings_() -> PulseProcessorSettings :
+    Load ElementIdentification settings from default location [deprecated]
+
+== LoadFromBmp (function)
+LoadFromBmp( (str)filename) -> Image
+
+== LoadFromJpeg (function)
+LoadFromJpeg( (str)filename) -> Acquisition
+
+== LoadFromTiff (function)
+LoadFromTiff( (str)filename) -> Acquisition
+
+== LoadPulseProcessorSettings (function)
+LoadPulseProcessorSettings() -> PulseProcessorSettings :
+    Load PulseProcessor settings from default location [deprecated]
+
+LoadPulseProcessorSettings( (str)path) -> PulseProcessorSettings :
+    Load PulseProcessor settings
+
+== LoadPulseProcessorSettingsFromInstrument (function)
+LoadPulseProcessorSettingsFromInstrument( (str)arg1, (object)ipAddress) -> PulseProcessorSettings :
+    Load PulseProcessor settings from Phenom
+
+== LoadPulseProcessorSettings_ (function)
+LoadPulseProcessorSettings_() -> PulseProcessorSettings :
+    Load PulseProcessor settings from default location [deprecated]
+
+== LoadingWorkArea (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .NavCam: 
+  .NotAvailable: 
+  .Sem: 
+  .Unload: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Logging (module)
+
+
+== LoginEvent (class)
+Describes a Phenom login event
+  .time: 
+  .type: 
+  .username: 
+
+== LoginEventType (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .AddUser: 
+  .ChangePassword: 
+  .GetEvents: 
+  .Login: 
+  .Logout: 
+  .RemoveUser: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== MagnificationFromFieldWidth (function)
+MagnificationFromFieldWidth( (float)hfw) -> int
+
+MagnificationFromFieldWidth( (float)hfw, (float)displaySize) -> int
+
+== MagnificationStyle (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Phenom: 
+  .Polaroid: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== MagnificationToFieldWidth (function)
+MagnificationToFieldWidth( (float)magnification) -> float
+
+MagnificationToFieldWidth( (float)magnification, (float)displaySize) -> float
+
+== MakeDefaultSampleHolderMap (function)
+MakeDefaultSampleHolderMap() -> dict
+
+== MakeTzxrSampleHolderMap (function)
+MakeTzxrSampleHolderMap() -> dict
+
+== MakeXLFilter2x2InsertMap (function)
+MakeXLFilter2x2InsertMap() -> dict
+
+== MakeXLFilter3x3InsertMapRev3 (function)
+MakeXLFilter3x3InsertMapRev3() -> dict
+
+== MakeXLFilter3x3InsertMapRev4 (function)
+MakeXLFilter3x3InsertMapRev4() -> dict
+
+== MakeXLSampleHolderMap (function)
+MakeXLSampleHolderMap() -> dict
+
+== MovieWriter (class)
+
+  .AddFrame: AddFrame( (MovieWriter)arg1, (Image)image) -> None :
+    Add frame to movie
+  .Close: Close( (MovieWriter)arg1) -> None :
+    Close file
+
+== MultiStageActuals (class)
+Describes current state of the axes of a multi-axis sample holder
+  .axisPositions: 
+  .isMoving: 
+
+== MultiStageAxisCapability (class)
+Describes capabilities of an axis of a multi-axis sample holder
+  .id: 
+  .range: 
+
+== MultiStageAxisId (type)
+Axis of a multi-axis sample holder
+  .Rotation: Axis of a multi-axis sample holder
+  .Tilt: Axis of a multi-axis sample holder
+  .X: Axis of a multi-axis sample holder
+  .XPrime: Axis of a multi-axis sample holder
+  .Y: Axis of a multi-axis sample holder
+  .Z: Axis of a multi-axis sample holder
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== NavCamMode (type)
+NavCam modes
+  .Error: NavCam modes
+  .Off: NavCam modes
+  .On: NavCam modes
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== NavigationAlgorithm (type)
+Algorithm for stage moves during navigation.
+The Phenom stage is accurate to about 35 um in point-to-point movements, but can achieve considerably better accuracy if
+so-called "backlash correction" is applied, in which the stage is programmed to approach the destination position always
+from the same direction. This mode is not available from the GUI, which always uses direct single stage movements or jogging.
+Backlash correction only increases point-to-point accuracy when the previous stage movements also used the correction.
+Immediately after a single direct movement or a stage jogging movement, the accuracy of the next backlash-corrected stage movement
+will not be better.
+Auto          -- Let the Phenom decide which algorithm to use
+BacklashOnly  -- Always perform backlash correction
+Raw           -- Use single stage moves only
+  .Auto: Algorithm for stage moves during navigation.
+The Phenom stage is accurate to about 35 um in point-to-point movements, but can achieve considerably better accuracy if
+so-called "backlash correction" is applied, in which the stage is programmed to approach the destination position always
+from the same direction. This mode is not available from the GUI, which always uses direct single stage movements or jogging.
+Backlash correction only increases point-to-point accuracy when the previous stage movements also used the correction.
+Immediately after a single direct movement or a stage jogging movement, the accuracy of the next backlash-corrected stage movement
+will not be better.
+Auto          -- Let the Phenom decide which algorithm to use
+BacklashOnly  -- Always perform backlash correction
+Raw           -- Use single stage moves only
+  .BacklashOnly: Algorithm for stage moves during navigation.
+The Phenom stage is accurate to about 35 um in point-to-point movements, but can achieve considerably better accuracy if
+so-called "backlash correction" is applied, in which the stage is programmed to approach the destination position always
+from the same direction. This mode is not available from the GUI, which always uses direct single stage movements or jogging.
+Backlash correction only increases point-to-point accuracy when the previous stage movements also used the correction.
+Immediately after a single direct movement or a stage jogging movement, the accuracy of the next backlash-corrected stage movement
+will not be better.
+Auto          -- Let the Phenom decide which algorithm to use
+BacklashOnly  -- Always perform backlash correction
+Raw           -- Use single stage moves only
+  .Raw: Algorithm for stage moves during navigation.
+The Phenom stage is accurate to about 35 um in point-to-point movements, but can achieve considerably better accuracy if
+so-called "backlash correction" is applied, in which the stage is programmed to approach the destination position always
+from the same direction. This mode is not available from the GUI, which always uses direct single stage movements or jogging.
+Backlash correction only increases point-to-point accuracy when the previous stage movements also used the correction.
+Immediately after a single direct movement or a stage jogging movement, the accuracy of the next backlash-corrected stage movement
+will not be better.
+Auto          -- Let the Phenom decide which algorithm to use
+BacklashOnly  -- Always perform backlash correction
+Raw           -- Use single stage moves only
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== OperationalMode (type)
+Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .AcquireNavCamImage: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .AcquireSemImage: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .LiveNavCam: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .LiveSem: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .Loadpos: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .SelectingNavCam: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .SelectingSem: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .Unavailable: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .Unloading: Instrument operational modes:
+Unavailable        -- Instrument is unavailable
+Loadpos            -- Sample is in loading position
+Unloading          -- Sample is moving to unload position
+SelectingNavCam    -- Sample is moving to NavCam
+SelectingSem       -- Sample is moving to SEM
+LiveNavCam         -- Live viewing mode under the NavCam
+LiveSem            -- Live viewing mode under the SEM
+AcquireNavCamImage -- Performing NavCam acquisition
+AcquireSemImage    -- Performing SEM acquisition
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Patterning (module)
+
+
+== Pdf (module)
+
+
+== Phenom (class)
+Main Phenom Proxy class
+This class acts as a proxy to the Phenom.  When instantiated, it represents one connection to the Phenom,
+on which you can make calls.
+Note that error situations are signalled by throwing exceptions of type Error.
+  .AbortAcquisition: AbortAcquisition( (Phenom)arg1) -> None :
+    Abort SEM image acquisition. started with SemBeginImageAcquisition
+  .AcquireSpectrum: AcquireSpectrum( (Phenom)arg1, (float)time [, (EdsTimeType)timeType=PyPhenom.EdsTimeType.AcquisitionTime]) -> EdsAcquisition
+  .Activate: Activate( (Phenom)arg1) -> None :
+    Make the instrument operational
+  .ActivateFeature: ActivateFeature( (Phenom)arg1, (str)arg2) -> str :
+    Activate Phenom feature key
+  .AddUser: AddUser( (Phenom)arg1, (str)username, (str)password) -> None :
+    Add a new user to the Phenom user list with the given password
+  .BackupSupplyAvailable: BackupSupplyAvailable( (Phenom)arg1) -> bool
+  .BackupSupplyStatusChanged: BackupSupply state changed event occurred (BackupSupplyStatus)
+  .BeginSemAcquisition: BeginSemAcquisition( (Phenom)arg1, (ScanParams)params) -> None :
+    Begin SEM image acquisition.
+    params Scan parameters and detector settings
+    returns Acquisition (combination of image and metadata)
+
+BeginSemAcquisition( (Phenom)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> None
+
+BeginSemAcquisition( (Phenom)arg1, (Size)size [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> None
+  .CanJogInWorkArea: CanJogInWorkArea( (Phenom)arg1, (LoadingWorkArea)workArea) -> bool
+  .CanResetSpectrometer: CanResetSpectrometer( (Phenom)arg1) -> bool
+  .ChangePassword: ChangePassword( (Phenom)arg1, (str)username, (str)current password, (str)new password) -> None :
+    Change the password for the specified user
+  .CloseDoor: CloseDoor( (Phenom)arg1) -> None
+  .ConfirmBakeout: ConfirmBakeout( (Phenom)arg1) -> None
+  .Connected: Connected( (Phenom)arg1) -> bool :
+    Returns the network connection state
+  .ConnectedChanged: Connection state to the Phenom changed
+  .CreateNewSourceStatistics: CreateNewSourceStatistics( (Phenom)arg1, (int)sourceID) -> None :
+    Set new source id
+  .DoorStatusChanged: Door status changed event (DoorStatus)
+  .ExclusiveAccessStatusChanged: ExclusiveAccess state changed event occurred (bool)
+  .FieldWidthChanged: Field width changed event (float)
+  .FieldWidthRangeChanged: Field width range changed event (Range)
+  .GenerateSysInfo: GenerateSysInfo( (Phenom)arg1, (str)path) -> None :
+    Create Phenom sysinfo file.
+  .GetActivatedFeatures: GetActivatedFeatures( (Phenom)arg1) -> list :
+    Returns a list of activated features on the Phenom
+  .GetApiRetryCount: GetApiRetryCount( (Phenom)arg1) -> int :
+    Query the current API retry count for temporarily failing calls (i.e. Busy try later)
+  .GetBackupSupplyStatus: GetBackupSupplyStatus( (Phenom)arg1) -> BackupSupplyStatus
+  .GetCurrentUser: GetCurrentUser( (Phenom)arg1) -> str :
+    Get the username of the user currently logged in (empty if none)
+  .GetDatabarFields: GetDatabarFields( (Phenom)arg1) -> int :
+    Retrieve user-configured data bar fields
+  .GetDatabarLabel: GetDatabarLabel( (Phenom)arg1) -> str :
+    Retrieve user-configured data bar label
+  .GetDoorStatus: GetDoorStatus( (Phenom)arg1) -> DoorStatus
+  .GetExclusiveAccess: GetExclusiveAccess( (Phenom)arg1 [, (str)message='']) -> None :
+    Request exclusive access for this client
+  .GetExclusiveAccessStatus: GetExclusiveAccessStatus( (Phenom)arg1) -> ExclusiveAccessStatus :
+    Inquire the current exclusive access status of the Phenom
+  .GetHFW: GetHFW( (Phenom)arg1) -> float :
+    Query the current field of view size (horizontal field width, "HFW") in meters
+  .GetHFWCalibration: GetHFWCalibration( (Phenom)arg1) -> float
+  .GetHFWRange: GetHFWRange( (Phenom)arg1) -> Range :
+    Query the allowed range of HFW values (i.e., the possible magnification range) of the currently active imaging device
+  .GetImageDeviceCalibration: GetImageDeviceCalibration( (Phenom)arg1) -> Position
+  .GetInstrumentHealth: GetInstrumentHealth( (Phenom)arg1) -> InstrumentHealth :
+    Query the current instrument health (autorecovery) status
+  .GetInstrumentMode: GetInstrumentMode( (Phenom)arg1) -> InstrumentMode :
+    Query the current InstrumentMode of the Phenom
+  .GetLoginEvents: GetLoginEvents( (Phenom)arg1) -> list :
+    Retrieve the list of login events for this Phenom
+  .GetNavCamBrightness: GetNavCamBrightness( (Phenom)arg1) -> float :
+    Get the current brightness value of the NavCam (total light intensity)
+  .GetNavCamContrast: GetNavCamContrast( (Phenom)arg1) -> float :
+    Get the current contrast value of the NavCam (the ratio between light-field (in-line) and dark-field (ambient) lighting of the sample)
+  .GetNavCamDeviceMode: GetNavCamDeviceMode( (Phenom)arg1) -> NavCamMode :
+    Get the NavCam device mode
+  .GetNavCamHFWRange: GetNavCamHFWRange( (Phenom)arg1) -> Range :
+    Get the available range of field width values for the NavCam (in meters)
+  .GetNavCamRotationCalibration: GetNavCamRotationCalibration( (Phenom)arg1) -> float
+  .GetNavCamViewingMode: GetNavCamViewingMode( (Phenom)arg1) -> Size :
+    Get the NavCam live viewing size
+  .GetNavCamWD: GetNavCamWD( (Phenom)arg1) -> float :
+    Query the current working distance of the NavCam ("WD" - the focal distance between the lense and the sample)
+  .GetNavCamWDRange: GetNavCamWDRange( (Phenom)arg1) -> Range :
+    Get the available range of working distance values for the NavCam (in meters)
+  .GetOperationalMode: GetOperationalMode( (Phenom)arg1) -> OperationalMode :
+    Query the current OperationalMode of the Phenom
+  .GetPowerState: GetPowerState( (Phenom)arg1) -> PowerManagementStatus
+  .GetProgressAreaSelection: GetProgressAreaSelection( (Phenom)arg1) -> AreaSelectionProgress
+  .GetPropertyBool: GetPropertyBool( (Phenom)arg1, (str)name) -> bool :
+    Get the specified boolean property
+  .GetPropertyDouble: GetPropertyDouble( (Phenom)arg1, (str)name) -> float :
+    Get the specified double property
+  .GetPropertyInt: GetPropertyInt( (Phenom)arg1, (str)name) -> int :
+    Get the specified integer property
+  .GetPropertyNames: GetPropertyNames( (Phenom)arg1) -> list :
+    Get all properties exposed by the Phenom
+  .GetPropertyString: GetPropertyString( (Phenom)arg1, (str)name) -> str :
+    Get the specified string property
+  .GetRemainingTimeForSystemToShutdown: GetRemainingTimeForSystemToShutdown( (Phenom)arg1) -> float
+  .GetSampleHolder: GetSampleHolder( (Phenom)arg1) -> SampleHolderInfo
+  .GetSemAutoFocussing: GetSemAutoFocussing( (Phenom)arg1) -> bool
+  .GetSemAutoStigmating: GetSemAutoStigmating( (Phenom)arg1) -> bool
+  .GetSemBrightness: GetSemBrightness( (Phenom)arg1) -> float :
+    Get the current brightness value of the SEM
+  .GetSemBsdGain: GetSemBsdGain( (Phenom)arg1) -> float :
+    Get the analog gain of the BSD amplifier [dB]
+  .GetSemBsdGainRange: GetSemBsdGainRange( (Phenom)arg1) -> Range :
+    Get the range of the analog gain of the BSD amplifier [dB]
+  .GetSemBsdOffset: GetSemBsdOffset( (Phenom)arg1) -> float :
+    Get the analog offset of the BSD amplifier [V]
+  .GetSemBsdOffsetRange: GetSemBsdOffsetRange( (Phenom)arg1) -> Range :
+    Get the range of the analog offset of the BSD amplifier [V]
+  .GetSemContrast: GetSemContrast( (Phenom)arg1) -> float :
+    Get the current contrast value of the SEM
+  .GetSemDeviceMode: GetSemDeviceMode( (Phenom)arg1) -> SemMode :
+    Query the current mode of Phenom SEM
+  .GetSemDeviceModeProgress: GetSemDeviceModeProgress( (Phenom)arg1) -> SemDeviceModeProgress :
+    Query the progress of the current SEM mode switch
+  .GetSemGamma: GetSemGamma( (Phenom)arg1) -> float :
+    Get the current gamma correction value of the SEM
+  .GetSemHighTension: GetSemHighTension( (Phenom)arg1) -> float :
+    Query the current SEM high tension (in Volt)
+  .GetSemHighTensionRange: GetSemHighTensionRange( (Phenom)arg1) -> Range :
+    Get the available high tension range for the SEM (in Volt)
+  .GetSemImageShift: GetSemImageShift( (Phenom)arg1) -> Position
+  .GetSemImageShiftRange: GetSemImageShiftRange( (Phenom)arg1) -> Range
+  .GetSemRotation: GetSemRotation( (Phenom)arg1) -> float :
+    Get the current SEM scan rotation (in radians)
+  .GetSemScanLines: GetSemScanLines( (Phenom)arg1) -> list
+  .GetSemSedGain: GetSemSedGain( (Phenom)arg1) -> float :
+    Get the analog gain of the SED amplifier
+  .GetSemSedGainRange: GetSemSedGainRange( (Phenom)arg1) -> Range :
+    Get the range of the analog gain of the SED amplifier
+  .GetSemSedOffset: GetSemSedOffset( (Phenom)arg1) -> float :
+    Get the analog offset of the SED amplifier [V]
+  .GetSemSedOffsetRange: GetSemSedOffsetRange( (Phenom)arg1) -> Range :
+    Get the range of the analog offset of the SED amplifier [V]
+  .GetSemSourceTilt: GetSemSourceTilt( (Phenom)arg1) -> Position
+  .GetSemSpotSize: GetSemSpotSize( (Phenom)arg1) -> float :
+    Query the current SEM spot size (in Amps/sqrt(Volt))
+  .GetSemSpotSizeRange: GetSemSpotSizeRange( (Phenom)arg1) -> Range :
+    Get the available range of spot sizes for the SEM (in Amps/sqrt(Volt))
+  .GetSemStigmate: GetSemStigmate( (Phenom)arg1) -> Position
+  .GetSemTiltScanMode: GetSemTiltScanMode( (Phenom)arg1) -> TiltScanMode :
+    Get the SEM tilt scan mode.
+  .GetSemViewingMode: GetSemViewingMode( (Phenom)arg1) -> SemViewingMode :
+    Query the current viewing mode of the SEM
+  .GetSemViewingModeEx: GetSemViewingModeEx( (Phenom)arg1) -> SemViewingModeEx :
+    Query the current extended viewing mode of the SEM
+  .GetSemWD: GetSemWD( (Phenom)arg1) -> float :
+    Query the current working distance of the SEM ("WD" - the focal distance between the lense and the sample)
+  .GetSemWDRange: GetSemWDRange( (Phenom)arg1) -> Range :
+    Get the available range of working distance values for the SEM (in meters)
+  .GetSemWDRangeEx: GetSemWDRangeEx( (Phenom)arg1) -> RangeEx :
+    Get the available range of working distance values for the SEM and the minimal increment (in meters)
+  .GetSourceBurningHours: GetSourceBurningHours( (Phenom)arg1) -> int :
+    Return source usage hours
+  .GetSourceId: GetSourceId( (Phenom)arg1) -> int :
+    Return source id
+  .GetSpectrum: GetSpectrum( (Phenom)arg1) -> EdsAcquisition
+  .GetStageCenterCalibration: GetStageCenterCalibration( (Phenom)arg1) -> Position
+  .GetStageCorrectionCalibration: GetStageCorrectionCalibration( (Phenom)arg1) -> ProjectionMatrix
+  .GetStageModeAndPosition: GetStageModeAndPosition( (Phenom)arg1) -> StageModeAndPosition :
+    Get current stage mode and position
+  .GetStageStroke: GetStageStroke( (Phenom)arg1) -> StageStroke :
+    Query the current possible stage stroke (i.e., the maximum values for stage positions)
+  .GetStandbyTimeout: GetStandbyTimeout( (Phenom)arg1) -> float :
+    Query the current automatic standby timeout in seconds
+  .GetStemSegmentSelection: GetStemSegmentSelection( (Phenom)arg1) -> StemSegmentSelection
+  .GetTotalTimeOn: GetTotalTimeOn( (Phenom)arg1) -> int :
+    Query the number of days the Phenom has been operational
+  .GetUsers: GetUsers( (Phenom)arg1) -> list :
+    Retrieve the current Phenom user list
+  .GetVFWCalibrationRatio: GetVFWCalibrationRatio( (Phenom)arg1) -> float
+  .HasApiExtension: HasApiExtension( (Phenom)arg1, (str)name) -> bool
+  .HasDoorControl: HasDoorControl( (Phenom)arg1) -> bool
+  .HasProperty: HasProperty( (Phenom)arg1, (str)name) -> bool :
+    Query existence of specified property
+  .Hibernate: Hibernate( (Phenom)arg1) -> None :
+    Set the instrument in hibernate
+  .ImageDeviceCalibChanged: Image device calibration changed event (Position)
+  .InstrumentModeChanged: Instrument mode changed event (InstrumentMode)
+  .IsAcquiringSpectrum: IsAcquiringSpectrum( (Phenom)arg1) -> bool
+  .IsOverruleSafeStartupTimeAllowed: IsOverruleSafeStartupTimeAllowed( (Phenom)arg1) -> bool
+  .Jog: Jog( (Phenom)arg1, (float)xSpeed, (float)ySpeed, (bool)isPercFoV) -> None
+
+Jog( (Phenom)arg1, (Vector2D)speed, (bool)isPercFoV) -> None
+  .Load: Load( (Phenom)arg1) -> None :
+    Load the sample
+  .LoadPulseProcessorSettings: LoadPulseProcessorSettings( (Phenom)arg1) -> PulseProcessorSettings
+  .Login: Login( (Phenom)arg1, (str)username, (str)password) -> None :
+    Log in as the specified user with the given password
+  .LoginEventOccurred: Login event occurred (LoginEvent)
+  .Logout: Logout( (Phenom)arg1) -> None :
+    Log out the current user
+  .MoveBy: MoveBy( (Phenom)arg1, (float)deltaX, (float)deltaY) -> None :
+    Move to a position specified relative to the current position
+    deltaX -- Stage movement in x-direction, in meters from the curent position
+    deltaY -- Stage movement in y-direction, in meters from the current position
+
+MoveBy( (Phenom)arg1, (float)deltaX, (float)deltaY [, (NavigationAlgorithm)algorithm=PyPhenom.NavigationAlgorithm.Auto]) -> None :
+    Move to a position specified relative to the current position
+    deltaX -- Stage movement in x-direction, in meters from the curent position
+    deltaY -- Stage movement in y-direction, in meters from the current position
+    algorithm Select backlash correction for more accurate positioning
+
+MoveBy( (Phenom)delta [, (Vector2D)algorithm=PyPhenom.NavigationAlgorithm.Auto]) -> None :
+    Move to a position specified relative to the current position
+    delta -- Stage movement, in meters from the curent position
+    algorithm Select backlash correction for more accurate positioning
+
+MoveBy( (Phenom)arg1, (Vector2D)delta [, (NavigationAlgorithm)algorithm=PyPhenom.NavigationAlgorithm.Auto]) -> None :
+    Move to a position specified relative to the current position
+    delta -- Stage movement, in meters from the curent position
+    algorithm Select backlash correction for more accurate positioning
+  .MoveTo: MoveTo( (Phenom)arg1, (Position)pos) -> None :
+    Move to a position specified by absolute coordinates
+    pos       -- Stage position in absolute coordinates (in meters)
+
+MoveTo( (Phenom)arg1, (Position)pos [, (NavigationAlgorithm)algorithm=PyPhenom.NavigationAlgorithm.Auto]) -> None :
+    Move to a position specified by absolute coordinates
+    pos       -- Stage position in absolute coordinates (in meters)
+    algorithm -- Select backlash correction for more accurate positioning
+
+MoveTo( (Phenom)arg1, (float)x, (float)y) -> None :
+    Move to a position specified by absolute coordinates
+    x,y       -- Stage position in absolute coordinates (in meters)
+
+MoveTo( (Phenom)arg1, (float)x, (float)y [, (NavigationAlgorithm)algorithm=PyPhenom.NavigationAlgorithm.Auto]) -> None :
+    Move to a position specified by absolute coordinates
+    x,y       -- Stage position in absolute coordinates (in meters)
+    algorithm -- Select backlash correction for more accurate positioning
+  .MoveToNavCam: MoveToNavCam( (Phenom)arg1) -> None :
+    Move the sample to the NavCam position
+  .MoveToSem: MoveToSem( (Phenom)arg1) -> None :
+    Move the sample under the SEM
+  .MultiStageActualsChanged: MultiStageActuals changed event (MultiStageActuals)
+  .MultiStageGetActuals: MultiStageGetActuals( (Phenom)arg1) -> MultiStageActuals :
+    Retrieve the current axis positions of a multi-axis stage
+  .MultiStageGetCapabilities: MultiStageGetCapabilities( (Phenom)arg1) -> list :
+    Get ranges for each axis in a multi-axis stage
+  .MultiStageGetCenterCalib: MultiStageGetCenterCalib( (Phenom)arg1) -> Position
+  .MultiStageGetSampleHeight: MultiStageGetSampleHeight( (Phenom)arg1) -> float :
+    Get the sample height for a multi-axis stage
+  .MultiStageGetSampleRadius: MultiStageGetSampleRadius( (Phenom)arg1) -> float :
+    Get the sample radius for a multi-axis stage
+  .MultiStageMoveTo: MultiStageMoveTo( (Phenom)arg1, (dict)position) -> None :
+    Move a multi-axis stage to the specified position
+  .MultiStageSetCenterCalib: MultiStageSetCenterCalib( (Phenom)arg1, (Position)arg2) -> None
+  .MultiStageSetSampleRadius: MultiStageSetSampleRadius( (Phenom)arg1, (float)radius) -> None :
+    Set the sample radius for a multi-axis stage
+  .NavCamAcquireImage: NavCamAcquireImage( (Phenom)arg1, (CamParams)params) -> Acquisition :
+    Acquire a (color) image from the NavCam sensor using the given acquisition parameters
+    params -- Camera settings for the acquisition
+    returns Acquisition object (combination of image and metadata)
+
+NavCamAcquireImage( (Phenom)arg1, (Size)size) -> Acquisition :
+    Acquire a (color) image from the NavCam sensor using the given acquisition parameters
+    size -- Camera settings for the acquisition
+    returns Acquisition object (combination of image and metadata)
+
+NavCamAcquireImage( (Phenom)arg1, (int)width, (int)height) -> Acquisition :
+    Acquire a (color) image from the NavCam sensor using the given acquisition parameters
+    width -- acquisition width
+    width -- acquisition height
+    returns Acquisition object (combination of image and metadata)
+  .NavCamBrightnessChanged: NavCam brightness changed event (float)
+  .NavCamContrastChanged: NavCam contrast changed event (float)
+  .NavCamFieldWidthRangeChanged: NavCam field width range changed event (Range)
+  .NavCamGetLiveImageCopy: NavCamGetLiveImageCopy( (Phenom)arg1) -> Acquisition :
+    Acquires a (color) image from the NavCam with the settings as currently in effect for live viewing.
+    return Acquisition (combination of image and metadata)
+  .NavCamGetOverviewImage: NavCamGetOverviewImage( (Phenom)arg1) -> Acquisition :
+    Get overview image as retained by the Phenom server
+  .NavCamUpdateOverviewImage: NavCamUpdateOverviewImage( (Phenom)arg1) -> None :
+    Update NavCam overview image as kept by the Phenom server
+  .NavCamWorkingDistanceChanged: NavCam working distance changed event (float)
+  .NavCamWorkingDistanceRangeChanged: NavCam working distance range changed event (Range)
+  .NavcamOverviewImageUpdated: NavCam overview image update event
+  .OpenDoor: OpenDoor( (Phenom)arg1) -> None
+  .OperationalModeChanged: Operational mode changed event (OperationalMode)
+  .OverruleSafeStartupTime: OverruleSafeStartupTime( (Phenom)arg1) -> None
+  .OverruleSafeStartupTimeAllowedChanged: OverruleSafeStartupTime allowed changed event occurred (bool)
+  .PowerOff: PowerOff( (Phenom)arg1) -> None :
+    Switch off the instrument
+  .PowerStateChanged: PowerState changed event occurred (PowerManagementStatus)
+  .ProgressAreaSelectionChanged: Progress area selection changed event (LoadingWorkArea, Progress)
+  .Reboot: Reboot( (Phenom)arg1) -> None :
+    Reboot the Phenom
+  .RegisterSampleHolder: RegisterSampleHolder( (Phenom)arg1, (str)id, (str)code) -> None
+  .ReleaseExclusiveAccess: ReleaseExclusiveAccess( (Phenom)arg1) -> None :
+    Release exclusive access status for this client
+  .RemoveUser: RemoveUser( (Phenom)arg1, (str)username) -> None :
+    Remove the specified user from the Phenom user list
+  .RequiresBakeoutConfirmation: RequiresBakeoutConfirmation( (Phenom)arg1) -> bool
+  .RequiresLogin: RequiresLogin( (Phenom)arg1) -> bool :
+    Returns whether the Phenom requires login before operation
+  .RequiresMaintenance: RequiresMaintenance( (Phenom)arg1) -> bool :
+    Query if the Phenom needs maintenance
+  .ResetSpectrometer: ResetSpectrometer( (Phenom)arg1) -> None
+  .ResetStandbyTimer: ResetStandbyTimer( (Phenom)arg1) -> None
+  .SampleHolderCallOperation: SampleHolderCallOperation( (Phenom)arg1, (int)regid) -> None
+  .SampleHolderEvent: Sample holder event (int, str)
+  .SampleHolderGetCapabilities: SampleHolderGetCapabilities( (Phenom)arg1) -> list
+  .SampleHolderGetValue: SampleHolderGetValue( (Phenom)arg1, (int)arg2) -> str
+  .SampleHolderSetValue: SampleHolderSetValue( (Phenom)arg1, (int)arg2, (str)value) -> None
+  .SampleHolderStatusChanged: Sample holder status changed event (SampleHolderStatus)
+  .SelectImagingDevice: SelectImagingDevice( (Phenom)arg1, (ImagingDevice)device) -> None :
+    Move the sample to the NavCam or the SEM
+  .SemAbortAutoFocus: SemAbortAutoFocus( (Phenom)arg1) -> None
+  .SemAbortAutoSourceTilt: SemAbortAutoSourceTilt( (Phenom)arg1) -> None :
+    Abort an auto source tilt algorithm, and restore the source tilt values which were in effect prior to starting the alignment procedure.
+  .SemAbortAutoStigmate: SemAbortAutoStigmate( (Phenom)arg1) -> None
+  .SemAcquireImage: SemAcquireImage( (Phenom)arg1, (ScanParams)params) -> Acquisition :
+    Acquire an image from the SEM
+    params -- Scan parameters and detector settings
+    returns Acquisition (combination of image and metadata)
+
+SemAcquireImage( (Phenom)arg1, (int)width, (int)height [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> Acquisition
+
+SemAcquireImage( (Phenom)arg1, (Size)size [, (int)frames=1 [, (DetectorMode)detector=PyPhenom.DetectorMode.All [, (bool)hdr=False [, (float)scale=1 [, (Position)center=(0, 0)]]]]]) -> Acquisition
+  .SemAcquireImageEx: SemAcquireImageEx( (Phenom)arg1, (ScanParamsEx)params) -> Acquisition :
+    Acquire an image from the SEM
+    params -- ExtendedScan parameters and detector settings
+    returns Acquisition (combination of image and metadata)
+  .SemAllowedVacuumChargeReductionChanged: SEM allowed vacuum charge reduction changed event
+  .SemAutoContrastBrightness: SemAutoContrastBrightness( (Phenom)arg1) -> None :
+    Perform an automatic contrast/brightness optimization routine on the SEM. This will takea few seconds and set the optimum contrast and brightness values for the current sample
+  .SemAutoFocus: SemAutoFocus( (Phenom)arg1 [, (AutoFocusAlgorithm)algorithm=PyPhenom.AutoFocusAlgorithm.Auto]) -> None :
+    Perform an AutoFocus algorithm and set the current working distance (focus value) to the
+    optimum value.This will take a few seconds, depending on which algorithm is used.
+    algorithm -- Select which AutoFocus algorithm to use, default: AutoFocusAlgorithm::Auto
+  .SemAutoSourceTilt: SemAutoSourceTilt( (Phenom)arg1) -> None :
+    Perform an automatic source tilt alignment.
+    This may take up to several minutes if the current settings
+    are very far from the optimal values, since the Phenom will then perform a full scan of all possible source
+    tilt settings to determine the optimal values.  Note that on the Phenom itself, this algorithm is only available
+    in "expert" mode, on the source tilt alignment page.  The values found with the algorithm are persistent
+    (i.e., they will stay in effect even if the Phenom is brought to standby, hibernate, or even switched off and
+    back on again).
+    Forcing an auto source tilt alignment is not recommended,
+    since the optimal position is only valid when the electron source has been "on" for a longer period of time
+    (at minimum half an hour); changing the alignment may result in deterioarated image quality once the source
+    reaches its optimum working conditions.
+  .SemAutoStigmate: SemAutoStigmate( (Phenom)arg1) -> None :
+    Optimize the phenom astigmatism
+  .SemBlankBeam: SemBlankBeam( (Phenom)arg1) -> None :
+    Blank the electron beam
+  .SemBlankSource: SemBlankSource( (Phenom)arg1) -> None :
+    Blank the electron source
+  .SemBrightnessChanged: SEM brightness changed event (float)
+  .SemBsdGainChanged: BSD gain changed event (float)
+  .SemBsdOffsetChanged: BSD offset changed event (float)
+  .SemContrastChanged: SEM contrast changed event (float)
+  .SemDegauss: SemDegauss( (Phenom)arg1 [, (DegaussMode)degaussMode=PyPhenom.DegaussMode.All]) -> None :
+    Perform Degauss procedure on the SEM lenses
+  .SemDeviceModeChanged: SEM device mode changed event (SemMode)
+  .SemDisableSed: SemDisableSed( (Phenom)arg1) -> None
+  .SemEnableSed: SemEnableSed( (Phenom)arg1) -> None
+  .SemGammaChanged: SEM gamma changed event (float)
+  .SemGetAcquisition: SemGetAcquisition( (Phenom)arg1) -> Acquisition :
+    Returns SEM acquisition started with BeginSemAcquisition once completed
+  .SemGetAcquisitionTimeEstimate: SemGetAcquisitionTimeEstimate( (Phenom)arg1, (ScanParams)params, (bool)live) -> float :
+    Get an estimate of the acquisition time for the given scan parameters
+    .
+
+SemGetAcquisitionTimeEstimate( (Phenom)arg1, (ScanParamsEx)params, (bool)live) -> float :
+    Get an estimate of the acquisition time for the given scan parameters
+    .
+  .SemGetAllowedVacuumChargeReduction: SemGetAllowedVacuumChargeReduction( (Phenom)arg1) -> list :
+    Get list of allowed VacuumChargeReduction values
+  .SemGetBlankBeamState: SemGetBlankBeamState( (Phenom)arg1) -> SemBlankState :
+    Returns the beam blanking state
+  .SemGetBlankSourceState: SemGetBlankSourceState( (Phenom)arg1) -> SemBlankState :
+    Returns the source blanking state
+  .SemGetDetectorMixFactors: SemGetDetectorMixFactors( (Phenom)arg1) -> DetectorMixFactors
+  .SemGetEmissionCurrent: SemGetEmissionCurrent( (Phenom)arg1) -> float :
+    Query the current SEM emission current (in Amps)
+  .SemGetEmissionCurrentRange: SemGetEmissionCurrentRange( (Phenom)arg1) -> Range :
+    Get the available range of emission current for the SEM (in Amps)
+  .SemGetEnableDriftCorrection: SemGetEnableDriftCorrection( (Phenom)arg1) -> bool :
+    Query if drift correction is used/enabled for scans which do not explicitly enable/disable drift correction.
+  .SemGetFaradayCupInfo: SemGetFaradayCupInfo( (Phenom)arg1) -> FaradayCupInfo
+  .SemGetLastAutoProbeImage: SemGetLastAutoProbeImage( (Phenom)arg1) -> Acquisition :
+    Get last performed AutoProbe image
+  .SemGetLiveImageCopy: SemGetLiveImageCopy( (Phenom)arg1 [, (int)nFramesDelay=0]) -> Acquisition :
+    Acquire a copy of the currently visible SEM image.
+    Acquires an image from the SEM with the settings as currently in effect for live viewing.
+    nFramesDelay -- number of frames to wait before copying (default value is 0, meaning acquire immediately)
+    returns Acquisition (combination of image and metadata)
+  .SemGetRemainingTimeToEnableSed: SemGetRemainingTimeToEnableSed( (Phenom)arg1) -> float
+  .SemGetSedState: SemGetSedState( (Phenom)arg1) -> SedState
+  .SemGetTargetVacuumChargeReduction: SemGetTargetVacuumChargeReduction( (Phenom)arg1) -> VacuumChargeReduction
+  .SemGetVacuumChargeReductionState: SemGetVacuumChargeReductionState( (Phenom)arg1) -> VacuumChargeReductionState
+  .SemHasDetectorMixing: SemHasDetectorMixing( (Phenom)arg1) -> bool
+  .SemHasSed: SemHasSed( (Phenom)arg1) -> bool
+  .SemHighTensionChanged: SEM high tension changed event (float)
+  .SemImageShiftChanged: SEM image shift changed event (Position)
+  .SemIsSupportedScan: SemIsSupportedScan( (Phenom)arg1, (SemViewingModeEx)mode) -> bool
+
+SemIsSupportedScan( (Phenom)arg1, (SemViewingMode)mode) -> bool
+  .SemIsVacuumChargeReductionAllowed: SemIsVacuumChargeReductionAllowed( (Phenom)arg1, (VacuumChargeReduction)value) -> bool :
+    Test if VacuumChargeReduction value is allowed
+  .SemProgressDeviceModeChanged: SemProgressDeviceMode changed event (SemMode, Progress)
+  .SemReadFaradayCupCurrent: SemReadFaradayCupCurrent( (Phenom)arg1) -> float
+  .SemRemainingTimeToEnableSedChanged: SEM remaining time to enable SED changed event (float)
+  .SemRotationChanged: SEM rotation changed event (float)
+  .SemSedFailureOccured: SED failure occured event (SedFailure)
+  .SemSedStateChanged: SED state changed event (SedState)
+  .SemSetDetectorMixFactors: SemSetDetectorMixFactors( (Phenom)arg1, (DetectorMixFactors)arg2) -> None
+  .SemSetEmissionCurrent: SemSetEmissionCurrent( (Phenom)arg1, (float)value) -> None :
+    Set the SEM emission current (in Amps)
+  .SemSetEnableDriftCorrection: SemSetEnableDriftCorrection( (Phenom)arg1, (bool)enable) -> None :
+    Set if drift correction is used/enabled for scans which do not explicitly enable/disable drift correction.
+  .SemSetTargetVacuumChargeReduction: SemSetTargetVacuumChargeReduction( (Phenom)arg1, (VacuumChargeReduction)arg2) -> None
+  .SemSpotSizeChanged: SEM spot size changed event (float)
+  .SemSpotSizeRangeChanged: SEM spot size range changed event (Range)
+  .SemStigmateChanged: SEM stigmation changed event (Position)
+  .SemSupportsDriftCorrection: SemSupportsDriftCorrection( (Phenom)arg1) -> bool :
+    Query if drift correction is supported.
+  .SemSupportsGammaCorrection: SemSupportsGammaCorrection( (Phenom)arg1) -> bool :
+    Query whether this Phenom supports gamma correction
+  .SemSupportsTmpLock: SemSupportsTmpLock( (Phenom)arg1) -> bool :
+    Query if drift TMP locked scanning is supported.
+  .SemTargetVacuumChargeReductionChanged: SEM target vacuum charge reduction changed event
+  .SemUnblankBeam: SemUnblankBeam( (Phenom)arg1) -> None :
+    Unblank the electron beam
+  .SemUnblankSource: SemUnblankSource( (Phenom)arg1) -> None :
+    Unblank the electron source
+  .SemViewingModeChanged: SemViewingModeChanged changed event (SemViewingMode)
+  .SemViewingModeExChanged: SemViewingModeExChanged changed event (SemViewingMode)
+  .SemWaitForSedDisabled: SemWaitForSedDisabled( (Phenom)arg1) -> None
+  .SemWaitForSedEnabled: SemWaitForSedEnabled( (Phenom)arg1) -> None
+  .SemWorkingDistanceChanged: SEM working distance changed event (float)
+  .SemWorkingDistanceRangeChanged: SEM working distance range changed event (Range)
+  .SetApiRetryCount: SetApiRetryCount( (Phenom)arg1, (int)count) -> None :
+    Set the API retry count (>= 0) for temporarily failing calls (i.e. Busy try later).
+  .SetDatabarFields: SetDatabarFields( (Phenom)arg1, (int)mask) -> None :
+    Publish user-configurable data bar fields
+  .SetDatabarLabel: SetDatabarLabel( (Phenom)arg1, (str)label) -> None :
+    Publish user-configurable data bar label
+  .SetHFW: SetHFW( (Phenom)arg1, (float)hfw) -> None :
+    Set the field of view (horizontal field width, "HFW") of the currently active imaging
+    device(i.e., NavCam or SEM) in meters, effectively setting the zoom level
+    hfw -- Horizontal Field Width in meters(smaller number is higher magnification factor)
+  .SetHFWCalibration: SetHFWCalibration( (Phenom)arg1, (float)value) -> None
+  .SetImageDeviceCalibration: SetImageDeviceCalibration( (Phenom)arg1, (Position)value) -> None
+  .SetInstrumentMode: SetInstrumentMode( (Phenom)arg1, (InstrumentMode)mode) -> None :
+    Set the current InstrumentMode of the Phenom
+  .SetNavCamBrightness: SetNavCamBrightness( (Phenom)arg1, (float)brightness) -> None :
+    Set the current brightness value of the NavCam (total light intensity)
+    brightness -- Brightness value
+  .SetNavCamContrast: SetNavCamContrast( (Phenom)arg1, (float)contrast) -> None :
+    Set the current contrast value of the NavCam (the ratio between light-field (in-line) and dark-field (ambient) lighting of the sample)
+    contrast current ratio(0 .. 1)
+  .SetNavCamRotationCalibration: SetNavCamRotationCalibration( (Phenom)arg1, (float)value) -> None
+  .SetNavCamViewingMode: SetNavCamViewingMode( (Phenom)arg1, (Size)size) -> None :
+    Set the NavCam live viewing size
+  .SetNavCamWD: SetNavCamWD( (Phenom)arg1, (float)wd) -> None :
+    Set the current working distance of the NavCam (in meters)
+    wd -- Working distance (in meters)
+  .SetSemBrightness: SetSemBrightness( (Phenom)arg1, (float)brightness) -> None :
+    Set the current brightness value for the SEM
+  .SetSemBsdGain: SetSemBsdGain( (Phenom)arg1, (float)gain) -> None :
+    Set the analog gain of the BSD amplifier [dB]
+  .SetSemBsdOffset: SetSemBsdOffset( (Phenom)arg1, (float)offset) -> None :
+    Set the analog offset of the BSD amplifier [V]
+  .SetSemContrast: SetSemContrast( (Phenom)arg1, (float)contrast) -> None :
+    Set the current contrast value for the SEM
+  .SetSemGamma: SetSemGamma( (Phenom)arg1, (float)gamma) -> None :
+    Set the current gamma correction value for the SEM
+  .SetSemHighTension: SetSemHighTension( (Phenom)arg1, (float)value) -> None :
+    Set the SEM high tension (in Volt)
+  .SetSemImageShift: SetSemImageShift( (Phenom)arg1, (Position)position) -> None
+  .SetSemRotation: SetSemRotation( (Phenom)arg1, (float)angle) -> None :
+    Set the SEM scan rotation (in radians)
+  .SetSemScanDefinition: SetSemScanDefinition( (Phenom)arg1, (ScanDefinition)scan) -> None
+  .SetSemScanLines: SetSemScanLines( (Phenom)arg1, (list)scanLines) -> None
+  .SetSemSedGain: SetSemSedGain( (Phenom)arg1, (float)gain) -> None :
+    Set the analog gain of the SED amplifier
+  .SetSemSedOffset: SetSemSedOffset( (Phenom)arg1, (float)offset) -> None :
+    Set the analog offset of the SED amplifier [V]
+  .SetSemSourceTilt: SetSemSourceTilt( (Phenom)arg1, (Position)value [, (bool)persist=False]) -> None :
+    Sets the SEM source tilt alignment.
+  .SetSemSpotSize: SetSemSpotSize( (Phenom)arg1, (float)spotSize) -> None :
+    Set the SEM spot size (in Amps/sqrt(Volt))
+  .SetSemStigmate: SetSemStigmate( (Phenom)arg1, (Position)value [, (bool)persist=False]) -> None :
+    Sets SEM stigmate value.
+  .SetSemTiltScanMode: SetSemTiltScanMode( (Phenom)arg1, (TiltScanMode)mode) -> None :
+    Set the SEM tilt scan mode.
+  .SetSemViewingMode: SetSemViewingMode( (Phenom)arg1, (SemViewingMode)mode) -> None :
+    Set the current viewing mode of the SEM
+  .SetSemViewingModeEx: SetSemViewingModeEx( (Phenom)arg1, (SemViewingModeEx)mode) -> None :
+    Set the current extended viewing mode of the SEM
+  .SetSemWD: SetSemWD( (Phenom)arg1, (float)wd) -> None :
+    Set the current working distance of the SEM (in meters)
+    wd -- Working distance (in meters)
+
+SetSemWD( (Phenom)arg1, (float)wd, (WdAdjustmentMethod)adjustment, (WdCorrectionMethod)correction) -> None :
+    Set the current working distance of the SEM (in meters)
+    wd -- Working distance (in meters)
+  .SetStageCenterCalibration: SetStageCenterCalibration( (Phenom)arg1, (Position)value) -> None
+  .SetStageCorrectionCalibration: SetStageCorrectionCalibration( (Phenom)arg1, (ProjectionMatrix)value) -> None
+  .SetStandbyTimeout: SetStandbyTimeout( (Phenom)arg1 [, (float)seconds=3600]) -> None :
+    Set the current automatic standby timeout in seconds
+  .SetStemSegmentSelection: SetStemSegmentSelection( (Phenom)arg1, (StemSegmentSelection)selection) -> None
+  .SetVFWCalibrationRatio: SetVFWCalibrationRatio( (Phenom)arg1, (float)value) -> None
+  .Simulate: Simulate( (Phenom)arg1, (Acquisition)arg2) -> None :
+    Simulate acquisition (only on simulator)
+  .Spectrometer: 
+  .StageCenterCalibChanged: Stage center calibration changed event (Position)
+  .StageModeAndPositionChanged: Stage mode and position changed event (StageModeAndPosition)
+  .StageStrokeChanged: Stage stroke changed event (StageStroke)
+  .Standby: Standby( (Phenom)arg1) -> None :
+    Set the instrument in standby
+  .StartAcquireSpectrum: StartAcquireSpectrum( (Phenom)arg1, (float)time [, (EdsTimeType)timeType=PyPhenom.EdsTimeType.AcquisitionTime]) -> None
+  .StemSegmentSelectionChanged: The set of selected STEM segments changed
+  .Stop: Stop( (Phenom)arg1) -> None
+  .StopAcquireSpectrum: StopAcquireSpectrum( (Phenom)arg1) -> None
+  .Unload: Unload( (Phenom)arg1) -> None :
+    Unload the sample
+  .UnloadSample: UnloadSample( (Phenom)arg1) -> None :
+    Move the sample to the unloading position and unlock the sample bay door
+  .versionInfo: Query the current software version running on the Phenom. Note that this returns an extensive
+XML structure with version information about all the constituent modules of the Phenom Software.
+
+== PhenomIdentifier (class)
+PhenomIdentifier represents a Phenom instrument name and IP address
+  .ip: IP address of the Phenom
+  .name: Hostname of the Phenom (typically contains its serial number)
+
+== PhenomType (function)
+PhenomType( (str)SerialNumber) -> str
+
+== PhysicalBounds (function)
+PhysicalBounds( (Acquisition)arg1) -> RectangleD
+
+== PixelFromDisplayValue (function)
+PixelFromDisplayValue( (AcquisitionState)acqState, (int)displayValue) -> int
+
+== PixelToDisplayValue (function)
+PixelToDisplayValue( (AcquisitionState)acqState, (int)pixelValue) -> int
+
+== PixelType (type)
+Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .BGR: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .BGRA: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .Float32: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .RGB: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .RGBA: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .Unsigned16: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .Unsigned8: Possible values for image data types:
+Unsigned8  -- Unsigned, 8 bit samples (0 .. 255)
+Unsigned16 -- Unsigned, 16 bit samples (0 .. 65535)
+Float32    -- Floating point, 32 bit samples
+RGB        -- Color (NavCam) samples, 8 bits per channel, as returned by NavCamAcquireImage
+BGR        -- Color (NavCam) samples, 8 bits per channel, as returned by GetLiveImage
+RGBA       -- Color with alpha channel
+BGRA       -- Color with alpha channel
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Plot (module)
+
+
+== Point (class)
+(x,y) Point
+  .x: 
+  .y: 
+
+== Position (class)
+(x,y) Position
+  .x: 
+  .y: 
+
+== PowerManagementStatus (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .PowerDown: 
+  .PowerOk: 
+  .WaitCharging: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Processing (module)
+
+
+== Progress (class)
+
+  .percentage: 
+  .status: 
+  .timeRemaining: 
+
+== ProgressStatus (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Aborted: 
+  .Completed: 
+  .NotRunning: 
+  .Running: 
+  .RunningUnknown: 
+  .Started: 
+  .StartedUnknown: 
+  .Stopped: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== PulseProcessorPreset (class)
+
+  .bins: Number of energy bins in the spectrum
+  .dispersion: Energy per bin [eV]
+  .fastPeakingTime: Fast channel peaking time [s]
+  .fastThreshold: threshold level of fast channel, relative to full scale
+  .flatTopWidth: Pulse Processor Flat Top width [s]
+  .gain: Detector gain factor
+  .measuredCKa: Carbon spectrum measurment used for low energy calibration [eV] [deprecated]
+  .offset: Energy offset of bin 0 [eV]
+  .peakingTime: Peaking time [s]
+  .resolution: FWHM energy reolution an Mn Ka, [eV]
+  .slowThreshold: threshold level of slow channel, relative to full scale
+
+== PulseProcessorSettings (class)
+
+  .deviceId: 
+  .map: 
+  .presets: 
+  .spot: 
+
+== Range (class)
+Value range: begin .. end
+  .begin: 
+  .end: 
+
+== RangeEx (class)
+Value range: begin .. end, step
+  .range: 
+  .step: 
+
+== Rectangle (class)
+Integer (left, top, right, bottom) rectangle.
+  .bottom: 
+  .center: center( (Rectangle)arg1) -> Position
+  .grow: grow( (Rectangle)arg1, (int)arg2) -> Rectangle
+  .height: height( (Rectangle)arg1) -> int
+  .left: 
+  .leftBottom: leftBottom( (Rectangle)arg1) -> Point
+  .leftTop: leftTop( (Rectangle)arg1) -> Point
+  .right: 
+  .rightBottom: rightBottom( (Rectangle)arg1) -> Point
+  .rightTop: rightTop( (Rectangle)arg1) -> Point
+  .top: 
+  .translate: translate( (Rectangle)arg1, (int)arg2, (int)arg3) -> Rectangle
+  .width: width( (Rectangle)arg1) -> int
+
+== RectangleD (class)
+Floating point (left, top, right, bottom) rectangle.
+  .bottom: 
+  .center: center( (RectangleD)arg1) -> Position
+  .grow: grow( (RectangleD)arg1, (float)arg2) -> RectangleD
+  .height: height( (RectangleD)arg1) -> float
+  .left: 
+  .leftBottom: leftBottom( (RectangleD)arg1) -> Position
+  .leftTop: leftTop( (RectangleD)arg1) -> Position
+  .right: 
+  .rightBottom: rightBottom( (RectangleD)arg1) -> Position
+  .rightTop: rightTop( (RectangleD)arg1) -> Position
+  .top: 
+  .translate: translate( (RectangleD)arg1, (float)arg2, (float)arg3) -> RectangleD
+  .width: width( (RectangleD)arg1) -> float
+
+== RemoveDatabar (function)
+RemoveDatabar( (Acquisition)acquisition) -> Acquisition
+
+== RetVal (type)
+Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .ACCESSDENIED: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .EXCLUSIVE: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .INVALID_ADDRESS: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .NORESPONSE: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_CLIPPED: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_COMM_ERROR: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_CONTEXT: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_FAIL: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_OK: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OM_UNCAL: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .OTHER: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .UNREACHABLE: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .WRONG_VERSION: Return values from Phenom API calls:
+OM_OK -- No error
+OM_FAIL --  Generic Failure
+OM_CONTEXT -- Command currently rejected; Phenom busy
+OM_COMM_ERROR -- Communication problem
+OM_CLIPPED -- Value was clipped to available range
+OM_UNCAL -- Phenom is in an uncalibrated state.
+ACCESSDENIED -- Access Denied (check HTTP authentication credentials)
+EXCLUSIVE -- Another client has claimed exclusive access
+INVALID_ADDRESS -- Invalid address specified
+UNREACHABLE -- Specified host was unreachable
+NORESPONSE -- Specified host did not reply (perhaps not a Phenom?)
+WRONG_VERSION -- Other error - perhaps different version of WebService?
+OTHER -- Unknown other error
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== Rgb24 (class)
+
+  .blue: 
+  .green: 
+  .red: 
+
+== Rgb2Hsv (function)
+Rgb2Hsv( (Rgb24)rgb) -> Hsv
+
+== Rgba32 (class)
+
+  .alpha: 
+  .blue: 
+  .green: 
+  .red: 
+
+== SampleHolderCapability (class)
+
+  .capabilityType: 
+  .dataType: 
+  .description: 
+  .id: 
+  .maximumValue: 
+  .minimumValue: 
+
+== SampleHolderInfo (class)
+
+  .holderID: 
+  .holderType: 
+  .status: 
+
+== SampleHolderStatus (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Absent: 
+  .Present: 
+  .Unregistered: 
+  .Unsupported: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== SampleHolderType (module)
+
+
+== Save (function)
+Save( (object)image, (str)filename [, (int)conversion=0]) -> None
+
+Save( (Acquisition)acquisition, (str)filename [, (int)conversion=0]) -> None
+
+Save( (object)img, (AcquisitionState)acqState, (str)filename [, (int)conversion=0]) -> None
+
+== SaveConversion (module)
+
+
+== SaveOption (module)
+
+
+== SavePulseProcessorSettings (function)
+SavePulseProcessorSettings( (PulseProcessorSettings)settings, (str)filename) -> None :
+    Save PulseProcessor settings
+
+== SavePulseProcessorSettingsOnInstrument (function)
+SavePulseProcessorSettingsOnInstrument( (str)instrumentNameOrAddress, (PulseProcessorSettings)settings, (object)path) -> None :
+    Save PulseProcessor settings on Phenom
+
+== ScanExtClockMode (type)
+External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .Cmd: External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .Frame: External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .Line: External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .Off: External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .Pixel: External Clock mode for the SEM scan generator:
+Off -- No external clock (default option)
+Cmd -- Toggle clock for each Acquisition command
+Frame -- Toggle clock for each Frame
+Line -- Toggle clock for each Acquisition Line
+Pixel -- Toggle clock for each Pixel
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== ScanLine (class)
+
+  .length: 
+  .line: 
+
+== ScanMode (type)
+SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .Blank: SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .Imaging: SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .Lines: SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .Pattern: SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .Spot: SEM scanning mode:
+Blank -- Blank the beam (to minimize sample damage)
+Imaging -- Normal imaging mode
+Spot -- Single spot mode
+Lines -- Line scan mode
+Pattern -- Pattern scan mode
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== ScanParams (class)
+Parameters for the SEM scan pattern definition
+  .center: Center of the acquisition within the field of view
+  .detector: Detector configuration
+  .hdr: Use High Dynamic Range mode: return a 16-bit raw image without contrast/brightness applied
+  .nFrames: Number of frames to average for signal to noise improvement
+  .scale: Scale of the acquisition within the field of view
+  .size: Dimensions of the image to scan (max 2048 x 2048)
+
+== ScanParamsEx (class)
+Parameters for the Extended SEM scan pattern definition
+  .center: Center of the acquisition within the field of view
+  .detector: Detector configuration
+  .driftCorrect: Use dift correction while averaging
+  .dwellTime: DwellTime per pixel in seconds
+  .extClockMode: External scan clock configuration
+  .hdr: Use High Dynamic Range mode: return a 16-bit raw image without contrast/brightness applied
+  .interlace: Interlace the scan. skip interlace-1 lines between lines
+  .nFrames: Number of frames to average for signal to noise improvement
+  .scale: Scale of the acquisition within the field of view
+  .size: Dimensions of the image to scan (max 2048 x 2048)
+  .tmpLock: TMP line frequency synchronisation
+
+== SedFailure (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .DetectorError: 
+  .InvalidVacuumState: 
+  .SwitchingFailed: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== SedState (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Disabled: 
+  .Disabling: 
+  .Enabled: 
+  .Enabling: 
+  .NotAllowed: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== SemBlankState (type)
+SEM blanking state
+  .Blanked: SEM blanking state
+  .Unavailable: SEM blanking state
+  .Unblanked: SEM blanking state
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== SemDeviceModeProgress (class)
+
+  .progress: 
+  .targetMode: 
+
+== SemMode (type)
+SEM modes
+  .Blank: SEM modes
+  .Error: SEM modes
+  .GoingBlank: SEM modes
+  .GoingHibernate: SEM modes
+  .GoingImaging: SEM modes
+  .GoingOff: SEM modes
+  .GoingService: SEM modes
+  .GoingStandby: SEM modes
+  .Hibernate: SEM modes
+  .Imaging: SEM modes
+  .Off: SEM modes
+  .Service: SEM modes
+  .Standby: SEM modes
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== SemViewingMode (class)
+
+  .scanMode: 
+  .scanParams: 
+
+== SemViewingModeEx (class)
+
+  .scanMode: 
+  .scanParams: 
+
+== Size (class)
+Integer (width, height) pair.
+  .height: 
+  .width: 
+
+== SizeD (class)
+Floating point (width, height) pair.
+  .height: 
+  .width: 
+
+== SizeF (class)
+Floating point (width, height) pair.
+  .height: 
+  .width: 
+
+== SoftwareVersionInfo (class)
+
+  .build: 
+  .hash: 
+  .label: 
+  .major: 
+  .minor: 
+  .patch: 
+
+== Solver (module)
+
+
+== Spectrometer (class)
+
+  .ApplySettings: ApplySettings( (Spectrometer)arg1, (PulseProcessorPreset)settings) -> None
+  .ClearSpectrum: ClearSpectrum( (Spectrometer)arg1) -> None
+  .GetSpectrum: GetSpectrum( (Spectrometer)arg1) -> Spectrum
+  .GetStatus: GetStatus( (Spectrometer)arg1) -> SpectrometerStatus
+  .IsAcquiring: IsAcquiring( (Spectrometer)arg1) -> bool
+  .Start: Start( (Spectrometer)arg1) -> None
+
+Start( (Spectrometer)arg1, (float)realTime) -> None
+  .Stop: Stop( (Spectrometer)arg1) -> None
+  .bins: 
+  .deviceId: 
+  .dispersion: 
+  .energyPerChannel: 
+  .fastPeakingTime: 
+  .fastThreshold: 
+  .gain: 
+  .offset: 
+  .peakingTime: 
+  .pileUpRejection: 
+  .resolution: 
+  .slowPeakingTime: 
+  .slowThreshold: 
+
+== SpectrometerStatus (class)
+
+  .accumulationTime: 
+  .detectorTemperature: 
+  .fastCount: 
+  .realTime: 
+  .slowCount: 
+
+== Spectroscopy (module)
+
+
+== StageModeAndPosition (class)
+Stage mode and position information.
+  .mode: 
+  .position: 
+  .target: 
+
+== StageNavigationMode (type)
+Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .Jog: Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .NotAvailable: Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .NotHomed: Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .PointToPoint: Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .Rest: Current status of the stage.
+The stage will detect whether it is still correctly homed ("calibrated") and will perform a homing procedure when
+needed. This is the sound you hear the stage make when starting up the Phenom.
+NotAvailable -- Stage currently not available
+Rest         -- Stage is not moving
+PointToPoint -- Stage is performing a point-to-point move
+Jog          -- Stage is performing a jogging move
+NotHomed     -- Stage is not homed
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== StageStroke (class)
+Valid range for stage positions
+  .NavCamX: 
+  .NavCamY: 
+  .SemX: 
+  .SemY: 
+
+== StemSegmentSelection (class)
+Segment selection for the STEM holder
+  .All: 
+  .BF: 
+  .DF: 
+  .HA: 
+  .Off: 
+  .bf1: 
+  .bf2: 
+  .bf3: 
+  .bf4: 
+  .df1: 
+  .ha1: 
+  .ha2: 
+  .ha3: 
+  .ha4: 
+  .ha5: 
+  .ha6: 
+
+== Stitch (module)
+
+
+== TextAnnotation (class)
+
+  .samplePosition: 
+  .text: 
+  .textPosition: 
+
+== TiltScanMode (type)
+SEM tilt scan mode
+  .CoScan: SEM tilt scan mode
+  .ContraScan: SEM tilt scan mode
+  .Off: SEM tilt scan mode
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== UninstallLicense (function)
+UninstallLicense( (str)instrumentId) -> None :
+    Uninstall the PPI license for the given instrument
+
+== VacuumChargeReduction (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .High: 
+  .Low: 
+  .Off: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== VacuumChargeReductionState (class)
+
+  .isStable: 
+  .pressureEstimate: 
+  .progress: 
+  .target: 
+
+== Vector2D (class)
+(x,y) Vector
+  .x: 
+  .y: 
+
+== VersionInfo (class)
+
+  .apiExtensions: 
+  .apiVersion: 
+  .edition: 
+  .fields: 
+  .instrumentId: 
+  .instrumentType: 
+  .softwareVersion: 
+  .versionInfo: 
+
+== ViewOrientation (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .InvertX: 
+  .InvertY: 
+  .Neutral: 
+  .Rotate180: 
+  .Rotate270: 
+  .Rotate90: 
+  .SwapXY: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== WdAdjustmentMethod (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .NoWait: 
+  .Wait: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+
+== WdCorrectionMethod (type)
+int([x]) -> integer
+int(x, base=10) -> integer
+
+Convert a number or string to an integer, or return 0 if no arguments
+are given.  If x is a number, return x.__int__().  For floating point
+numbers, this truncates towards zero.
+
+If x is not a number or if base is given, then x must be a string,
+bytes, or bytearray instance representing an integer literal in the
+given base.  The literal can be preceded by '+' or '-' and be surrounded
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+Base 0 means to interpret the base from the string as an integer literal.
+>>> int('0b100', base=0)
+4
+  .Magnification: 
+  .NoCorrection: 
+  .names: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+  .values: dict() -> new empty dictionary
+dict(mapping) -> new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -> new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -> new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phenom-translator"
+dynamic = ["version"]      # from phenom_translator/__init__.py: the one place it is set
+description = "SEM studies (JSON) -> a Thermo Scientific Phenom XL through PyPhenom; checked results, CLI and MCP server"
+readme = "README.md"
+# The package runs on 3.10+ (development and the fake XL on any OS); on the instrument PC it must run on the Python
+# PyPhenom is built for: 3.12 for PyPhenom 2.1.0.
+requires-python = ">=3.10"
+authors = [{ name = "Nicola Ferralis", email = "ferralis@generalflash.com" }]
+license = { text = "MIT" }
+dependencies = ["numpy>=1.22"]
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.2"]
+render = ["matplotlib>=3.5"]
+test = ["pytest>=7"]
+
+[project.scripts]
+phnt = "phenom_translator.cli:main"
+phnt-mcp = "phenom_translator.mcp_server:main"
+
+[tool.setuptools]
+packages = ["phenom_translator"]
+
+[tool.setuptools.dynamic]
+version = { attr = "phenom_translator.__version__" }

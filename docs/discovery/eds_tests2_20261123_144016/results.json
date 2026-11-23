@@ -1,0 +1,427 @@
+{
+ "q19_a_spectrometer_stop": {
+  "ok": true,
+  "s": 5.439,
+  "result": {
+   "stop_call_s": 3.506,
+   "acquiring_after": false,
+   "status_after": {
+    "accumulationTime": 4.924,
+    "detectorTemperature": 234.70000000000002,
+    "fastCount": 108332,
+    "realTime": 5.001,
+    "slowCount": 103332
+   },
+   "spectrometer_spectrum": {
+    "offset": -56.23099449253562,
+    "dispersion": 9.861634874103531,
+    "bins": 2048,
+    "counts": 103332
+   },
+   "phenom_getspectrum_s": 0.082,
+   "phenom_spectrum": {
+    "offset": -56.23099449253562,
+    "dispersion": 9.861634874103531,
+    "bins": 2048,
+    "counts": 103332,
+    "metadata": {
+     "Ccorrection": 0.0,
+     "azimuthAngle": 0.0,
+     "detectorToOpticalAxis": 0.03506,
+     "detectorType": "FastSDD_C2",
+     "detectorWdOffset": 0.0107,
+     "elevationAngle": 0.4974188368183839,
+     "fastPeakingTime": 1e-07,
+     "highTension": 15000.0,
+     "holderTiltAngle": 0.0,
+     "instrumentId": "MVE082023-10818-L",
+     "liveTime": 4.696735664438948,
+     "realTime": 5.001,
+     "resolution": 127.9548928156522,
+     "sddSurfaceArea": 2.5e-05,
+     "slowPeakingTime": 1e-06,
+     "spectrumCorrection": "Raw",
+     "workingDistance": 0.0063
+    }
+   }
+  }
+ },
+ "q19_b_stop_then_read_spectrometer": {
+  "ok": true,
+  "s": 5.183,
+  "result": {
+   "stop_call_s": 3.533,
+   "acquiring_after": false,
+   "status_after": {
+    "accumulationTime": 0.0,
+    "detectorTemperature": 234.70000000000002,
+    "fastCount": 0,
+    "realTime": 0.0,
+    "slowCount": 0
+   },
+   "spectrometer_spectrum": {
+    "offset": 0.0,
+    "dispersion": 10.0,
+    "bins": 4096,
+    "counts": 0
+   },
+   "phenom_spectrum": {
+    "offset": -56.23099449253562,
+    "dispersion": 9.861634874103531,
+    "bins": 2048,
+    "counts": 207063
+   }
+  }
+ },
+ "baseline_after_q19": {
+  "ok": true,
+  "s": 1.34,
+  "result": {
+   "offset": -56.23099449253562,
+   "dispersion": 9.861634874103531,
+   "bins": 2048,
+   "counts": 24943,
+   "metadata": {
+    "Ccorrection": 0.0,
+    "azimuthAngle": 0.0,
+    "detectorToOpticalAxis": 0.03506,
+    "detectorType": "FastSDD_C2",
+    "detectorWdOffset": 0.0107,
+    "elevationAngle": 0.4974188368183839,
+    "fastPeakingTime": 1e-07,
+    "highTension": 15000.0,
+    "holderTiltAngle": 0.0,
+    "instrumentId": "MVE082023-10818-L",
+    "liveTime": 1.1258133918351774,
+    "realTime": 1.202,
+    "resolution": 127.9548928156522,
+    "sddSurfaceArea": 2.5e-05,
+    "slowPeakingTime": 1e-06,
+    "spectrumCorrection": "Raw",
+    "workingDistance": 0.0063
+   },
+   "wall_s": 1.34
+  }
+ },
+ "q20_spot_preset": {
+  "ok": true,
+  "s": 2.385,
+  "result": {
+   "spectrometer_before": {
+    "bins": 2048,
+    "deviceId": "AmptekDigitalPulseProcessor(SerialNr:15430 Fw:6.9.7 Fpga:7.1.0)",
+    "dispersion": 9.861634874103531,
+    "energyPerChannel": 9.861634874103531,
+    "fastPeakingTime": 1e-07,
+    "fastThreshold": 0.01318359375,
+    "gain": 14.95000062969783,
+    "offset": -56.23099449253562,
+    "peakingTime": 1e-06,
+    "pileUpRejection": true,
+    "resolution": 127.9548928156522,
+    "slowPeakingTime": 1e-06,
+    "slowThreshold": 0.01221299462628236
+   },
+   "spectrometer_after_apply": {
+    "bins": 2048,
+    "deviceId": "AmptekDigitalPulseProcessor(SerialNr:15430 Fw:6.9.7 Fpga:7.1.0)",
+    "dispersion": 9.891421106111192,
+    "energyPerChannel": 9.891421106111192,
+    "fastPeakingTime": 1e-07,
+    "fastThreshold": 0.0120703125,
+    "gain": 14.90486173890768,
+    "offset": -34.47464073160096,
+    "peakingTime": 4e-06,
+    "pileUpRejection": true,
+    "resolution": 124.3468970012127,
+    "slowPeakingTime": 4e-06,
+    "slowThreshold": 0.005862237420615535
+   },
+   "spectrum": {
+    "offset": -56.23099449253562,
+    "dispersion": 9.861634874103531,
+    "bins": 2048,
+    "counts": 70402,
+    "metadata": {
+     "Ccorrection": 0.0,
+     "azimuthAngle": 0.0,
+     "detectorToOpticalAxis": 0.03506,
+     "detectorType": "FastSDD_C2",
+     "detectorWdOffset": 0.0107,
+     "elevationAngle": 0.4974188368183839,
+     "fastPeakingTime": 1e-07,
+     "highTension": 15000.0,
+     "holderTiltAngle": 0.0,
+     "instrumentId": "MVE082023-10818-L",
+     "liveTime": 3.1939407194867773,
+     "realTime": 3.404,
+     "resolution": 127.9548928156522,
+     "sddSurfaceArea": 2.5e-05,
+     "slowPeakingTime": 1e-06,
+     "spectrumCorrection": "Raw",
+     "workingDistance": 0.0063
+    },
+    "wall_s": 2.333
+   }
+  }
+ },
+ "q20_map_preset_restored": {
+  "ok": true,
+  "s": 2.303,
+  "result": {
+   "spectrometer": {
+    "bins": 2048,
+    "deviceId": "AmptekDigitalPulseProcessor(SerialNr:15430 Fw:6.9.7 Fpga:7.1.0)",
+    "dispersion": 9.861634874103531,
+    "energyPerChannel": 9.861634874103531,
+    "fastPeakingTime": 1e-07,
+    "fastThreshold": 0.01318359375,
+    "gain": 14.95000062969783,
+    "offset": -56.23099449253562,
+    "peakingTime": 1e-06,
+    "pileUpRejection": true,
+    "resolution": 127.9548928156522,
+    "slowPeakingTime": 1e-06,
+    "slowThreshold": 0.01221299462628236
+   },
+   "check_spectrum": {
+    "offset": -56.23099449253562,
+    "dispersion": 9.861634874103531,
+    "bins": 2048,
+    "counts": 116200,
+    "metadata": {
+     "Ccorrection": 0.0,
+     "azimuthAngle": 0.0,
+     "detectorToOpticalAxis": 0.03506,
+     "detectorType": "FastSDD_C2",
+     "detectorWdOffset": 0.0107,
+     "elevationAngle": 0.4974188368183839,
+     "fastPeakingTime": 1e-07,
+     "highTension": 15000.0,
+     "holderTiltAngle": 0.0,
+     "instrumentId": "MVE082023-10818-L",
+     "liveTime": 5.261717763233436,
+     "realTime": 5.607,
+     "resolution": 127.9548928156522,
+     "sddSurfaceArea": 2.5e-05,
+     "slowPeakingTime": 1e-06,
+     "spectrumCorrection": "Raw",
+     "workingDistance": 0.0063
+    },
+    "wall_s": 2.257
+   }
+  }
+ },
+ "q17_spot_grid_10_points": {
+  "ok": true,
+  "s": 6.812,
+  "result": {
+   "total_s": 6.812,
+   "points": [
+    {
+     "xy": [
+      -0.2,
+      -0.1
+     ],
+     "set_spot_s": 0.012,
+     "wall_s": 0.7,
+     "counts": 128769
+    },
+    {
+     "xy": [
+      -0.1,
+      0.0
+     ],
+     "set_spot_s": 0.033,
+     "wall_s": 0.701,
+     "counts": 141177
+    },
+    {
+     "xy": [
+      0.0,
+      0.1
+     ],
+     "set_spot_s": 0.031,
+     "wall_s": 0.684,
+     "counts": 153181
+    },
+    {
+     "xy": [
+      0.10000000000000003,
+      -0.1
+     ],
+     "set_spot_s": 0.012,
+     "wall_s": 0.671,
+     "counts": 165798
+    },
+    {
+     "xy": [
+      0.2,
+      0.0
+     ],
+     "set_spot_s": 0.031,
+     "wall_s": 0.693,
+     "counts": 180189
+    },
+    {
+     "xy": [
+      0.3,
+      0.1
+     ],
+     "set_spot_s": 0.024,
+     "wall_s": 0.689,
+     "counts": 195491
+    },
+    {
+     "xy": [
+      0.4000000000000001,
+      -0.1
+     ],
+     "set_spot_s": 0.012,
+     "wall_s": 0.662,
+     "counts": 211995
+    },
+    {
+     "xy": [
+      0.5,
+      0.0
+     ],
+     "set_spot_s": 0.011,
+     "wall_s": 0.666,
+     "counts": 229078
+    },
+    {
+     "xy": [
+      0.6000000000000001,
+      0.1
+     ],
+     "set_spot_s": 0.023,
+     "wall_s": 0.675,
+     "counts": 246301
+    },
+    {
+     "xy": [
+      0.7,
+      -0.1
+     ],
+     "set_spot_s": 0.012,
+     "wall_s": 0.671,
+     "counts": 263754
+    }
+   ]
+  }
+ },
+ "viewing_mode_restored": {
+  "ok": true,
+  "s": 0.006,
+  "result": {
+   "scanMode": "Imaging",
+   "scanParams": {
+    "center": {
+     "x": 0.0,
+     "y": 0.0
+    },
+    "detector": "All",
+    "hdr": false,
+    "nFrames": 4,
+    "scale": 1.0,
+    "size": {
+     "height": 540,
+     "width": 960
+    }
+   }
+  }
+ },
+ "q6_wide_full": {
+  "ok": true,
+  "s": 0.299,
+  "result": {
+   "asked": [
+    960,
+    540,
+    1.0,
+    0.0,
+    0.0
+   ],
+   "pixelSize": {
+    "height": 9.137668562640468e-07,
+    "width": 9.137668562640468e-07
+   },
+   "scanCenter": {
+    "x": 0.0,
+    "y": 0.0
+   },
+   "toWorld": {
+    "a11": 9.137668562640468e-07,
+    "a12": 0.0,
+    "a13": -0.00027770052313788997,
+    "a21": 0.0,
+    "a22": -9.137668562640468e-07,
+    "a23": 0.0044145641047744315
+   }
+  }
+ },
+ "q6_wide_half_y": {
+  "ok": true,
+  "s": 0.273,
+  "result": {
+   "asked": [
+    960,
+    540,
+    0.5,
+    0.0,
+    0.25
+   ],
+   "pixelSize": {
+    "height": 4.568834281320234e-07,
+    "width": 4.568834281320234e-07
+   },
+   "scanCenter": {
+    "x": 0.0,
+    "y": 0.25
+   },
+   "toWorld": {
+    "a11": 4.568834281320234e-07,
+    "a12": 0.0,
+    "a13": -5.8396477634518716e-05,
+    "a21": 0.0,
+    "a22": -4.568834281320234e-07,
+    "a23": 0.004291205579178785
+   }
+  }
+ },
+ "q6_wide_half_x": {
+  "ok": true,
+  "s": 0.278,
+  "result": {
+   "asked": [
+    960,
+    540,
+    0.5,
+    0.25,
+    0.0
+   ],
+   "pixelSize": {
+    "height": 4.568834281320234e-07,
+    "width": 4.568834281320234e-07
+   },
+   "scanCenter": {
+    "x": 0.25,
+    "y": 0.0
+   },
+   "toWorld": {
+    "a11": 4.568834281320234e-07,
+    "a12": 0.0,
+    "a13": -5.8396477634518716e-05,
+    "a21": 0.0,
+    "a22": -4.568834281320234e-07,
+    "a23": 0.004291205579178785
+   }
+  }
+ },
+ "q7_eds_live_map_construct": {
+  "ok": false,
+  "s": 0.026,
+  "error": "RuntimeError('Missing license: EdsMap')"
+ }
+}
