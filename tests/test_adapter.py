@@ -150,3 +150,18 @@ def test_vacuum_settling_and_sed_not_allowed_are_warned():
     assert s["summary"]["vacuum_stable"] is False and s["summary"]["sed"] == "NotAllowed"
     text = " ".join(s["warnings"])
     assert "vacuum is still changing" in text and "~12.9 Pa" in text and "SED is not allowed" in text
+
+
+def test_sed_not_allowed_in_navcam_is_not_blamed_on_the_vacuum():
+    # 2026-11-23 17:10 on the XL: LiveNavCam at 0.1 Pa, vacuum stable, SED NotAllowed
+    s = {"instrument_mode": "Operational", "operational_mode": "LiveNavCam",
+         "charge_reduction": {"stable": True, "pressure_pa": 0.1}, "sed": {"present": True, "state": "NotAllowed"}}
+    _, warnings = adapter.summarise(s)
+    assert not any("SED" in w for w in warnings) and any("not under the SEM" in w for w in warnings)
+
+
+def test_standby_is_a_warning_and_cannot_image():
+    # 2026-11-23 17:10: Standby while the operational mode still read LiveNavCam for 20 s, then Unavailable
+    s = {"instrument_mode": "Standby", "operational_mode": "LiveNavCam", "door": "Closed"}
+    sm, warnings = adapter.summarise(s)
+    assert sm["can_image"] is False and any("Standby" in w for w in warnings)

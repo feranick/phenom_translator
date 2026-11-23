@@ -174,6 +174,7 @@ what changed in each: [CHANGELOG.md](CHANGELOG.md).
 | Version | Phase | Notes |
 |---|---|---|
 | 2026.11.23.4 | 1 | `phnt report` shows its progress, nothing on stderr (PowerShell ISE) |
+| 2026.11.23.7 | 1 | SED warning only under the SEM, largest field only in SEM; T1 (Standby) passed |
 | 2026.11.23.6 | 1 | the Phenom UI's EDS and mode-dependent HFW reported as states (`unavailable`), `eds` in the summary; watch without repeated lines |
 | 2026.11.23.5 | 1 | the watch reads every 0.5 s and logs changes of state only, with the pressure trace; largest field interpolated by WD |
 | 2026.11.23.3 | 1 | `phnt report` (one command, two files) for test sessions at the instrument |

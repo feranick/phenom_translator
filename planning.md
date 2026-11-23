@@ -103,11 +103,19 @@ license username removed from the probe before committing).
 - **The Phenom UI's EDS holds the detector**: while it took a spot spectrum (~7 s, scan mode `Spot`, after a 0.5 s
   `AcquireSemImage`), `Spectrometer.GetStatus` from phnt was refused (`Access denied trying to open Spectrometer
   device - is another application using it?`); every other read went on. So phnt and the UI cannot both use the EDS;
-  phnt reports it as `eds: busy elsewhere`. Open: does phnt's status read every 0.5 s ever keep the UI from opening
-  the detector (Q22)? A phase-4 EDS study takes the instrument lock (exclusive access) first.
+  phnt reports it as `eds: busy elsewhere`. phnt's status read every 0.5 s did not disturb the UI's spectrum (Q22). A phase-4 EDS study takes the instrument lock (exclusive access) first.
 - A sample exchange from the UI, as the watch saw it: `Unloading` 33 s (the pressure reads ~0 while venting), `Loadpos`
   with the door open, `SelectingNavCam` 3 s, `LiveNavCam`, `SelectingSem` more than 40 s (pumping, 0.65 Pa).
   `GetHFWRange` is refused outside NavCam/SEM. A quick read takes 0.17 s mean (0.99 s max).
+- **Standby** (watch of 2026-11-23 17:10): set from the UI's Settings > Status; woken by the box at the bottom left of
+  the UI or the button on the microscope. Entering it, the instrument mode turns `Standby` at once but the operational
+  mode keeps its last value (`LiveNavCam`) for ~20 s, then `Unavailable`: phnt must judge readiness by the instrument
+  mode first (it does). The reported pressure went to ~60 Pa and the chamber pumped down again (1.85 Pa after ~90 s);
+  Operational about 7 s after that, NavCam 20 s later. All reads worked in Standby. One quick read took **6.0 s**
+  during the transitions: the phase-2 watchdog must allow a slow read (several seconds) before calling the
+  instrument unreachable.
+- The SED reads `NotAllowed` in NavCam whatever the vacuum (0.1 Pa, stable): only with the sample under the SEM does
+  `NotAllowed` mean the vacuum is not ready.
 - Largest field at WD 8.7 mm: 1003.2 µm (the four points 3.3, 3.9, 6.3, 8.7 mm: ~50–52 µm per mm of WD).
 - PyPhenom's simulator differs from the XL: holder `XL1 Motorized Height`, 42 Pa, 5.3 kV, `can_image` false; it
   refuses the spectrometer (license) and the activated features (it tries a network host).
@@ -409,8 +417,8 @@ EDS bring-up is complete for phnt's design (eds_tests.py, eds_tests2.py, eds_tes
 `docs/discovery/`). Left for TESTING.md at build time: the energy correction on a second known sample, spectra at
 other kV and spot settings (count rate and dead time against spot size), and charging on an uncoated insulator.
 
-Q22 (2026-11-23, from the watch with .5): does phnt reading `Spectrometer.GetStatus` every 0.5 s ever make the
-Phenom UI's EDS fail to start? In that watch the UI's spectrum ran; to confirm with what the UI showed.
+Q22 **Answered** (2026-11-23): phnt reading `Spectrometer.GetStatus` every 0.5 s did not disturb the Phenom UI's
+EDS: its spot spectrum ran and finished normally, no message in the UI. (One spectrum: watch for it in later runs.)
 
 ## State log
 

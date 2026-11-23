@@ -245,7 +245,7 @@ def summarise(s: dict) -> tuple[dict, list]:
     live_sem = omode in ("LiveSem", "AcquireSemImage")
     if imode and imode != "Operational":
         warnings.append(f"the instrument is in {imode}: it must be Operational to image (the operator wakes it in "
-                        "the Phenom UI; about 30 s from Standby)")
+                        "the Phenom UI or with the button on the microscope; the chamber pumps down again first)")
     elif omode and not live_sem:
         warnings.append(f"operational mode {omode}: the sample is not under the SEM (load it and select the SEM in "
                         "the Phenom UI)")
@@ -274,7 +274,9 @@ def summarise(s: dict) -> tuple[dict, list]:
                         + (f"~{p:.1f} Pa" if isinstance(p, (int, float)) else "pressure unknown")
                         + "): wait for it before high-resolution imaging, EDS or the SED")
     sed = s.get("sed") or {}
-    if sed.get("present") and sed.get("state") == "NotAllowed":
+    # in NavCam or while loading the SED is NotAllowed whatever the vacuum (seen 2026-11-23 at 0.1 Pa): the
+    # 'not under the SEM' warning covers it there
+    if sed.get("present") and sed.get("state") == "NotAllowed" and live_sem:
         warnings.append("the SED is not allowed now (it needs high vacuum): BSD only until the vacuum settles")
     summary = {"can_image": bool(imode == "Operational" and live_sem and s.get("door") != "Open"),
                "vacuum_stable": cr.get("stable"), "pressure_pa": cr.get("pressure_pa"),

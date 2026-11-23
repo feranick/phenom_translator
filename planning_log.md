@@ -68,3 +68,9 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
   all seen (T3 pass). Two refusals are states, not faults: the UI's EDS holds the detector, and the HFW range is
   refused outside NavCam/SEM; both are reported as `unavailable`, and the summary has `eds` (idle, acquiring, busy
   elsewhere). The watch compares only quick reads, so the full status no longer repeats lines. 1003.2 µm at WD 8.7 mm.
+- 2026-11-23, after .6: Q22 answered by Nicola: the UI's EDS spectrum during the watch finished normally, no message.
+- 2026-11-23, 2026.11.23.7: Standby watch on the XL (with .5): T1 pass, no read errors in Standby; the operational
+  mode lags the instrument mode by ~20 s; the chamber pumps down again before Operational; a quick read took 6 s in
+  the transition (the watchdog must allow it). The SED is NotAllowed in NavCam at any vacuum: warned only under the
+  SEM now. The largest field shown only in SEM. Phase 1 at the instrument: all of T0–T5 done; the profile import is
+  left (T4), and T6 (the MCP server in the Claude app).

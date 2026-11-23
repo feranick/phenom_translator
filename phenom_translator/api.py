@@ -228,11 +228,14 @@ def _report_text(rep: dict) -> str:
         lines.append(f"INSTRUMENT: {ins.get('error')}")
     else:
         sm = ins.get("summary") or {}
+        in_sem = ins.get("operational_mode") in ("LiveSem", "AcquireSemImage")
         lines.append(f"NOW: {ins.get('instrument_mode')}/{ins.get('operational_mode')}, door {ins.get('door')}, "
                      f"{sm.get('kv')} kV, spot {(ins.get('spot') or {}).get('value')}, WD {sm.get('wd_mm')} mm, "
-                     f"HFW {sm.get('hfw_um')} um, max HFW {_hfw_max_um(ins)} um, vacuum "
-                     f"{'stable' if sm.get('vacuum_stable') else 'NOT stable'} {_g(sm.get('pressure_pa'))} Pa, SED {sm.get('sed')}, EDS "
-                     f"{(ins.get('spectrometer') or {}).get('temperature_k')} K, can_image {sm.get('can_image')}")
+                     f"HFW {sm.get('hfw_um')} um"
+                     + (f", max HFW {_hfw_max_um(ins)} um" if in_sem else " (not in SEM)")
+                     + f", vacuum {'stable' if sm.get('vacuum_stable') else 'NOT stable'} {_g(sm.get('pressure_pa'))} Pa, "
+                     f"SED {sm.get('sed')}, EDS {(ins.get('spectrometer') or {}).get('temperature_k')} K, "
+                     f"can_image {sm.get('can_image')}")
         lines.append(f"STATUS READ: {ins.get('read_s')} s | warnings: {ins.get('warnings') or 'none'} | read errors: "
                      f"{ins.get('read_errors') or 'none'}"
                      + (f" | unavailable: {ins['unavailable']}" if ins.get("unavailable") else ""))
