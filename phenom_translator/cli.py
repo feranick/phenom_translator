@@ -12,6 +12,12 @@
   phnt profile import FILE [--who NAME]
                                      the edited proposal, checked and marked reviewed (a person only)
   phnt profile set KEY VALUE         one value (JSON), e.g. limits.kv_max 20
+  phnt report [--watch S] [--every S] [--no-ppisim] [--out FILE]
+                                     everything for a test session in two files (a short text to paste, and the
+                                     full JSON next to it): versions, the instrument now and the time a status read
+                                     takes, the profile and its proposal, PyPhenom's simulator; --watch S reads the
+                                     status every --every S (2) for S seconds while someone uses the Phenom UI and
+                                     lists every change and read error (read only). Prints the text.
   phnt fake state | set KEY=JSON ... | reset
                                      the fake XL's state (PHNT_MODE=fake), for practice and tests
 
@@ -46,6 +52,11 @@ def main(argv=None) -> int:
     p.add_argument("action", choices=["show", "default", "propose", "import", "set"])
     p.add_argument("args", nargs="*")
     p.add_argument("--who", default="")
+    r = sub.add_parser("report")
+    r.add_argument("--watch", type=float, default=0.0, metavar="S")
+    r.add_argument("--every", type=float, default=2.0, metavar="S")
+    r.add_argument("--no-ppisim", action="store_true")
+    r.add_argument("--out", default=None, metavar="FILE")
     f = sub.add_parser("fake")
     f.add_argument("action", choices=["state", "set", "reset"])
     f.add_argument("pairs", nargs="*")
@@ -61,6 +72,12 @@ def main(argv=None) -> int:
         return 0 if api.all_ok(out) else 1
     elif a.cmd == "instrument":
         out = api.instrument(a.action)
+    elif a.cmd == "report":
+        if a.watch > 0:
+            print(f"watching for {a.watch:g} s (status every {a.every:g} s): use the Phenom UI now", file=sys.stderr)
+        out = api.report(a.watch, a.every, not a.no_ppisim, a.out)
+        print(out["text"])
+        return 0
     elif a.cmd == "profile":
         out = _profile(a)
     else:

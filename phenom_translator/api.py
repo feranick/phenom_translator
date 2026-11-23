@@ -7,6 +7,7 @@ import datetime as _dt
 import importlib.metadata
 import json
 import platform
+import time
 from pathlib import Path
 
 from . import __version__, adapter, config, profile, store
@@ -89,6 +90,125 @@ def instrument(action: str = "status") -> dict:
             "summary": d.get("summary"), "warnings": d.get("warnings"), "read_errors": d.get("read_errors"),
             "changes": _changes(before, prop),
             "next": "a person reviews the proposal and runs: phnt profile import " + str(profile.proposed_path())}
+
+
+WATCH_KEYS = ("instrument_mode", "operational_mode", "sem_mode", "door")
+
+
+def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out: str | None = None) -> dict:
+    """Everything a test session at the instrument needs, in one call: versions, the instrument now (and how long a
+    status read takes), the profile and its proposal, PyPhenom's simulator, and with watch_s > 0 the status read
+    every every_s seconds for watch_s seconds while a person uses the Phenom UI (TESTING T1, T3): every change of
+    mode, door, EDS acquisition, vacuum, SED, warnings or read errors, with the time since the start. Read only.
+    Writes two files: the short text (out, default PHNT_OUT/report_<time>.txt) and the full report next to it
+    (.json). Returns the paths and the text."""
+    started = _dt.datetime.now()
+    rep = {"report": started.isoformat(timespec="seconds"), "status": tool_status()}
+    try:
+        a = adapter.get()
+    except adapter.AdapterError as e:
+        rep["instrument"] = {"ok": False, "error": str(e)}
+        a = None
+    if a is not None:
+        t0 = time.perf_counter()
+        rep["instrument"] = {"ok": True, **a.discover()}
+        rep["instrument"]["read_s"] = round(time.perf_counter() - t0, 3)
+    p, prop = profile.load(), store.read_json(profile.proposed_path())
+    rep["profile"] = {"in_use": {"reviewed": p.get("reviewed"), "source": p.get("source"), "limits": p["limits"]},
+                      "proposal": ({"proposed_at": prop.get("proposed_at"), "limits": prop.get("limits"),
+                                    "differs_from_in_use": _changes(p, prop)} if prop else None)}
+    if ppisim and config.mode() == "phenom" and a is not None:
+        try:
+            s = adapter.PhenomAdapter(simulator=True).status()
+            rep["ppisim"] = {"ok": True, "read_errors": s.get("read_errors"), "summary": s.get("summary")}
+        except adapter.AdapterError as e:
+            rep["ppisim"] = {"ok": False, "error": str(e)}
+    if a is not None and watch_s > 0:
+        rep["watch"] = _watch(a, watch_s, max(every_s, 0.2))
+    txt = Path(out).expanduser() if out else config.out_dir() / f"report_{started.strftime('%Y%m%d_%H%M%S')}.txt"
+    js = txt.with_suffix(".json")
+    txt.parent.mkdir(parents=True, exist_ok=True)
+    rep["files"] = {"text": str(txt), "json": str(js)}
+    rep["text"] = _report_text(rep)
+    store.write_json(js, rep)
+    txt.write_text(rep["text"] + "\n", encoding="utf-8")
+    return {"ok": True, "files": rep["files"], "text": rep["text"]}
+
+
+def _watch_key(s: dict) -> dict:
+    sm = s.get("summary") or {}
+    return {**{k: s.get(k) for k in WATCH_KEYS},
+            "eds_acquiring": (s.get("spectrometer") or {}).get("acquiring"),
+            "scan": (s.get("viewing_mode") or {}).get("scan_mode"),
+            "vacuum_stable": sm.get("vacuum_stable"), "sed": sm.get("sed"),
+            "warnings": s.get("warnings") or [], "read_errors": sorted((s.get("read_errors") or {}).items())}
+
+
+def _watch(a, watch_s: float, every_s: float) -> dict:
+    t_start, samples, changes, last = time.perf_counter(), 0, [], None
+    durations, errors = [], {}
+    while True:
+        t = time.perf_counter() - t_start
+        if t > watch_s:
+            break
+        t0 = time.perf_counter()
+        s = a.status()
+        durations.append(time.perf_counter() - t0)
+        samples += 1
+        for r, msg in (s.get("read_errors") or {}).items():
+            key = f"{r} during {s.get('operational_mode')}"
+            errors.setdefault(key, {"count": 0, "first": msg})["count"] += 1
+        k = _watch_key(s)
+        if k != last:
+            changes.append({"t_s": round(t, 1), **k})
+            last = k
+        time.sleep(max(0.0, every_s - (time.perf_counter() - t0)))
+    return {"seconds": watch_s, "every_s": every_s, "samples": samples,
+            "read_s": {"mean": round(sum(durations) / len(durations), 3), "max": round(max(durations), 3)}
+            if durations else None, "read_errors": errors, "changes": changes}
+
+
+def _report_text(rep: dict) -> str:
+    st, ins = rep["status"], rep.get("instrument") or {}
+    pp = st.get("pyphenom") or {}
+    lines = [f"phnt {st.get('translator')} | Python {st.get('python')} | mode {st.get('settings', {}).get('PHNT_MODE')}"
+             f" | PyPhenom {pp.get('version') or pp.get('error') or pp.get('note')}"
+             + (f" ({pp['found_by']})" if pp.get("found_by") else "")]
+    if not ins.get("ok"):
+        lines.append(f"INSTRUMENT: {ins.get('error')}")
+    else:
+        sm = ins.get("summary") or {}
+        lines.append(f"NOW: {ins.get('instrument_mode')}/{ins.get('operational_mode')}, door {ins.get('door')}, "
+                     f"{sm.get('kv')} kV, spot {(ins.get('spot') or {}).get('value')}, WD {sm.get('wd_mm')} mm, "
+                     f"HFW {sm.get('hfw_um')} um, vacuum {'stable' if sm.get('vacuum_stable') else 'NOT stable'} "
+                     f"{sm.get('pressure_pa')} Pa, SED {sm.get('sed')}, EDS "
+                     f"{(ins.get('spectrometer') or {}).get('temperature_k')} K, can_image {sm.get('can_image')}")
+        lines.append(f"STATUS READ: {ins.get('read_s')} s | warnings: {ins.get('warnings') or 'none'} | read errors: "
+                     f"{ins.get('read_errors') or 'none'}")
+    pr = rep["profile"]
+    lines.append(f"PROFILE in use: reviewed {pr['in_use']['reviewed']} ({pr['in_use']['source']})"
+                 + (f" | proposal of {pr['proposal']['proposed_at']}, differs: "
+                    f"{list(pr['proposal']['differs_from_in_use']) or 'no'}" if pr.get("proposal") else
+                    " | no proposal"))
+    lim = (pr.get("proposal") or pr["in_use"]).get("limits") or {}
+    lines.append("LIMITS: " + ", ".join(f"{k} {v}" for k, v in lim.items()))
+    if "ppisim" in rep:
+        x = rep["ppisim"]
+        lines.append("PPISIM: " + (f"ok, read errors: {x.get('read_errors') or 'none'}" if x.get("ok")
+                                   else f"{x.get('error')}"))
+    w = rep.get("watch")
+    if w:
+        lines.append(f"WATCH {w['seconds']:g} s every {w['every_s']:g} s: {w['samples']} reads, read time "
+                     f"{w['read_s']['mean']} s mean / {w['read_s']['max']} s max, read errors: "
+                     + (", ".join(f"{k} x{v['count']} ({v['first']})" for k, v in w["read_errors"].items()) or "none"))
+        for c in w["changes"]:
+            lines.append(f"  +{c['t_s']:>6.1f} s  {c['instrument_mode']}/{c['operational_mode']}/{c['sem_mode']} "
+                         f"scan {c['scan']}, door {c['door']}, EDS acquiring {c['eds_acquiring']}, vacuum stable "
+                         f"{c['vacuum_stable']}, SED {c['sed']}"
+                         + (f", warnings {c['warnings']}" if c["warnings"] else "")
+                         + (f", READ ERRORS {dict(c['read_errors'])}" if c["read_errors"] else ""))
+    lines.append(f"FILES: {rep['files']['text']} and {rep['files']['json']} (all details)")
+    return "\n".join(lines)
 
 
 def _changes(a: dict, b: dict, prefix: str = "") -> dict:

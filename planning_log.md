@@ -52,3 +52,7 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
   6.3), so a discovery keeps the widest range and records the field per WD, and validation only warns; a vacuum that
   is not stable (12.9 Pa, target Off) and an SED `NotAllowed` are warned and in the summary; the holder's real name
   `XL Manual Height`. Still to do: T1 (Standby), T3 (status while the Phenom UI acquires), T4 import, T5, T6.
+- 2026-11-23, 2026.11.23.3: discover rerun with .2 on the XL: clean (no warnings, no proposal changes; vacuum stable
+  0.1 Pa, SED Disabled). `phnt report` added so a test session is one command and two files (Nicola chats from
+  another computer): versions, the instrument now and its read time, profile and proposal, the PPI simulator, and a
+  watch that lists every change and read error while the Phenom UI works (TESTING T1, T3, T5 in one run).

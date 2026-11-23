@@ -83,8 +83,10 @@ def reset_state() -> dict:
 class FakeAdapter(Adapter):
     name = "fake"
 
-    def __init__(self):
-        self.s = state()
+    @property
+    def s(self) -> dict:
+        """Read fresh on every call, so a change of fake_state.json shows at the next read (as the XL's would)."""
+        return state()
 
     def versions(self):
         return {"pyphenom": self.s["pyphenom"]}

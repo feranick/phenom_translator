@@ -6,6 +6,16 @@ result, notes). The open questions (Q-numbers) are in [planning.md](planning.md)
 
 ## Phase 1: read only (nothing moves, the beam is not touched)
 
+**All of T1–T5 in one command** (from 2026.11.23.3), on the instrument PC in the repository folder:
+
+```
+python -m phenom_translator.cli report --watch 180 --every 2 --out "$env:USERPROFILE\Desktop\phnt_report.txt"
+```
+
+During the 3 minutes, in the Phenom UI: take an image (T3), take an EDS spectrum (T3), then put the instrument in
+Standby and wake it again (T1). The report lists each change with its time and any read that failed, in which mode.
+Send `phnt_report.txt` (and `phnt_report.json` if asked).
+
 **T0 Install.** On the instrument PC, in this repository: `py -3.12 -m pip install -e ".[mcp]"`.
 Pass: `py -3.12 -m phenom_translator.cli --version` prints the version; `py -3.12 -m phenom_translator.cli status`
 shows `"pyphenom": {"version": "2.1.0", "path": "C:\\Program Files\\Python312\\DLLs\\PyPhenom.pyd", ...}` and
@@ -45,6 +55,7 @@ Pass: `reviewed` true; `phnt format` shows the profile's values.
 | T1 | | | | |
 | T2 | 2026-11-23 | 2026.11.23.1 | pass | live SEM, 15 kV, spot 5.1, WD 3.9 mm, HFW 620.75 µm; no read errors; `can_image`, `eds_ready` true. Found: vacuum not stable (target Off, 12.9 Pa) and SED NotAllowed without a warning; holder name `XL Manual Height` (fixed in .2) |
 | T3 | | | | |
+| T4 | 2026-11-23 | 2026.11.23.2 | discover pass | rerun with .2: no warnings, no changes in the proposal, vacuum stable 0.1 Pa, SED Disabled. Import after reviewing the limits |
 | T4 | 2026-11-23 | 2026.11.23.1 | partial | discover ok, properties identical to the probe; the proposal narrowed `ranges.hfw_um` to 755 µm (the max at WD 3.9 mm): fixed in .2; discover again with .2 before importing |
 | T5 | | | | |
 | T6 | | | | |
