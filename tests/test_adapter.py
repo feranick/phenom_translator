@@ -16,7 +16,7 @@ def test_status_on_fake_matches_the_discovery():
     s = adapter.get().status()
     assert s["backend"] == "fake" and "read_errors" not in s
     assert s["high_tension"] == {"kv": 15.0, "range_kv": [4.8, 20.5]}       # positive kV
-    assert s["holder"]["type_name"] == "XlManualHeight"
+    assert s["holder"]["type_name"] == "XL Manual Height"
     assert s["stroke"]["x_m"] == [-0.05, 0.05]
     assert s["licenses"]["Spectroscopy"] is False and s["licenses"]["EdsMap"] is False
     assert s["summary"]["can_image"] is True and s["summary"]["eds_ready"] is True
@@ -139,3 +139,14 @@ def test_fake_implements_every_read():
     a = fake.FakeAdapter()
     for r in adapter.Adapter.READS + ("properties",):
         getattr(a, r)()
+
+
+def test_vacuum_settling_and_sed_not_allowed_are_warned():
+    # the XL on 2026-11-23 16:08: target Off, 12.9 Pa, not stable; SED NotAllowed; imaging with the BSD went on
+    fake.set_state(charge_reduction={"stable": False, "pressure_pa": 12.891667648928037},
+                   sed={"present": True, "state": "NotAllowed"})
+    s = adapter.get().status()
+    assert s["summary"]["can_image"] is True
+    assert s["summary"]["vacuum_stable"] is False and s["summary"]["sed"] == "NotAllowed"
+    text = " ".join(s["warnings"])
+    assert "vacuum is still changing" in text and "~12.9 Pa" in text and "SED is not allowed" in text

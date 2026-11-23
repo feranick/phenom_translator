@@ -92,7 +92,10 @@ license username removed from the probe before committing).
   `Analysis` 15 kV (reported negative); the spot and emission values are in `results.json` (Q8).
 - `TransitionTime.StandbyToOperational` 30 s (the API docstring's "about 5 minutes" is generic),
   `OffToOperational` 52200 s; `SpotPosition.Accuracy` 0.005 (likely a fraction of the field).
-- Operational, at WD 6.3 mm: HFW 2.47 µm … 877 µm. Live view 960×540, 4 frames.
+- Operational, at WD 6.3 mm: HFW 2.47 µm … 877 µm; at WD 3.9 mm: … 755 µm (**the largest field shrinks at short
+  WD**). Live view 960×540, 4 frames. `SampleHolderType.Name(100)` is "XL Manual Height".
+- Vacuum: right after the 16:08 run the charge reduction read target Off but not stable at ~12.9 Pa, and the SED
+  was `NotAllowed` (it needs high vacuum) while BSD imaging went on.
 - WD range 1 … 60 mm. SED present. Vacuum charge reduction: Off / Low / High.
 - EDS: an SDD (`FastSDD_C2`, 25 mm²) on an Amptek digital pulse processor, at 234.7 K (−38.5 °C). Take-off angle
   28.5°; EDX working distance optimal 4.5 … 10 mm, acceptable 3 … 12 mm. Details below.

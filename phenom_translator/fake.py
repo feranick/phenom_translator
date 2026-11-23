@@ -24,7 +24,7 @@ DEFAULT_STATE = {
     "operational_mode": "LiveSem",
     "sem_mode": "Imaging",
     "door": "Closed",
-    "holder": {"id": "0183a2111d0000d3", "type": 100, "type_name": "XlManualHeight", "status": "Present"},
+    "holder": {"id": "0183a2111d0000d3", "type": 100, "type_name": "XL Manual Height", "status": "Present"},
     "stage": {"mode": "Rest", "x_m": 6.02434271662765e-05, "y_m": 0.003988864624543326},
     "stroke": {"x_m": [-0.05, 0.05], "y_m": [-0.05, 0.05], "navcam_x_m": [-0.05, 0.05],
                "navcam_y_m": [-0.05, 0.05]},

@@ -138,3 +138,10 @@ def test_montage_grid_from_area():
     nx, ny, ext = plan.montage_grid({"montage": {"area_um": [2000, 1500], "overlap": 0.15},
                                      "acquire": {"size_px": [1024, 1024], "hfw_um": 400}}, profile.load())
     assert (nx, ny) == (6, 5) and ext[0] >= 2000 and ext[1] >= 1500
+
+
+def test_large_field_at_short_wd_is_warned_not_refused():
+    r = v({"kind": "image", "setup": {"wd_mm": 4.0}, "acquire": {"hfw_um": 800}})
+    assert r["ok"] and any("may not fit" in w and "755.281" in w for w in r["warnings"])
+    r = v({"kind": "image", "setup": {"wd_mm": 6.5}, "acquire": {"hfw_um": 800}})
+    assert r["ok"] and not any("may not fit" in w for w in r["warnings"])

@@ -236,7 +236,18 @@ def summarise(s: dict) -> tuple[dict, list]:
         warnings.append(f"the EDS detector is at {t:.1f} K: not cold yet (234.7 K when ready on 2026-11-23)")
     if s.get("stage", {}) and (s.get("stage") or {}).get("mode") == "NotHomed":
         warnings.append("the stage is not homed")
+    cr = s.get("charge_reduction") or {}
+    if cr and cr.get("stable") is False:
+        p = cr.get("pressure_pa")
+        warnings.append(f"the vacuum is still changing (charge reduction target {cr.get('target')}, now "
+                        + (f"~{p:.1f} Pa" if isinstance(p, (int, float)) else "pressure unknown")
+                        + "): wait for it before high-resolution imaging, EDS or the SED")
+    sed = s.get("sed") or {}
+    if sed.get("present") and sed.get("state") == "NotAllowed":
+        warnings.append("the SED is not allowed now (it needs high vacuum): BSD only until the vacuum settles")
     summary = {"can_image": bool(imode == "Operational" and live_sem and s.get("door") != "Open"),
+               "vacuum_stable": cr.get("stable"), "pressure_pa": cr.get("pressure_pa"),
+               "sed": sed.get("state") if sed.get("present") else "absent",
                "kv": (s.get("high_tension") or {}).get("kv"), "hfw_um": _um((s.get("hfw") or {}).get("hfw_m")),
                "wd_mm": _mm((s.get("wd") or {}).get("wd_m")),
                "stage_mm": [_mm((s.get("stage") or {}).get("x_m")), _mm((s.get("stage") or {}).get("y_m"))],

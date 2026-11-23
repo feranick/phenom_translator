@@ -128,7 +128,7 @@ BLOCKS = {
                       hi=lambda p: p["limits"]["dwell_us_max"]),
         "hdr": F("bool", "16-bit raw image without contrast/brightness", default=False),
         "drift_correction": F("bool", "drift correction while averaging", default=False),
-        "hfw_um": F("number", "horizontal field width (or pixel_um)", unit="µm",
+        "hfw_um": F("number", "horizontal field width (or pixel_um); the largest depends on the WD", unit="µm",
                     lo=lambda p: p["ranges"]["hfw_um"][0], hi=lambda p: p["ranges"]["hfw_um"][1]),
         "pixel_um": F("number", "pixel size (or hfw_um)", unit="µm", lo=0.0005, hi=1000.0),
         "scan_center": F("pair", "centre of a sub-field, fractions of the field width, +x right, +y down",
@@ -385,6 +385,16 @@ def _cross_checks(kind, s, prof, errors, warnings):
         if not lo <= hfw <= hi:
             errors.append(f"acquire.pixel_um {acq['pixel_um']} x {size[0]} px = {hfw:.1f} µm field, outside "
                           f"{lo} … {hi} µm")
+    seen = rng.get("hfw_max_um_at_wd_mm") or {}
+    field = acq.get("hfw_um") or (acq["pixel_um"] * size[0] if "pixel_um" in acq else None)
+    if field and seen:
+        wd = setup.get("wd_mm")
+        below = {float(k): v for k, v in seen.items() if wd is None or float(k) <= wd}
+        if below:
+            k = max(below) if wd is not None else min(below)
+            if field > below[k]:
+                warnings.append(f"a {field:g} µm field may not fit: the largest field was {below[k]:g} µm at WD "
+                                f"{k:g} mm (it shrinks at short WD); checked against the instrument at run time")
     aspect = size[1] / size[0]
     sc, ss = acq.get("scan_center"), acq.get("scan_scale", 1.0)
     if sc is not None:

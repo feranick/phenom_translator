@@ -46,3 +46,9 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
   Python's DLLs, or the usual Windows installs; a PyPhenom stand-in (`tests/ppi_stub`) runs `PhenomAdapter`'s code in
   the tests; author address as the template; README in the template's order with "Assumptions about PyPhenom".
   `study_format` measured at 11.9 kB (template: 10–12 kB). 65 tests pass (Python 3.13 here).
+- 2026-11-23, 2026.11.23.2: **first run on the XL** (Python 3.12.2 from the GitHub zip; TESTING T0, T2, T4):
+  PyPhenom found by plain import; status with no read errors, kV positive, `can_image` and `eds_ready` true; discover
+  with properties identical to the probe. Three fixes: the largest field depends on the WD (755 µm at 3.9 mm, 877 at
+  6.3), so a discovery keeps the widest range and records the field per WD, and validation only warns; a vacuum that
+  is not stable (12.9 Pa, target Off) and an SED `NotAllowed` are warned and in the summary; the holder's real name
+  `XL Manual Height`. Still to do: T1 (Standby), T3 (status while the Phenom UI acquires), T4 import, T5, T6.

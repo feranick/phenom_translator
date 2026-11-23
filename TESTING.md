@@ -41,10 +41,10 @@ Pass: `reviewed` true; `phnt format` shows the profile's values.
 
 | Test | Date | Version | Result | Notes |
 |---|---|---|---|---|
-| T0 | | | | |
+| T0 | 2026-11-23 | 2026.11.23.1 | pass | Python 3.12.2, PyPhenom 2.1.0 found by plain import (`C:\Program Files\Python312\DLLs`), mcp 2.3.0; installed from the GitHub zip; run as `python`. Venv not tried |
 | T1 | | | | |
-| T2 | | | | |
+| T2 | 2026-11-23 | 2026.11.23.1 | pass | live SEM, 15 kV, spot 5.1, WD 3.9 mm, HFW 620.75 µm; no read errors; `can_image`, `eds_ready` true. Found: vacuum not stable (target Off, 12.9 Pa) and SED NotAllowed without a warning; holder name `XL Manual Height` (fixed in .2) |
 | T3 | | | | |
-| T4 | | | | |
+| T4 | 2026-11-23 | 2026.11.23.1 | partial | discover ok, properties identical to the probe; the proposal narrowed `ranges.hfw_um` to 755 µm (the max at WD 3.9 mm): fixed in .2; discover again with .2 before importing |
 | T5 | | | | |
 | T6 | | | | |

@@ -23,12 +23,13 @@ DEFAULT = {
     "reviewed": False,
     "reviewed_at": None,
     "source": "default",
-    "instrument": {"model": "Phenom XL", "instrument_id": None, "holder_type": 100, "holder": "XlManualHeight",
+    "instrument": {"model": "Phenom XL", "instrument_id": None, "holder_type": 100, "holder": "XL Manual Height",
                    "features": ["XL 100 x 100 mm stage"]},
     "ranges": {  # what the instrument can do (discovery); limits below are what phnt may do
         "kv": [4.8, 20.5], "spot": [0.0, 5.8], "wd_mm": [1.0, 60.0], "hfw_um": [2.47, 877.0],
         "stage_x_mm": [-50.0, 50.0], "stage_y_mm": [-50.0, 50.0], "image_px_max": 2048,
-        "live_view_px": [960, 540]},
+        "live_view_px": [960, 540],
+        "hfw_max_um_at_wd_mm": {"6.30": 877.216, "3.90": 755.281}},   # the largest field shrinks at short WD
     "limits": {  # set by a person
         "kv_max": 15.0, "kv_max_sensitive": 10.0,
         "spot_max": 5.1, "spot_max_sensitive": 3.3,
@@ -112,8 +113,15 @@ def propose(discovery: dict) -> dict:
     if (wd := d.get("wd")) and wd.get("range_m"):
         r["wd_mm"] = [round(x * 1e3, 3) for x in wd["range_m"]]
     if (hf := d.get("hfw")) and hf.get("range_m"):
-        r["hfw_um"] = [round(x * 1e6, 3) for x in hf["range_m"]]
-        p.setdefault("notes", []).append("hfw range depends on the WD at discovery time")
+        # The largest field depends on the WD (877 µm at 6.3 mm, 755 µm at 3.9 mm on 2026-11-23): one discovery
+        # must not narrow the range; keep the widest seen and record what each WD allowed. The runner checks the
+        # instrument's own range at the WD in use.
+        lo, hi = (round(x * 1e6, 3) for x in hf["range_m"])
+        r["hfw_um"] = [min(r["hfw_um"][0], lo), max(r["hfw_um"][1], hi)]
+        wd_m = (d.get("wd") or {}).get("wd_m")
+        if wd_m:
+            seen = r.setdefault("hfw_max_um_at_wd_mm", {})
+            seen[f"{wd_m * 1e3:.2f}"] = hi
     if (st := d.get("stroke")) and st.get("x_m"):
         r["stage_x_mm"] = [round(x * 1e3, 3) for x in st["x_m"]]
         r["stage_y_mm"] = [round(x * 1e3, 3) for x in st["y_m"]]

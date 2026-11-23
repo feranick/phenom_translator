@@ -35,7 +35,7 @@ class Features:
 class SampleHolderType:
     @staticmethod
     def Name(t):
-        return {100: "XlManualHeight", 1: "Standard"}.get(int(t), "Unknown")
+        return {100: "XL Manual Height", 1: "Standard"}.get(int(t), "Unknown")
 
 
 def HasLicense(features):

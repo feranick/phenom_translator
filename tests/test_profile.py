@@ -45,3 +45,13 @@ def test_set_value_checks_and_keeps_new_defaults():
 def test_profile_default_writes_once():
     assert api.profile_default()["ok"]
     assert not api.profile_default()["ok"]
+
+
+def test_proposal_keeps_the_widest_field_and_records_the_wd():
+    # 2026-11-23: the largest field was 755 µm at WD 3.9 mm, 877 µm at 6.3 mm
+    fake.set_state(hfw_range_m=[2.4714285714285713e-06, 0.0007552813427069298], wd_m=0.0039)
+    r = api.instrument("discover")
+    prop = json.loads(open(r["proposal"]).read())
+    assert prop["ranges"]["hfw_um"] == [2.47, 877.0]
+    assert prop["ranges"]["hfw_max_um_at_wd_mm"]["3.90"] == 755.281
+    assert "ranges.hfw_um" not in r["changes"] and "instrument.holder" not in r["changes"]

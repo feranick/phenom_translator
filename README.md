@@ -172,4 +172,5 @@ what changed in each: [CHANGELOG.md](CHANGELOG.md).
 
 | Version | Phase | Notes |
 |---|---|---|
+| 2026.11.23.2 | 1 | first run on the XL: field range by WD, vacuum and SED warnings, the holder's real name |
 | 2026.11.23.1 | 1 | read-only adapter (with the PyPhenom finder), fake XL, profile, study format, validation and estimates in the llm-translators contract's shapes, CLI, MCP server |
