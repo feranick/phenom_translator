@@ -17,7 +17,8 @@
                                      full JSON next to it): versions, the instrument now and the time a status read
                                      takes, the profile and its proposal, PyPhenom's simulator; --watch S reads the
                                      status every --every S (2) for S seconds while someone uses the Phenom UI and
-                                     lists every change and read error (read only). Prints the text.
+                                     lists every change and read error (read only); changes are printed as
+                                     they happen, the text at the end. Nothing on stderr (PowerShell ISE).
   phnt fake state | set KEY=JSON ... | reset
                                      the fake XL's state (PHNT_MODE=fake), for practice and tests
 
@@ -26,6 +27,7 @@ PHNT_MODE: phenom (the XL, default), ppisim (PyPhenom's simulator), fake (phnt's
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import sys
 from pathlib import Path
@@ -73,10 +75,12 @@ def main(argv=None) -> int:
     elif a.cmd == "instrument":
         out = api.instrument(a.action)
     elif a.cmd == "report":
-        if a.watch > 0:
-            print(f"watching for {a.watch:g} s (status every {a.every:g} s): use the Phenom UI now", file=sys.stderr)
-        out = api.report(a.watch, a.every, not a.no_ppisim, a.out)
-        print(out["text"])
+        # stdout only: PowerShell ISE shows anything on stderr as a red NativeCommandError (2026-11-23)
+        say = functools.partial(print, flush=True)
+        say("phnt report: reading the instrument..." + (f" then watching for {a.watch:g} s (a read every "
+            f"{a.every:g} s): use the Phenom UI now; changes are shown as they happen" if a.watch > 0 else ""))
+        out = api.report(a.watch, a.every, not a.no_ppisim, a.out, progress=say if a.watch > 0 else None)
+        say("\n" + out["text"])
         return 0
     elif a.cmd == "profile":
         out = _profile(a)

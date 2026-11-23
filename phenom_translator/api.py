@@ -95,13 +95,15 @@ def instrument(action: str = "status") -> dict:
 WATCH_KEYS = ("instrument_mode", "operational_mode", "sem_mode", "door")
 
 
-def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out: str | None = None) -> dict:
+def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out: str | None = None,
+           progress=None) -> dict:
     """Everything a test session at the instrument needs, in one call: versions, the instrument now (and how long a
     status read takes), the profile and its proposal, PyPhenom's simulator, and with watch_s > 0 the status read
     every every_s seconds for watch_s seconds while a person uses the Phenom UI (TESTING T1, T3): every change of
     mode, door, EDS acquisition, vacuum, SED, warnings or read errors, with the time since the start. Read only.
     Writes two files: the short text (out, default PHNT_OUT/report_<time>.txt) and the full report next to it
-    (.json). Returns the paths and the text."""
+    (.json). Returns the paths and the text. progress(line), if given, gets each change as it happens and a line
+    every 30 s during the watch (the CLI prints them, so a person sees it working)."""
     started = _dt.datetime.now()
     rep = {"report": started.isoformat(timespec="seconds"), "status": tool_status()}
     try:
@@ -124,7 +126,7 @@ def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out:
         except adapter.AdapterError as e:
             rep["ppisim"] = {"ok": False, "error": str(e)}
     if a is not None and watch_s > 0:
-        rep["watch"] = _watch(a, watch_s, max(every_s, 0.2))
+        rep["watch"] = _watch(a, watch_s, max(every_s, 0.2), progress)
     txt = Path(out).expanduser() if out else config.out_dir() / f"report_{started.strftime('%Y%m%d_%H%M%S')}.txt"
     js = txt.with_suffix(".json")
     txt.parent.mkdir(parents=True, exist_ok=True)
@@ -144,9 +146,9 @@ def _watch_key(s: dict) -> dict:
             "warnings": s.get("warnings") or [], "read_errors": sorted((s.get("read_errors") or {}).items())}
 
 
-def _watch(a, watch_s: float, every_s: float) -> dict:
+def _watch(a, watch_s: float, every_s: float, progress=None) -> dict:
     t_start, samples, changes, last = time.perf_counter(), 0, [], None
-    durations, errors = [], {}
+    durations, errors, next_beat = [], {}, 30.0
     while True:
         t = time.perf_counter() - t_start
         if t > watch_s:
@@ -162,10 +164,22 @@ def _watch(a, watch_s: float, every_s: float) -> dict:
         if k != last:
             changes.append({"t_s": round(t, 1), **k})
             last = k
+            if progress:
+                progress(_change_line(changes[-1]))
+        if progress and t >= next_beat:
+            progress(f"  +{t:6.1f} s  {samples} reads so far, last read {durations[-1]:.2f} s, no change")
+            next_beat += 30.0
         time.sleep(max(0.0, every_s - (time.perf_counter() - t0)))
     return {"seconds": watch_s, "every_s": every_s, "samples": samples,
             "read_s": {"mean": round(sum(durations) / len(durations), 3), "max": round(max(durations), 3)}
             if durations else None, "read_errors": errors, "changes": changes}
+
+
+def _change_line(c: dict) -> str:
+    return (f"  +{c['t_s']:>6.1f} s  {c['instrument_mode']}/{c['operational_mode']}/{c['sem_mode']} scan {c['scan']}, "
+            f"door {c['door']}, EDS acquiring {c['eds_acquiring']}, vacuum stable {c['vacuum_stable']}, SED {c['sed']}"
+            + (f", warnings {c['warnings']}" if c["warnings"] else "")
+            + (f", READ ERRORS {dict(c['read_errors'])}" if c["read_errors"] else ""))
 
 
 def _report_text(rep: dict) -> str:
@@ -201,12 +215,7 @@ def _report_text(rep: dict) -> str:
         lines.append(f"WATCH {w['seconds']:g} s every {w['every_s']:g} s: {w['samples']} reads, read time "
                      f"{w['read_s']['mean']} s mean / {w['read_s']['max']} s max, read errors: "
                      + (", ".join(f"{k} x{v['count']} ({v['first']})" for k, v in w["read_errors"].items()) or "none"))
-        for c in w["changes"]:
-            lines.append(f"  +{c['t_s']:>6.1f} s  {c['instrument_mode']}/{c['operational_mode']}/{c['sem_mode']} "
-                         f"scan {c['scan']}, door {c['door']}, EDS acquiring {c['eds_acquiring']}, vacuum stable "
-                         f"{c['vacuum_stable']}, SED {c['sed']}"
-                         + (f", warnings {c['warnings']}" if c["warnings"] else "")
-                         + (f", READ ERRORS {dict(c['read_errors'])}" if c["read_errors"] else ""))
+        lines += [_change_line(c) for c in w["changes"]]
     lines.append(f"FILES: {rep['files']['text']} and {rep['files']['json']} (all details)")
     return "\n".join(lines)
 

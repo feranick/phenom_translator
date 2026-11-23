@@ -56,3 +56,6 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
   0.1 Pa, SED Disabled). `phnt report` added so a test session is one command and two files (Nicola chats from
   another computer): versions, the instrument now and its read time, profile and proposal, the PPI simulator, and a
   watch that lists every change and read error while the Phenom UI works (TESTING T1, T3, T5 in one run).
+- 2026-11-23, 2026.11.23.4: the first `phnt report --watch 180` at the instrument looked stuck: silent for 180 s,
+  and its notice on stderr shown by PowerShell ISE as a red NativeCommandError. The report now prints only to stdout,
+  each change as it happens and a line every 30 s. Rule for phnt's CLI: nothing on stderr in normal use.

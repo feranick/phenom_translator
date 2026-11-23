@@ -43,10 +43,14 @@ def test_watch_lists_changes_and_read_errors_while_the_ui_works(monkeypatch, tmp
     assert "READ ERRORS" in r["text"] and "spectrometer during AcquireSemImage" in r["text"]
 
 
-def test_cli_report_prints_the_text(tmp_path, capsys):
-    assert cli.main(["report", "--out", str(tmp_path / "x.txt")]) == 0
-    printed = capsys.readouterr().out
-    assert printed.strip() == (tmp_path / "x.txt").read_text().strip()
+def test_cli_report_prints_progress_and_the_text_on_stdout_only(tmp_path, capsys):
+    fake.set_state(door="Open")
+    assert cli.main(["report", "--watch", "0.5", "--every", "0.2", "--out", str(tmp_path / "x.txt")]) == 0
+    got = capsys.readouterr()
+    assert got.err == ""                               # PowerShell ISE turns stderr into red errors
+    assert got.out.startswith("phnt report: reading the instrument... then watching for 0.5 s")
+    assert "+   0.0 s  Operational/LiveSem" in got.out   # the change, printed while watching
+    assert got.out.rstrip().endswith((tmp_path / "x.txt").read_text().strip())
 
 
 def test_report_without_pyphenom_says_so(monkeypatch, tmp_path):

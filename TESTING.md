@@ -14,7 +14,9 @@ python -m phenom_translator.cli report --watch 180 --every 2 --out "$env:USERPRO
 
 During the 3 minutes, in the Phenom UI: take an image (T3), take an EDS spectrum (T3), then put the instrument in
 Standby and wake it again (T1). The report lists each change with its time and any read that failed, in which mode.
-Send `phnt_report.txt` (and `phnt_report.json` if asked).
+Send `phnt_report.txt` (and `phnt_report.json` if asked). Changes are printed as they happen, with a line every
+30 s when nothing changes. (PowerShell ISE shows anything a program writes to stderr as a red NativeCommandError:
+pip's warnings look like failures there; phnt writes nothing to stderr from 2026.11.23.4.)
 
 **T0 Install.** On the instrument PC, in this repository: `py -3.12 -m pip install -e ".[mcp]"`.
 Pass: `py -3.12 -m phenom_translator.cli --version` prints the version; `py -3.12 -m phenom_translator.cli status`
