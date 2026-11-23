@@ -92,10 +92,10 @@ def instrument(action: str = "status") -> dict:
             "next": "a person reviews the proposal and runs: phnt profile import " + str(profile.proposed_path())}
 
 
-WATCH_KEYS = ("instrument_mode", "operational_mode", "sem_mode", "door")
+WATCH_KEYS = ("instrument_mode", "operational_mode", "door")   # all in adapter.QUICK, so quick and full reads compare
 
 
-def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out: str | None = None,
+def report(watch_s: float = 0.0, every_s: float = 0.5, ppisim: bool = True, out: str | None = None,
            progress=None) -> dict:
     """Everything a test session at the instrument needs, in one call: versions, the instrument now (and how long a
     status read takes), the profile and its proposal, PyPhenom's simulator, and with watch_s > 0 the status read
@@ -138,48 +138,76 @@ def report(watch_s: float = 0.0, every_s: float = 2.0, ppisim: bool = True, out:
 
 
 def _watch_key(s: dict) -> dict:
+    """The states whose change is worth a line. Not the pressure (it moves at every read while the chamber pumps:
+    the first watch on the XL logged 17 'changes' for one pump-down); it goes in the line and the trace instead."""
     sm = s.get("summary") or {}
-    return {**{k: s.get(k) for k in WATCH_KEYS},
+    return {**{k: s.get(k) for k in WATCH_KEYS if k in s},
             "eds_acquiring": (s.get("spectrometer") or {}).get("acquiring"),
             "scan": (s.get("viewing_mode") or {}).get("scan_mode"),
-            "vacuum_stable": sm.get("vacuum_stable"), "sed": sm.get("sed"),
-            "warnings": s.get("warnings") or [], "read_errors": sorted((s.get("read_errors") or {}).items())}
+            "vacuum_stable": sm.get("vacuum_stable"), "sed": sm.get("sed"), "can_image": sm.get("can_image"),
+            "read_errors": sorted((s.get("read_errors") or {}).keys())}
 
 
-def _watch(a, watch_s: float, every_s: float, progress=None) -> dict:
-    t_start, samples, changes, last = time.perf_counter(), 0, [], None
-    durations, errors, next_beat = [], {}, 30.0
+def _watch(a, watch_s: float, every_s: float, progress=None, full_every_s: float = 30.0) -> dict:
+    """Quick reads (adapter.QUICK) every every_s, a full status every full_every_s; a line per change of state."""
+    t_start, quick_n, full_n, changes, last = time.perf_counter(), 0, 0, [], None
+    q_dur, f_dur, errors, trace, next_full, next_beat = [], [], {}, [], 0.0, 30.0
     while True:
         t = time.perf_counter() - t_start
         if t > watch_s:
             break
         t0 = time.perf_counter()
-        s = a.status()
-        durations.append(time.perf_counter() - t0)
-        samples += 1
+        if t >= next_full:
+            s = a.status()
+            f_dur.append(time.perf_counter() - t0)
+            full_n += 1
+            next_full += full_every_s
+        else:
+            s = a.quick()
+            q_dur.append(time.perf_counter() - t0)
+            quick_n += 1
         for r, msg in (s.get("read_errors") or {}).items():
             key = f"{r} during {s.get('operational_mode')}"
             errors.setdefault(key, {"count": 0, "first": msg})["count"] += 1
+        p = (s.get("summary") or {}).get("pressure_pa")
+        trace.append([round(t, 2), None if p is None else round(p, 3), s.get("operational_mode")])
         k = _watch_key(s)
         if k != last:
-            changes.append({"t_s": round(t, 1), **k})
+            changes.append({"t_s": round(t, 1), **k, "pressure_pa": None if p is None else round(p, 2),
+                            "warnings": s.get("warnings") or [], "errors": s.get("read_errors") or {}})
             last = k
             if progress:
                 progress(_change_line(changes[-1]))
         if progress and t >= next_beat:
-            progress(f"  +{t:6.1f} s  {samples} reads so far, last read {durations[-1]:.2f} s, no change")
+            progress(f"  +{t:6.1f} s  {quick_n + full_n} reads so far, no change of state"
+                     + (f" ({p:.2f} Pa)" if p is not None else ""))
             next_beat += 30.0
         time.sleep(max(0.0, every_s - (time.perf_counter() - t0)))
-    return {"seconds": watch_s, "every_s": every_s, "samples": samples,
-            "read_s": {"mean": round(sum(durations) / len(durations), 3), "max": round(max(durations), 3)}
-            if durations else None, "read_errors": errors, "changes": changes}
+
+    def stats(d):
+        return {"n": len(d), "mean": round(sum(d) / len(d), 3), "max": round(max(d), 3)} if d else None
+    return {"seconds": watch_s, "every_s": every_s, "full_every_s": full_every_s, "samples": quick_n + full_n,
+            "read_s": {"quick": stats(q_dur), "full": stats(f_dur)}, "read_errors": errors, "changes": changes,
+            "trace": {"columns": ["t_s", "pressure_pa", "operational_mode"], "rows": trace}}
+
+
+def _g(x, n=3):
+    return None if x is None else float(f"{x:.{n}g}")
+
+
+def _hfw_max_um(ins: dict):
+    r = (ins.get("hfw") or {}).get("range_m")
+    return round(r[1] * 1e6, 1) if r else None
 
 
 def _change_line(c: dict) -> str:
-    return (f"  +{c['t_s']:>6.1f} s  {c['instrument_mode']}/{c['operational_mode']}/{c['sem_mode']} scan {c['scan']}, "
-            f"door {c['door']}, EDS acquiring {c['eds_acquiring']}, vacuum stable {c['vacuum_stable']}, SED {c['sed']}"
-            + (f", warnings {c['warnings']}" if c["warnings"] else "")
-            + (f", READ ERRORS {dict(c['read_errors'])}" if c["read_errors"] else ""))
+    p = c.get("pressure_pa")
+    return (f"  +{c['t_s']:>6.1f} s  {c.get('instrument_mode')}/{c.get('operational_mode')}"
+            + (f"/{c['sem_mode']}" if c.get("sem_mode") else "")
+            + f" scan {c['scan']}, door {c.get('door')}, EDS acquiring {c['eds_acquiring']}, vacuum "
+            + ("stable" if c["vacuum_stable"] else "NOT stable") + (f" {p:g} Pa" if p is not None else "")
+            + f", SED {c['sed']}, can_image {c['can_image']}"
+            + (f", READ ERRORS {c['errors']}" if c.get("errors") else ""))
 
 
 def _report_text(rep: dict) -> str:
@@ -194,8 +222,8 @@ def _report_text(rep: dict) -> str:
         sm = ins.get("summary") or {}
         lines.append(f"NOW: {ins.get('instrument_mode')}/{ins.get('operational_mode')}, door {ins.get('door')}, "
                      f"{sm.get('kv')} kV, spot {(ins.get('spot') or {}).get('value')}, WD {sm.get('wd_mm')} mm, "
-                     f"HFW {sm.get('hfw_um')} um, vacuum {'stable' if sm.get('vacuum_stable') else 'NOT stable'} "
-                     f"{sm.get('pressure_pa')} Pa, SED {sm.get('sed')}, EDS "
+                     f"HFW {sm.get('hfw_um')} um, max HFW {_hfw_max_um(ins)} um, vacuum "
+                     f"{'stable' if sm.get('vacuum_stable') else 'NOT stable'} {_g(sm.get('pressure_pa'))} Pa, SED {sm.get('sed')}, EDS "
                      f"{(ins.get('spectrometer') or {}).get('temperature_k')} K, can_image {sm.get('can_image')}")
         lines.append(f"STATUS READ: {ins.get('read_s')} s | warnings: {ins.get('warnings') or 'none'} | read errors: "
                      f"{ins.get('read_errors') or 'none'}")
@@ -212,8 +240,12 @@ def _report_text(rep: dict) -> str:
                                    else f"{x.get('error')}"))
     w = rep.get("watch")
     if w:
-        lines.append(f"WATCH {w['seconds']:g} s every {w['every_s']:g} s: {w['samples']} reads, read time "
-                     f"{w['read_s']['mean']} s mean / {w['read_s']['max']} s max, read errors: "
+        rs = w["read_s"]
+        lines.append(f"WATCH {w['seconds']:g} s: {w['samples']} reads (quick every {w['every_s']:g} s: "
+                     + (f"{rs['quick']['mean']} s mean / {rs['quick']['max']} s max" if rs["quick"] else "none")
+                     + f"; full every {w['full_every_s']:g} s: "
+                     + (f"{rs['full']['mean']} s mean / {rs['full']['max']} s max" if rs["full"] else "none")
+                     + "), read errors: "
                      + (", ".join(f"{k} x{v['count']} ({v['first']})" for k, v in w["read_errors"].items()) or "none"))
         lines += [_change_line(c) for c in w["changes"]]
     lines.append(f"FILES: {rep['files']['text']} and {rep['files']['json']} (all details)")

@@ -29,7 +29,8 @@ DEFAULT = {
         "kv": [4.8, 20.5], "spot": [0.0, 5.8], "wd_mm": [1.0, 60.0], "hfw_um": [2.47, 877.0],
         "stage_x_mm": [-50.0, 50.0], "stage_y_mm": [-50.0, 50.0], "image_px_max": 2048,
         "live_view_px": [960, 540],
-        "hfw_max_um_at_wd_mm": {"6.30": 877.216, "3.90": 755.281}},   # the largest field shrinks at short WD
+        # the largest field shrinks at short WD, close to linearly here (~560 µm + 50.4 µm per mm of WD)
+        "hfw_max_um_at_wd_mm": {"3.30": 726.007, "3.90": 755.281, "6.30": 877.216}},
     "limits": {  # set by a person
         "kv_max": 15.0, "kv_max_sensitive": 10.0,
         "spot_max": 5.1, "spot_max_sensitive": 3.3,
@@ -166,6 +167,25 @@ def _presets_from_properties(p: dict, props: dict):
         win, area = props.get("EDX.Detector.Window"), props.get("EDX.Detector.SurfaceArea")
         e["detector"] = f"{det[0]} {det[1]}" + (f", window {win}" if win else "") + \
             (f", {area * 1e6:.0f} mm2" if area else "")
+
+
+def hfw_max_um(prof: dict, wd_mm: float) -> tuple[float, str] | None:
+    """The largest field at this WD from the fields seen at other WDs: linear between the two nearest, linear
+    beyond them from the two at that end ('extrapolated'). None with fewer than two points."""
+    pts = sorted((float(k), float(v)) for k, v in (prof["ranges"].get("hfw_max_um_at_wd_mm") or {}).items())
+    if len(pts) < 2:
+        return None
+    for w, f in pts:
+        if abs(w - wd_mm) < 1e-6:
+            return round(f, 1), "measured"
+    if wd_mm <= pts[0][0]:
+        (a, fa), (b, fb), how = pts[0], pts[1], "extrapolated" if wd_mm < pts[0][0] else "measured"
+    elif wd_mm >= pts[-1][0]:
+        (a, fa), (b, fb), how = pts[-2], pts[-1], "extrapolated" if wd_mm > pts[-1][0] else "measured"
+    else:
+        i = next(i for i in range(1, len(pts)) if pts[i][0] >= wd_mm)
+        (a, fa), (b, fb), how = pts[i - 1], pts[i], "interpolated"
+    return round(fa + (fb - fa) * (wd_mm - a) / (b - a), 1), how
 
 
 def check(p: dict) -> list:

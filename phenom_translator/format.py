@@ -10,6 +10,7 @@ from __future__ import annotations
 import math
 
 from . import plan
+from . import profile as profile_mod
 
 ELEMENTS = ("H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr "
             "Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm "
@@ -385,16 +386,15 @@ def _cross_checks(kind, s, prof, errors, warnings):
         if not lo <= hfw <= hi:
             errors.append(f"acquire.pixel_um {acq['pixel_um']} x {size[0]} px = {hfw:.1f} µm field, outside "
                           f"{lo} … {hi} µm")
-    seen = rng.get("hfw_max_um_at_wd_mm") or {}
     field = acq.get("hfw_um") or (acq["pixel_um"] * size[0] if "pixel_um" in acq else None)
+    seen = rng.get("hfw_max_um_at_wd_mm") or {}
     if field and seen:
         wd = setup.get("wd_mm")
-        below = {float(k): v for k, v in seen.items() if wd is None or float(k) <= wd}
-        if below:
-            k = max(below) if wd is not None else min(below)
-            if field > below[k]:
-                warnings.append(f"a {field:g} µm field may not fit: the largest field was {below[k]:g} µm at WD "
-                                f"{k:g} mm (it shrinks at short WD); checked against the instrument at run time")
+        at = profile_mod.hfw_max_um(prof, wd) if wd is not None else (min(seen.values()), "the smallest seen")
+        if at and field > at[0]:
+            where = f"at WD {wd:g} mm ({at[1]})" if wd is not None else "at the shortest WD seen"
+            warnings.append(f"a {field:g} µm field may not fit: the largest field is about {at[0]:g} µm {where}; "
+                            "it shrinks at short WD; checked against the instrument at run time")
     aspect = size[1] / size[0]
     sc, ss = acq.get("scan_center"), acq.get("scan_scale", 1.0)
     if sc is not None:

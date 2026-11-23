@@ -59,3 +59,8 @@ changed per version, in [CHANGELOG.md](CHANGELOG.md); the evidence, in [docs/dis
 - 2026-11-23, 2026.11.23.4: the first `phnt report --watch 180` at the instrument looked stuck: silent for 180 s,
   and its notice on stderr shown by PowerShell ISE as a red NativeCommandError. The report now prints only to stdout,
   each change as it happens and a line every 30 s. Rule for phnt's CLI: nothing on stderr in normal use.
+- 2026-11-23, 2026.11.23.5: the first watch report from the XL (with .3): clean reads (0.39 s each, no errors), a
+  pump-down 18.8 → 0.1 Pa in ~36 s with the SED allowed below ~2 Pa, the PPI simulator connects (T5 pass); but each
+  pressure step was a 'change', and no UI action was seen (T1, T3 not observed). The watch now uses quick reads every
+  0.5 s with a full status every 30 s, logs changes of state only, keeps the pressure trace in the JSON. A third
+  largest-field point (726 µm at WD 3.3 mm): the field by WD is interpolated, close to linear.

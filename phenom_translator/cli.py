@@ -16,7 +16,8 @@
                                      everything for a test session in two files (a short text to paste, and the
                                      full JSON next to it): versions, the instrument now and the time a status read
                                      takes, the profile and its proposal, PyPhenom's simulator; --watch S reads the
-                                     status every --every S (2) for S seconds while someone uses the Phenom UI and
+                                     status every --every S (0.5; quick reads, a full status every 30 s) for S seconds
+                                     while someone uses the Phenom UI and
                                      lists every change and read error (read only); changes are printed as
                                      they happen, the text at the end. Nothing on stderr (PowerShell ISE).
   phnt fake state | set KEY=JSON ... | reset
@@ -56,7 +57,7 @@ def main(argv=None) -> int:
     p.add_argument("--who", default="")
     r = sub.add_parser("report")
     r.add_argument("--watch", type=float, default=0.0, metavar="S")
-    r.add_argument("--every", type=float, default=2.0, metavar="S")
+    r.add_argument("--every", type=float, default=0.5, metavar="S")
     r.add_argument("--no-ppisim", action="store_true")
     r.add_argument("--out", default=None, metavar="FILE")
     f = sub.add_parser("fake")

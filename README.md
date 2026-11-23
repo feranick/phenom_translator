@@ -67,7 +67,7 @@ then restart the app.
 | `phnt instrument status` | The instrument now, read only, with a summary (`can_image`, `eds_ready`) and warnings |
 | `phnt instrument discover` | The same plus the instrument's properties, saved; writes `profile.proposed.json` |
 | `phnt profile show / default / propose / import FILE / set KEY VALUE` | The machine profile; only a person imports or changes it |
-| `phnt report [--watch S] [--every S] [--out FILE]` | Everything for a test session in two files (short text, full JSON): versions, the instrument now, the profile and proposal, the simulator; `--watch` lists every change and read error while someone uses the Phenom UI |
+| `phnt report [--watch S] [--every S] [--out FILE]` | Everything for a test session in two files (short text, full JSON): versions, the instrument now, the profile and proposal, the simulator; `--watch` reads every 0.5 s (a full status every 30 s) and lists every change of state and read error while someone uses the Phenom UI |
 | `phnt fake state / set KEY=JSON / reset` | The fake XL's state (`PHNT_MODE=fake`) |
 
 ## A study
@@ -174,6 +174,7 @@ what changed in each: [CHANGELOG.md](CHANGELOG.md).
 | Version | Phase | Notes |
 |---|---|---|
 | 2026.11.23.4 | 1 | `phnt report` shows its progress, nothing on stderr (PowerShell ISE) |
+| 2026.11.23.5 | 1 | the watch reads every 0.5 s and logs changes of state only, with the pressure trace; largest field interpolated by WD |
 | 2026.11.23.3 | 1 | `phnt report` (one command, two files) for test sessions at the instrument |
 | 2026.11.23.2 | 1 | first run on the XL: field range by WD, vacuum and SED warnings, the holder's real name |
 | 2026.11.23.1 | 1 | read-only adapter (with the PyPhenom finder), fake XL, profile, study format, validation and estimates in the llm-translators contract's shapes, CLI, MCP server |

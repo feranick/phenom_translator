@@ -142,6 +142,15 @@ def test_montage_grid_from_area():
 
 def test_large_field_at_short_wd_is_warned_not_refused():
     r = v({"kind": "image", "setup": {"wd_mm": 4.0}, "acquire": {"hfw_um": 800}})
-    assert r["ok"] and any("may not fit" in w and "755.281" in w for w in r["warnings"])
+    assert r["ok"] and any("may not fit" in w and "about 760.4 µm at WD 4 mm (interpolated)" in w for w in r["warnings"])
     r = v({"kind": "image", "setup": {"wd_mm": 6.5}, "acquire": {"hfw_um": 800}})
     assert r["ok"] and not any("may not fit" in w for w in r["warnings"])
+
+
+def test_largest_field_by_wd_from_the_three_points_measured():
+    # 2026-11-23 on the XL: 726.0 µm at 3.3 mm, 755.3 at 3.9, 877.2 at 6.3
+    p = profile.load()
+    assert profile.hfw_max_um(p, 3.9) == (755.3, "measured")
+    assert profile.hfw_max_um(p, 5.0) == (811.2, "interpolated")
+    assert profile.hfw_max_um(p, 2.0) == (662.6, "extrapolated")
+    assert profile.hfw_max_um(p, 3.3) == (726.0, "measured")

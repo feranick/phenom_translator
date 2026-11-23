@@ -9,13 +9,14 @@ result, notes). The open questions (Q-numbers) are in [planning.md](planning.md)
 **All of T1–T5 in one command** (from 2026.11.23.3), on the instrument PC in the repository folder:
 
 ```
-python -m phenom_translator.cli report --watch 180 --every 2 --out "$env:USERPROFILE\Desktop\phnt_report.txt"
+python -m phenom_translator.cli report --watch 180 --out "$env:USERPROFILE\Desktop\phnt_report.txt"
 ```
 
 During the 3 minutes, in the Phenom UI: take an image (T3), take an EDS spectrum (T3), then put the instrument in
 Standby and wake it again (T1). The report lists each change with its time and any read that failed, in which mode.
 Send `phnt_report.txt` (and `phnt_report.json` if asked). Changes are printed as they happen, with a line every
-30 s when nothing changes. (PowerShell ISE shows anything a program writes to stderr as a red NativeCommandError:
+30 s when nothing changes. From 2026.11.23.5 the watch reads every 0.5 s (only what changes quickly; a full status
+every 30 s), so a short acquisition is not missed between reads; leave about 10 s between the steps. (PowerShell ISE shows anything a program writes to stderr as a red NativeCommandError:
 pip's warnings look like failures there; phnt writes nothing to stderr from 2026.11.23.4.)
 
 **T0 Install.** On the instrument PC, in this repository: `py -3.12 -m pip install -e ".[mcp]"`.
@@ -26,7 +27,7 @@ PyPhenom (`found_by` "import" or "folder"); if not, `set PHNT_PYPHENOM=C:\Progra
 
 **T1 Status, instrument in Standby.** `py -3.12 -m phenom_translator.cli instrument status` with the XL in Standby.
 Pass: `ok` true, no `read_errors`; `summary.can_image` false; a warning names Standby; kV positive; holder
-`XlManualHeight`; licenses all false.
+`XL Manual Height`; licenses all false.
 
 **T2 Status, live SEM imaging.** The same while imaging a sample in the Phenom UI.
 Pass: `summary.can_image` true, `eds_ready` true (detector ~234.7 K), `warnings` empty; kV, spot, WD and HFW as the
@@ -54,10 +55,11 @@ Pass: `reviewed` true; `phnt format` shows the profile's values.
 | Test | Date | Version | Result | Notes |
 |---|---|---|---|---|
 | T0 | 2026-11-23 | 2026.11.23.1 | pass | Python 3.12.2, PyPhenom 2.1.0 found by plain import (`C:\Program Files\Python312\DLLs`), mcp 2.3.0; installed from the GitHub zip; run as `python`. Venv not tried |
-| T1 | | | | |
+| T1 | 2026-11-23 | 2026.11.23.3 | not observed | no Standby during the watch: rerun with .5 |
 | T2 | 2026-11-23 | 2026.11.23.1 | pass | live SEM, 15 kV, spot 5.1, WD 3.9 mm, HFW 620.75 µm; no read errors; `can_image`, `eds_ready` true. Found: vacuum not stable (target Off, 12.9 Pa) and SED NotAllowed without a warning; holder name `XL Manual Height` (fixed in .2) |
-| T3 | | | | |
+| T3 | 2026-11-23 | 2026.11.23.3 | not observed | watch of 180 s, 90 full reads every 2 s, 0.39 s mean / 0.92 s max, no read errors; the mode stayed `LiveSem` and EDS never read acquiring (nothing done in the UI, or missed between reads): rerun with .5 |
+| T2 | 2026-11-23 | 2026.11.23.3 | pass | in the report: watch during a pump-down, 18.8 → 0.1 Pa in ~36 s, stable at ~50 s; SED `NotAllowed` → `Disabled` between 2.5 and 1.8 Pa; WD 3.3 mm, largest field 726.0 µm |
 | T4 | 2026-11-23 | 2026.11.23.2 | discover pass | rerun with .2: no warnings, no changes in the proposal, vacuum stable 0.1 Pa, SED Disabled. Import after reviewing the limits |
 | T4 | 2026-11-23 | 2026.11.23.1 | partial | discover ok, properties identical to the probe; the proposal narrowed `ranges.hfw_um` to 755 µm (the max at WD 3.9 mm): fixed in .2; discover again with .2 before importing |
-| T5 | | | | |
+| T5 | 2026-11-23 | 2026.11.23.3 | pass | the simulator connects; it reports holder `XL1 Motorized Height`, 42 Pa, 5.3 kV, `can_image` false; it refuses the spectrometer (`Missing license: Spectroscopy`) and the features (`500 resolve: No such host is known`) |
 | T6 | | | | |

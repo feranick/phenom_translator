@@ -183,10 +183,21 @@ class Adapter:
              "hfw", "high_tension", "spot", "emission", "wd", "sed", "charge_reduction", "exclusive",
              "viewing_mode", "beam_blank", "spectrometer", "health", "licenses", "features")
 
+    # what changes from second to second: read often by watches (and the phase-2 watchdog); a full status took
+    # 0.39 s on the XL (2026-11-23), too long to poll fast
+    QUICK = ("instrument_mode", "operational_mode", "door", "sed", "charge_reduction", "viewing_mode", "spectrometer")
+
     def status(self) -> dict:
         """Every tier-0 read; a read that fails is reported with its error instead of failing the whole status."""
+        return self._reads(self.READS)
+
+    def quick(self) -> dict:
+        """The few reads that change from second to second (QUICK), with the same summary and warnings."""
+        return self._reads(self.QUICK)
+
+    def _reads(self, names) -> dict:
         out, errors = {"backend": self.name}, {}
-        for r in self.READS:
+        for r in names:
             try:
                 out[r] = getattr(self, r)()
             except NotImplementedError:
